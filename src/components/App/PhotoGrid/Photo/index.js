@@ -1,10 +1,14 @@
-import React from 'react'
-import style from './photo.module.css'
+import React from "react";
+import style from "./photo.module.css";
+import PhotoCard from "./PhotoCard";
 
 function Photo() {
   return (
-    <div>Photo</div>
-  )
+    <div>
+      Photo
+      <PhotoCard />
+    </div>
+  );
 }
 
-export default Photo
+export default Photo;
