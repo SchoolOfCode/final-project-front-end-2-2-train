@@ -1,0 +1,18 @@
+.photoContainer {
+  display: flexbox;
+  align-items: center;
+}
+
+.photo {
+  height: 20vh;
+  width: 20vw;
+  border-color: violet;
+  border: violet solid 3px;
+  z-index: -1;
+}
+.photoCardDiv {
+  margin-top: -150px;
+  border: solid 3px red;
+  background: beige;
+  z-index: 1;
+}

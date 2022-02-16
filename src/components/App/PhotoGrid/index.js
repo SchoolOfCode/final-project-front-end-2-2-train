@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./photogrid.module.css";
-import Photo from "./Photo";
+import PhotoCard from "./PhotoCard";
 
 function PhotoGrid() {
   return (
     <div>
       PhotoGrid
-      <Photo />
+      <PhotoCard />
     </div>
   );
 }
