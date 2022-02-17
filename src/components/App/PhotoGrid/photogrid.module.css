@@ -1,7 +1,8 @@
 .photoGridContainer {
   margin: 20px auto 0 auto;
   border: pink 1px solid;
-  width: 60vw;
+  width: 70vw;
+  height: 85vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;

@@ -1,9 +1,10 @@
 .container {
   background-color: transparent;
-  width: 250px;
-  height: 300px;
+  width: 16vw;
+  height: 30vh;
   border: 1px solid #f1f1f1;
   perspective: 1000px;
+  margin: 50px auto 10px;
 }
 
 .photoContainer {
