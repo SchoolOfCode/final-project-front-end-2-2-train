@@ -1,18 +1,49 @@
-.photoContainer {
-  display: flexbox;
-  align-items: center;
+.container {
+  background-color: transparent;
+  width: 250px;
+  height: 300px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
 }
 
-.photo {
-  height: 20vh;
-  width: 20vw;
-  border-color: violet;
-  border: violet solid 3px;
-  z-index: -1;
+.photoContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
-.photoCardDiv {
-  margin-top: -150px;
-  border: solid 3px red;
+
+.container:hover .photoContainer {
+  transform: rotateY(180deg);
+}
+
+.photoFront {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.photoBack {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   background: beige;
-  z-index: 1;
+}
+
+.photoFront,
+.photoBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+.photoFront {
+  background-color: #bbb;
+  color: black;
+}
+.photoBack {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
 }

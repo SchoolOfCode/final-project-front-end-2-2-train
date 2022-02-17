@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 function SidebarBtn() {
   return (
-    <div>
+    <div className={style.sideBarDiv}>
       <Sidebar />
     </div>
   );
