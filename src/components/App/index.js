@@ -1,13 +1,14 @@
-import "./App.css";
+import style from "./App.module.css";
 import Title from "./Title";
 import SidebarBtn from "./SidebarBtn";
 import PhotoGrid from "./PhotoGrid";
 
 function App() {
   return (
-    <div className="App">
-      <Title />
-      <SidebarBtn />
+    <div className={style.app}>
+      <h1>holibobs</h1>
+      {/* <Title />
+      <SidebarBtn /> */}
       <PhotoGrid />
     </div>
   );
