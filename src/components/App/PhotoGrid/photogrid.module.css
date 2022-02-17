@@ -1,3 +1,12 @@
-/* .photoGridContainer {
-  text-align: center;
-} */
+.photoGridContainer {
+  margin: 20px auto 0 auto;
+  border: pink 1px solid;
+  width: 60vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . ."
+    ". . .";
+}
