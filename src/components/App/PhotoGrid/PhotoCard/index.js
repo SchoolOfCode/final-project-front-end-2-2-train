@@ -15,7 +15,7 @@ function PhotoCard({ key, props }) {
           <h2>{props.title}</h2>
           <h2>{props.location}</h2>
           <h3>{props.date}</h3>
-          <h4>{props.note}</h4>
+          <p>{props.note}</p>
         </div>
       </div>
     </div>
