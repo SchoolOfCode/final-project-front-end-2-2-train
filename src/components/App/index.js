@@ -1,17 +1,23 @@
 import style from "./App.module.css";
 import Title from "./Title";
-import SidebarBtn from "./SidebarBtn";
+import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
 
-//! title and sidebar commented out for styling purposes
+//! function to add styling to the sidebar that reveals content
+// may have to pass styling down as props?
 
 function App() {
   return (
     <div className={style.app}>
-      <div className={style.navbar}>
-        <Title />
-        <SidebarBtn />
-      </div>
+      <ul className={style.navbar}>
+        <Sidebar />
+        <li>
+          <Title />
+        </li>
+        <li>
+          <h1 className={style.menuIcon}>X</h1>
+        </li>
+      </ul>
       <PhotoGrid />
     </div>
   );
