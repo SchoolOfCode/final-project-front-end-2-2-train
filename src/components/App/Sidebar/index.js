@@ -7,15 +7,13 @@ import Notes from "./Notes";
 
 function Sidebar() {
   return (
-    <div className={style.sidebarParent}>
-      <div className={style.sidebarContainer}>
-        <h1>Sidebar</h1>
-        <LocationInput />
-        <DateInfo />
-        <Notes />
-        <ImageUpload />
-        <button>SUBMIT</button>
-      </div>
+    <div className={style.sidebarContainer}>
+      <h1>Sidebar</h1>
+      <LocationInput />
+      <DateInfo />
+      <Notes />
+      <ImageUpload />
+      <button>SUBMIT</button>
     </div>
   );
 }

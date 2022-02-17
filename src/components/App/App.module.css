@@ -3,10 +3,25 @@
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
+  flex-direction: column;
 }
 
-.navbar {
-  position: absolute;
-  height: 10vh;
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100vw;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+li h1 {
+  margin-right: 5vw;
+}
+
+.menuIcon {
+  z-index: 3;
 }
