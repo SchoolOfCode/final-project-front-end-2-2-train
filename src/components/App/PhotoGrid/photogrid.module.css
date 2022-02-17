@@ -1,6 +1,6 @@
 .photoGridContainer {
   margin: 20px auto 0 auto;
-  border: pink 1px solid;
+  /* border: pink 1px solid; */
   width: 70vw;
   height: 85vh;
   display: grid;
@@ -11,7 +11,7 @@
     ". . ."
     ". . .";
   background: rgba(229, 229, 229, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(213, 215, 237, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(83, 40, 89, 0.2);
   backdrop-filter: blur(5.5px);
   -webkit-backdrop-filter: blur(7.5px);
   border-radius: 10px;

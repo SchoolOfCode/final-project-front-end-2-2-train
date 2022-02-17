@@ -6,7 +6,8 @@ import PhotoGrid from "./PhotoGrid";
 function App() {
   return (
     <div className={style.app}>
-      <h1>holibobs</h1>
+      <h1>Memo
+      <br/>Map </h1>
       {/* <Title />
       <SidebarBtn /> */}
       <PhotoGrid />
