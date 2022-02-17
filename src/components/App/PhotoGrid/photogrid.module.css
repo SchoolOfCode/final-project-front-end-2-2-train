@@ -10,4 +10,9 @@
   grid-template-areas:
     ". . ."
     ". . .";
+    background: rgba( 229, 229, 229, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba(213, 215, 237, 0.2);
+    backdrop-filter: blur( 5.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 10px;
 }
