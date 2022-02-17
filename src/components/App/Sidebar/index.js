@@ -5,17 +5,18 @@ import ImageUpload from "./ImageUpload";
 import DateInfo from "./DateInfo";
 import Notes from "./Notes";
 
+
+
 function Sidebar() {
-  return (
-    <div className={style.sidebarContainer}>
-      <h1>Sidebar</h1>
-      <LocationInput />
-      <DateInfo />
-      <Notes />
-      <ImageUpload />
-      <button>SUBMIT</button>
-    </div>
-  );
+   return (
+      <div className={style.sidebarContainer}>
+         <LocationInput />
+         <DateInfo />
+         <Notes />
+         <ImageUpload />
+         <button>SUBMIT</button>
+      </div>
+   );
 }
 
 export default Sidebar;

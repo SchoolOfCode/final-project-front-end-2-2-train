@@ -1,13 +1,13 @@
 .sidebarContainer {
-  position: absolute;
-  display: block;
-  right: 0;
-  height: 100vh;
-  width: 30vw;
-  z-index: 1;
-  background: rgba(229, 229, 229, 0.2);
-  box-shadow: 0 0 32px 0 rgba(87, 80, 88, 0.4);
-  backdrop-filter: blur(5.5px);
-  -webkit-backdrop-filter: blur(7.5px);
-  border-radius: 10px;
+   position: absolute;
+   display: block;
+   right: 0;
+   height: 100vh;
+   width: 30vw;
+   z-index: 1;
+   background: rgba(229, 229, 229, 0.2);
+   box-shadow: 0 0 32px 0 rgba(87, 80, 88, 0.4);
+   backdrop-filter: blur(5.5px);
+   -webkit-backdrop-filter: blur(7.5px);
+   border-radius: 10px;
 }
