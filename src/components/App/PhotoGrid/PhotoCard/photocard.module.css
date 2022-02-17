@@ -2,9 +2,8 @@
   background-color: transparent;
   width: 16vw;
   height: 30vh;
-  border: 1px solid #f1f1f1;
   perspective: 1000px;
-  margin: 50px auto 10px;
+  margin: 25px auto 10px;
 }
 
 .photoContainer {
@@ -23,12 +22,14 @@
   position: absolute;
   height: 100%;
   width: 100%;
+  padding: 10px 10px 70px;
 }
 .photoBack {
+  padding: 10px 10px 70px;
   position: absolute;
   height: 100%;
   width: 100%;
-  background: beige;
+  background: rgb(255, 255, 255);
 }
 
 .photoFront,
@@ -40,12 +41,13 @@
   backface-visibility: hidden;
 }
 .photoFront {
-  background-color: #bbb;
+  background-color: rgb(255, 255, 255);
   color: black;
 }
 .photoBack {
   background-color: white;
   color: black;
   transform: rotateY(180deg);
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
