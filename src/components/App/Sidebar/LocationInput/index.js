@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./LocationInput.module.css";
+// import style from "./LocationInput.module.css";
 
 function LocationInput() {
   return (
