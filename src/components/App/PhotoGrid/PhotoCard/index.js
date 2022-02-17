@@ -12,10 +12,9 @@ function PhotoCard({ key, props }) {
       <div className={style.photoContainer}>
         <img className={style.photoFront} src={props.image} alt={key} />
         <div className={style.photoBack}>
-          <h2>{props.title}</h2>
-          <h2>{props.location}</h2>
-          <h3>{props.date}</h3>
-          <p>{props.note}</p>
+          <h1>{props.title}</h1>
+          <h2>{props.location} - {props.date}</h2>
+          <h3>{props.note}</h3>
         </div>
       </div>
     </div>
