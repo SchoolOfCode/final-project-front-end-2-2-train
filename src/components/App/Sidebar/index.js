@@ -6,11 +6,11 @@ import DateInfo from "./DateInfo";
 import Notes from "./Notes";
 
 function Sidebar({ opened }) {
-   // const style = opened
-   // opened ? `${style.sidebarContainer} ${style.sidebarHidden}`
-
+   const styleAdd = opened
+      ? `${style.sidebarContainer}`
+      : `${style.sidebarContainer} ${style.sidebarHidden}`;
    return (
-      <div className={`${style.sidebarContainer} ${style.sidebarHidden}`}>
+      <div className={styleAdd}>
          <LocationInput />
          <DateInfo />
          <Notes />
