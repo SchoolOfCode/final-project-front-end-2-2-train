@@ -6,6 +6,9 @@ function Sidebar({ opened, setObj }) {
    const styleAdd = opened
       ? `${style.sidebarContainer}`
       : `${style.sidebarContainer} ${style.sidebarHidden}`;
+   const styleAddForm = opened
+      ? `${style.formContainer}`
+      : `${style.formContainer} ${style.sidebarHidden}`;
    // States to grab the input fields
    const [title, setTitle] = useState("");
    const [location, setLocation] = useState("");
@@ -26,23 +29,24 @@ function Sidebar({ opened, setObj }) {
    }
    return (
       <div className={styleAdd}>
-         <form>
+         <form className={style.formContainer}>
             <input
                type="text"
-               placeholder="title"
+               placeholder="Title"
                onChange={(event) => setTitle(event.target.value)}
             />
             <input
                type="text"
-               placeholder="location"
+               placeholder="Location"
                onChange={(event) => setLocation(event.target.value)}
             />
             <input
                type="date"
                onChange={(event) => setDate(event.target.value)}
             />
-            <input
+            <textarea
                type="text"
+               placeholder="Notes..."
                onChange={(event) => setNote(event.target.value)}
             />
             <input

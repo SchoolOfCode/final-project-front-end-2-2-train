@@ -14,5 +14,42 @@
 }
 
 .sidebarHidden {
-   width: 0;
+   z-index: -1;
+}
+
+.formContainer {
+   display: flex;
+   flex-direction: column;
+   margin-top: 10rem;
+}
+
+.formContainer input {
+   margin: 1rem auto 0 3rem;
+   width: 50%;
+}
+.formContainer textarea {
+   margin: 1rem auto 0 3rem;
+   width: 50%;
+}
+
+.formContainer button {
+   margin: 2rem auto auto 5rem;
+   border: none;
+   color: white;
+   padding: 12px 28px;
+   font-size: 16px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   background-color: #008cba;
+   width: 10rem;
+   transition-duration: 0.4s;
+   border-radius: 10px;
+}
+
+.formContainer button:hover {
+   border-radius: 10px;
+   background-color: transparent;
+   color: black;
+   border: 1px solid black;
 }
