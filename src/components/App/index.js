@@ -1,7 +1,7 @@
 import style from "./App.module.css";
 import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
-import Button from "./Button";
+import MenuIcon from "./Sidebar/MenuIcon";
 import { React, useState } from "react";
 
 //! function to add styling to the sidebar that reveals content
@@ -9,16 +9,13 @@ import { React, useState } from "react";
 
 function App() {
    const [opened, setOpened] = useState(false);
-   const [obj, setObj] = useState({})
-   console.log(obj)
-  
+   const [obj, setObj] = useState({});
+   console.log(obj);
+
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
-            <Sidebar
-               opened={opened}
-               setObj={setObj}
-            />
+            <Sidebar opened={opened} setObj={setObj} />
             <li>
                <h1 className={style.title}>
                   Memo
@@ -26,7 +23,7 @@ function App() {
                   Maps
                </h1>
             </li>
-            <Button setOpened={setOpened} opened={opened} />
+            <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
          <PhotoGrid />
       </div>

@@ -1,5 +1,5 @@
-import { React, useState } from "react";
-import buttonStyle from "./Button.module.css";
+import { React } from "react";
+import buttonStyle from "./MenuIcon.module.css";
 
 function Button({ setOpened, opened }) {
    const style = opened
