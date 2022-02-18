@@ -2,6 +2,7 @@ import { React } from "react";
 import buttonStyle from "./MenuIcon.module.css";
 
 function Button({ setOpened, opened }) {
+   // changes the style of the menu icon
    const style = opened
       ? `${buttonStyle.menu} ${buttonStyle.opened}`
       : `${buttonStyle.menu}`;

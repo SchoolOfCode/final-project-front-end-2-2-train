@@ -8,7 +8,9 @@ import { React, useState } from "react";
 // may have to pass styling down as props?
 
 function App() {
+   // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
+   // The object that gets sent to the API using the users data
    const [obj, setObj] = useState({});
    console.log(obj);
 
