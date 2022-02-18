@@ -9,10 +9,16 @@ import { React, useState } from "react";
 
 function App() {
    const [opened, setOpened] = useState(false);
+   const [obj, setObj] = useState({})
+   console.log(obj)
+  
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
-            <Sidebar opened={opened} />
+            <Sidebar
+               opened={opened}
+               setObj={setObj}
+            />
             <li>
                <h1 className={style.title}>
                   Memo
