@@ -5,11 +5,12 @@ import ImageUpload from "./ImageUpload";
 import DateInfo from "./DateInfo";
 import Notes from "./Notes";
 
+function Sidebar({ opened }) {
+   // const style = opened
+   // opened ? `${style.sidebarContainer} ${style.sidebarHidden}`
 
-
-function Sidebar() {
    return (
-      <div className={style.sidebarContainer}>
+      <div className={`${style.sidebarContainer} ${style.sidebarHidden}`}>
          <LocationInput />
          <DateInfo />
          <Notes />

@@ -1,24 +1,26 @@
 import style from "./App.module.css";
 import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
-import MenuIcon from "@mui/icons-material/Menu";
+import Button from "./Button";
+import { React, useState } from "react";
 
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
 
 function App() {
+   const [opened, setOpened] = useState(false);
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
-            <Sidebar />
+            <Sidebar opened={opened} />
             <li>
                <h1 className={style.title}>
                   Memo
                   <br />
-                  Map
+                  Maps
                </h1>
             </li>
-            <MenuIcon className={style.menuIcon} />
+            <Button setOpened={setOpened} opened={opened} />
          </ul>
          <PhotoGrid />
       </div>
