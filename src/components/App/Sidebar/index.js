@@ -6,9 +6,6 @@ function Sidebar({ opened, setObj }) {
    const styleAdd = opened
       ? `${style.sidebarContainer}`
       : `${style.sidebarContainer} ${style.sidebarHidden}`;
-   const styleAddForm = opened
-      ? `${style.formContainer}`
-      : `${style.formContainer} ${style.sidebarHidden}`;
    // States to grab the input fields
    const [title, setTitle] = useState("");
    const [location, setLocation] = useState("");
@@ -26,6 +23,7 @@ function Sidebar({ opened, setObj }) {
          note: note,
          image: image,
       });
+      document.getElementsByClassName(`${style.formContainer}`).value = "";
    }
    return (
       <div className={styleAdd}>

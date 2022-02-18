@@ -1,9 +1,10 @@
 .app {
-   background-image: url(https://wallpapercave.com/wp/wp4957455.jpg);
+   background-image: url("../../../public/img/stacked-waves-haikei.svg");
    background-repeat: no-repeat;
    background-size: 100%;
    background-position: center;
    flex-direction: column;
+   height: 100vh;
 }
 
 ul {
