@@ -7,8 +7,7 @@ import { React, useState, useEffect } from "react";
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
 
-const API_URL = "http://localhost:5500"
-
+const API_URL = "http://localhost:5500";
 
 function App() {
    // Sets the style of the sidebar to show it
@@ -17,28 +16,30 @@ function App() {
    const [obj, setObj] = useState({});
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
+   const [data, setData] = useState([]);
    console.log(obj, media, error);
 
    useEffect(() => {
       async function getMedia() {
-        try {
-          const response = await fetch(`${API_URL}/media`);
-          const data = await response.json();
-          if (data.success === true) {
-            console.log(data);
-            setMedia(data.payload);
-            setError("");
-          } else {
-             console.log(response)
-            setError("Fetch didn't work :(");
-          }
-        } catch (err) {
-          console.log(err);
-          setError(err.message);
-        }
+         try {
+            const response = await fetch(`${API_URL}/media`);
+            const newData = await response.json();
+            setData(data.push(newData));
+            if (data.success === true) {
+               console.log(data);
+               setMedia(data.payload);
+               setError("");
+            } else {
+               console.log(response);
+               setError("Fetch didn't work :(");
+            }
+         } catch (err) {
+            console.log(err);
+            setError(err.message);
+         }
       }
       getMedia();
-    }, []);
+   }, []);
 
    return (
       <div className={style.app}>
@@ -53,10 +54,9 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
-         <PhotoGrid />
+         <PhotoGrid data={data} />
       </div>
    );
 }
-
 
 export default App;
