@@ -16,17 +16,19 @@ function App() {
 
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
-   console.log(media, error);
-
+  
+   // const [data, setData] = useState([]);
+   console.log(obj, media, error);
    //! the GET request
    useEffect(() => {
       async function getMedia() {
          try {
             const response = await fetch(`${API_URL}/media`);
-            const data = await response.json();
-            if (data.success === true) {
-               console.log(data);
-               setMedia(data.payload);
+            const newData = await response.json();
+            // setData(newData.payload);
+            if (newData.success === true) {
+               console.log("Got the data!", newData.payload);
+               setMedia(newData.payload);
                setError("");
             } else {
                console.log(response);
@@ -53,7 +55,7 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
-         <PhotoGrid />
+         <PhotoGrid media={media} />
       </div>
    );
 }
