@@ -16,9 +16,9 @@ function App() {
 
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
-  
+
    // const [data, setData] = useState([]);
-   console.log(obj, media, error);
+   // console.log(obj, media, error);
    //! the GET request
    useEffect(() => {
       async function getMedia() {
