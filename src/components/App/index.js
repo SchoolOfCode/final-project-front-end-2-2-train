@@ -7,7 +7,7 @@ import { React, useState, useEffect } from "react";
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
 
-const API_URL = "http://locahost:5500"
+const API_URL = "http://localhost:5500"
 
 
 function App() {
