@@ -4,6 +4,9 @@ import style from "./photocard.module.css";
 function PhotoCard({ key, data }) {
    // css to allow only a certain amount of char for the notes
    // returning data populated by the DummyData
+
+   console.log("photocard data", data);
+
    return (
       <div className={style.container}>
          <div className={style.photoContainer}>
