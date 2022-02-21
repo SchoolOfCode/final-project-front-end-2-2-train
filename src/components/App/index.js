@@ -13,12 +13,13 @@ function App() {
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
    // The object that gets sent to the API using the users data
-   const [obj, setObj] = useState({});
+
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
+  
    // const [data, setData] = useState([]);
    console.log(obj, media, error);
-
+   //! the GET request
    useEffect(() => {
       async function getMedia() {
          try {
@@ -44,7 +45,7 @@ function App() {
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
-            <Sidebar opened={opened} setObj={setObj} />
+            <Sidebar opened={opened} />
             <li>
                <h1 className={style.title}>
                   Memo
