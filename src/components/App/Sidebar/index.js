@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import style from "./Sidebar.module.css";
+const API_URL = "http://localhost:5500";
 
-function Sidebar({ opened, setObj }) {
+function Sidebar({ opened }) {
    // Styling for the menu icon
    const styleAdd = opened
       ? `${style.sidebarContainer}`
@@ -12,19 +13,51 @@ function Sidebar({ opened, setObj }) {
    const [date, setDate] = useState("");
    const [image, setImage] = useState("");
    const [note, setNote] = useState("");
+   const [obj, setObj] = useState({});
+   const [media, setMedia] = useState([]);
+   const [error, setError] = useState("");
 
    // Function that grabs the input data and sends it to the App component
    function setStates(event) {
       event.preventDefault();
       setObj({
-         title: title,
+         userId: 11,
+         aws_key: image,
+         media_title: title,
          location: location,
          date: date,
-         note: note,
-         image: image,
+         media_descr: note,
       });
       document.getElementsByClassName(`${style.formContainer}`).value = "";
    }
+
+   //! the POST request
+   useEffect(() => {
+      if (obj === {}) return;
+      async function getMedia() {
+         try {
+            const response = await fetch(`${API_URL}/media`, {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(obj),
+            });
+            const data = await response.json();
+            if (data.success === true) {
+               console.log(data);
+               setMedia(data.payload);
+               setError("");
+            } else {
+               console.log(response);
+               setError("Fetch didn't work :(");
+            }
+         } catch (err) {
+            console.log(err);
+            setError(err.message);
+         }
+      }
+      getMedia();
+   }, [obj]);
+   console.log(media, error);
    return (
       <div className={styleAdd}>
          <form className={style.formContainer}>
