@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import style from "./Sidebar.module.css";
-const API_URL = "http://localhost:5500";
+const API_URL = "https://room-22-train.herokuapp.com";
 
 function Sidebar({ opened }) {
    // Styling for the menu icon
