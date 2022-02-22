@@ -7,7 +7,7 @@ import { React, useState, useEffect } from "react";
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
 
-const API_URL = "http://localhost:5500";
+const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
    // Sets the style of the sidebar to show it
@@ -18,7 +18,7 @@ function App() {
    const [error, setError] = useState("");
 
    // const [data, setData] = useState([]);
-   // console.log(obj, media, error);
+
    //! the GET request
    useEffect(() => {
       async function getMedia() {
@@ -27,7 +27,7 @@ function App() {
             const newData = await response.json();
             // setData(newData.payload);
             if (newData.success === true) {
-               console.log("Got the data!", newData.payload);
+               console.log("Got the data!");
                setMedia(newData.payload);
                setError("");
             } else {

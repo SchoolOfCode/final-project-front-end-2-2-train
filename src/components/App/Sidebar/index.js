@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import style from "./Sidebar.module.css";
-const API_URL = "http://localhost:5500";
+const API_URL = "https://room-22-train.herokuapp.com";
 
 function Sidebar({ opened }) {
    // Styling for the menu icon
@@ -33,31 +33,34 @@ function Sidebar({ opened }) {
 
    //! the POST request
    useEffect(() => {
-      if (obj === {}) return;
-      async function getMedia() {
-         try {
-            const response = await fetch(`${API_URL}/media`, {
-               method: "POST",
-               headers: { "Content-Type": "application/json" },
-               body: JSON.stringify(obj),
-            });
-            const data = await response.json();
-            if (data.success === true) {
-               console.log(data);
-               setMedia(data.payload);
-               setError("");
-            } else {
-               console.log(response);
-               setError("Fetch didn't work :(");
+      if (Object.keys(obj).length === 0) {
+         return;
+      } else {
+         async function getMedia() {
+            try {
+               const response = await fetch(`${API_URL}/media`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(obj),
+               });
+               const data = await response.json();
+               if (data.success === true) {
+                  console.log(data);
+                  setMedia(data.payload);
+                  setError("");
+               } else {
+                  console.log(response);
+                  setError("Fetch didn't work :(");
+               }
+            } catch (err) {
+               console.log(err);
+               setError(err.message);
             }
-         } catch (err) {
-            console.log(err);
-            setError(err.message);
          }
+         getMedia();
       }
-      getMedia();
    }, [obj]);
-   console.log(media, error);
+   // console.log(media, error);
    return (
       <div className={styleAdd}>
          <form className={style.formContainer}>
