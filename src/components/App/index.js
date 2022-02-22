@@ -48,8 +48,12 @@ function App() {
       <div className={style.app}>
          <ul className={style.navbar}>
             <Sidebar opened={opened} />
-            <li>
-               <h1 className={style.title}>PINIT!</h1>
+            <li className={style.imgContainer}>
+               <img
+                  src={require("./pinit-logo.png")}
+                  className={style.logo}
+                  alt="Pinit! Logo"
+               />
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
