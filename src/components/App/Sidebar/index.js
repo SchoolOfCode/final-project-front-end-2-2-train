@@ -1,7 +1,8 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import style from "./Sidebar.module.css";
+const API_URL = "https://room-22-train.herokuapp.com";
 
-function Sidebar({ opened, setObj }) {
+function Sidebar({ opened }) {
    // Styling for the menu icon
    const styleAdd = opened
       ? `${style.sidebarContainer}`
@@ -12,19 +13,55 @@ function Sidebar({ opened, setObj }) {
    const [date, setDate] = useState("");
    const [image, setImage] = useState("");
    const [note, setNote] = useState("");
+   const [obj, setObj] = useState({});
+   const [media, setMedia] = useState([]);
+   const [error, setError] = useState("");
+   console.log(error, media);
 
    // Function that grabs the input data and sends it to the App component
    function setStates(event) {
       event.preventDefault();
       setObj({
-         title: title,
+         userId: 11,
+         aws_key: image,
+         media_title: title,
          location: location,
          date: date,
-         note: note,
-         image: image,
+         media_descr: note,
       });
       document.getElementsByClassName(`${style.formContainer}`).value = "";
    }
+
+   //! the POST request
+   useEffect(() => {
+      if (Object.keys(obj).length === 0) {
+         return;
+      } else {
+         async function getMedia() {
+            try {
+               const response = await fetch(`${API_URL}/media`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(obj),
+               });
+               const data = await response.json();
+               if (data.success === true) {
+                  console.log(data);
+                  setMedia(data.payload);
+                  setError("");
+               } else {
+                  console.log(response);
+                  setError("Fetch didn't work :(");
+               }
+            } catch (err) {
+               console.log(err);
+               setError(err.message);
+            }
+         }
+         getMedia();
+      }
+   }, [obj]);
+   // console.log(media, error);
    return (
       <div className={styleAdd}>
          <form className={style.formContainer}>
@@ -47,8 +84,15 @@ function Sidebar({ opened, setObj }) {
                placeholder="Notes..."
                onChange={(event) => setNote(event.target.value)}
             />
-            <input
+            {/* UPLOAD A FILE */}
+            {/* <input
                type="file"
+               onChange={(event) => setImage(event.target.value)}
+            /> */}
+
+            {/* temporary solution to upload images */}
+            <input
+               type="text"
                onChange={(event) => setImage(event.target.value)}
             />
             <button onClick={setStates}>SUBMIT</button>
