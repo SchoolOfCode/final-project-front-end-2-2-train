@@ -83,8 +83,15 @@ function Sidebar({ opened }) {
                placeholder="Notes..."
                onChange={(event) => setNote(event.target.value)}
             />
-            <input
+            {/* UPLOAD A FILE */}
+            {/* <input
                type="file"
+               onChange={(event) => setImage(event.target.value)}
+            /> */}
+
+            {/* temporary solution to upload images */}
+            <input
+               type="text"
                onChange={(event) => setImage(event.target.value)}
             />
             <button onClick={setStates}>SUBMIT</button>
