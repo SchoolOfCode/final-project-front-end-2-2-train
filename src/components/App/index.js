@@ -42,16 +42,13 @@ function App() {
       getMedia();
    }, []);
 
+   // Over here we are passing down our API fetched data into photgrid component shown by "media={media}"
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
             <Sidebar opened={opened} />
             <li>
-               <h1 className={style.title}>
-                  Memo
-                  <br />
-                  Maps
-               </h1>
+               <h1 className={style.title}>PINIT!</h1>
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
