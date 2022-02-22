@@ -16,6 +16,7 @@ function App() {
 
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
+   console.log(error);
 
    // const [data, setData] = useState([]);
 
@@ -42,7 +43,7 @@ function App() {
       getMedia();
    }, []);
 
-   // Over here we are passing down our API fetched data into photgrid component shown by "media={media}"
+   // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
    return (
       <div className={style.app}>
          <ul className={style.navbar}>

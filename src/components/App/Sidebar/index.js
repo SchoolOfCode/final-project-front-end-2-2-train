@@ -16,6 +16,7 @@ function Sidebar({ opened }) {
    const [obj, setObj] = useState({});
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
+   console.log(error, media);
 
    // Function that grabs the input data and sends it to the App component
    function setStates(event) {
