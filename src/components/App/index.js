@@ -7,7 +7,7 @@ import { React, useState, useEffect } from "react";
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
 
-const API_URL = "http://localhost:5500";
+const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
    // Sets the style of the sidebar to show it
@@ -42,6 +42,7 @@ function App() {
       getMedia();
    }, []);
 
+   // Over here we are passing down our API fetched data into photgrid component shown by "media={media}"
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
