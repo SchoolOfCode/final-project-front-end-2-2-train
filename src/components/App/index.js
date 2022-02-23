@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
 import MenuIcon from "./Sidebar/MenuIcon";
 import { React, useState, useEffect } from "react";
-import Map from "./Map";
+// import Map from "../Map";
 
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
@@ -48,7 +48,7 @@ function App() {
    return (
       <div className={style.app}>
          <div className={style.mapContainer}>
-            <Map className={style.map} />
+            {/* <Map className={style.map} /> */}
          </div>
          <ul className={style.navbar}>
             <Sidebar opened={opened} />
