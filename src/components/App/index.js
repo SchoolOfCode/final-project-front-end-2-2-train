@@ -1,7 +1,6 @@
 import style from "./App.module.css";
-//import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
-import MenuIcon from "./Sidebar/MenuIcon";
+import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
 import Form from "./Form";
 
@@ -17,6 +16,7 @@ function App() {
 
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
+   console.log(error);
 
    // const [data, setData] = useState([]);
 
@@ -43,16 +43,16 @@ function App() {
       getMedia();
    }, []);
 
-   // Over here we are passing down our API fetched data into photgrid component shown by "media={media}"
+   // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
    return (
       <div className={style.app}>
          <ul className={style.navbar}>
-            <Form opened={opened} />
             <li>
                <h1 className={style.title}>PINIT!</h1>
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
+         <Form opened={opened} />
          <PhotoGrid media={media} />
       </div>
    );
