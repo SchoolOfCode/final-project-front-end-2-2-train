@@ -13,3 +13,15 @@ code {
    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
 }
+
+.map-container {
+   position: absolute;
+   height: 100vh;
+   width: 100vw;
+}
+
+.map {
+   position: relative;
+   height: auto;
+   width: 100%;
+}
