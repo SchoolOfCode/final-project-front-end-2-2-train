@@ -1,7 +1,7 @@
 import style from "./App.module.css";
 import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
-import MenuIcon from "./Sidebar/MenuIcon";
+import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
 import Form from "./Form";
 
@@ -70,6 +70,8 @@ function App() {
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
          {opened === true ? <PhotoGrid media={media} /> : <div />}
+         <Form opened={opened} />
+         <PhotoGrid media={media} />
       </div>
    );
 }
