@@ -60,6 +60,7 @@ export default function Form({ opened }) {
             className={style.formContainer}
             onSubmit={handleSubmit(onSubmit)}>
             <input
+               className={style.fileInput}
                type="file"
                placeholder="Image"
                {...register("aws_key", { required: true })}
