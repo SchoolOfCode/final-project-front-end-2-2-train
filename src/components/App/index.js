@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
 import MenuIcon from "./Sidebar/MenuIcon";
 import { React, useState, useEffect } from "react";
-// import Map from "../Map";
+import Form from "./Form";
 
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
@@ -62,6 +62,10 @@ function App() {
                   className={style.logo}
                   alt="Pinit! Logo"
                />
+               </li>
+            <Form opened={opened} />
+            <li>
+               <h1 className={style.title}>PINIT!</h1>
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
