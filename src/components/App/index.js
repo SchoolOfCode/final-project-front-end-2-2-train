@@ -44,6 +44,10 @@ function App() {
       getMedia();
    }, []);
 
+   const styleAdd = opened
+      ? `${style.photoGridContainer}`
+      : `${style.photoGridContainer} ${style.photoGridHidden}`;
+
    // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
    return (
       <div className={style.app}>
@@ -61,7 +65,7 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
-         <PhotoGrid media={media} />
+         {opened === true ? <PhotoGrid media={media} /> : <div />}
       </div>
    );
 }
