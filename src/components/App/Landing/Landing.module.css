@@ -1,24 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap");
+
 * {
    box-sizing: border-box;
    border: 0;
    margin: 0;
 }
+
 :root {
    --main-red: #fc4647;
    --font-dark: #3a3335;
    --font-light: #f5f3f5;
    --font-main: "Montserrat", sans-serif;
 }
+
 section {
    height: 100vh;
    width: 100vw;
 }
+
 .whiteSection {
    background-color: var(--font-light);
    height: 100vh;
    width: 100vw;
 }
+
 .darkSection {
    background-color: var(--font-dark);
    height: 100vh;
@@ -34,13 +39,16 @@ p {
    font-family: var(--font-main);
    font-weight: 500;
 }
+
 h1,
 h2 span {
    color: var(--main-red);
 }
+
 /*********
 NAVBAR
 *********/
+
 .logo {
    height: 60px;
    margin: 1rem 0 0 0.5rem;
@@ -53,26 +61,39 @@ NAVBAR
    height: 10vh;
    width: 100vw;
 }
+
 .navlinks {
    display: flex;
    margin-left: 5rem;
 }
+
 .navlink {
    font-family: var(--font-main);
    text-transform: uppercase;
    margin: 2.3rem 0 0 1rem;
    color: var(--main-red);
 }
+
+.navlink:hover {
+   border-bottom: 2px var(--main-red) solid;
+}
+
 li {
    text-decoration: none;
    list-style: none;
 }
+
 /*********
 BUTTONS
 *********/
+
 button {
    text-transform: uppercase;
+   font-weight: 700;
+   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
+
 .sign {
    margin: 1.5rem 2rem 0 0;
    height: 40px;
@@ -81,6 +102,12 @@ button {
    color: var(--main-red);
    background-color: transparent;
 }
+
+.sign:hover {
+   color: var(--font-light);
+   background-color: var(--main-red);
+}
+
 .login {
    margin: 1.5rem 3rem 0 0;
    height: 40px;
@@ -88,6 +115,13 @@ button {
    color: var(--font-light);
    background-color: var(--main-red);
 }
+
+.login:hover {
+   color: var(--main-red);
+   background-color: transparent;
+   border: 2px var(--main-red) solid;
+}
+
 .moreInfo {
    margin: 2rem 2rem 0 13rem;
    height: 40px;
@@ -96,15 +130,23 @@ button {
    color: var(--main-red);
    background-color: transparent;
 }
+
+.moreInfo:hover {
+   color: var(--font-light);
+   background-color: var(--main-red);
+}
+
 /*********
 HERO
 *********/
+
 .hero {
    height: 90vh;
    width: 100vw;
    display: flex;
    flex-direction: row;
 }
+
 .mapPin {
    height: 500px;
    margin: 10rem 0 0 20rem;
@@ -116,10 +158,13 @@ HERO
 
 .landingtext h1 {
    font-size: 56px;
+   color: var(--font-dark);
 }
 
-.finalContainer {
+.landingtext span {
+   color: var(--main-red);
 }
+
 /*********
 IMAGES
 *********/
@@ -183,6 +228,7 @@ FOOTER
    height: 30vh;
    width: 100vw;
 }
+
 .finalContainer h1 {
    text-align: center;
    font-size: 48px;
