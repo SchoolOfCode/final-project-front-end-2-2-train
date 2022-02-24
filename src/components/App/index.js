@@ -15,7 +15,7 @@ function App() {
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
    // The object that gets sent to the API using the users data
-
+   const [loading, setLoading] = useState(true);
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
    console.log(error);
@@ -50,33 +50,34 @@ function App() {
    //    : `${style.photoGridContainer} ${style.photoGridHidden}`;
 
    // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
+   if (loading) return <Landing />;
+
    return (
       <div className={style.app}>
-         <Landing />
+         {/* <Landing /> */}
+         <div className={style.mapContainer}>
+            {/* <Map className={style.map} /> */}
+         </div>
+         <ul className={style.navbar}>
+            {/* <Sidebar opened={opened} /> */}
+            <li className={style.imgContainer}>
+               <img
+                  src={require("../../img/pinit-logo-offwhite.png")}
+                  className={style.logo}
+                  alt="Pinit! Logo"
+               />
+            </li>
+            <Form opened={opened} />
+            <li>
+               <h1 className={style.title}>PINIT!</h1>
+            </li>
+            <MenuIcon setOpened={setOpened} opened={opened} />
+         </ul>
+         {opened === true ? <PhotoGrid media={media} /> : <div />}
+         <Form opened={opened} />
+         <PhotoGrid media={media} />
       </div>
    );
 }
 
 export default App;
-
-// <div className={style.mapContainer}>
-//    {/* <Map className={style.map} /> */}
-// </div>
-// <ul className={style.navbar}>
-//    {/* <Sidebar opened={opened} /> */}
-//    <li className={style.imgContainer}>
-//       <img
-//          src={require("./pinit-logo.png")}
-//          className={style.logo}
-//          alt="Pinit! Logo"
-//       />
-//    </li>
-//    <Form opened={opened} />
-//    <li>
-//       <h1 className={style.title}>PINIT!</h1>
-//    </li>
-//    <MenuIcon setOpened={setOpened} opened={opened} />
-// </ul>
-// {opened === true ? <PhotoGrid media={media} /> : <div />}
-// <Form opened={opened} />
-// <PhotoGrid media={media} />

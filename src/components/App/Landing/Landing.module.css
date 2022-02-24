@@ -104,6 +104,7 @@ button {
 }
 
 .sign:hover {
+   transition: ease-in;
    color: var(--font-light);
    background-color: var(--main-red);
 }
