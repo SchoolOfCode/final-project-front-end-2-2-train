@@ -5,6 +5,8 @@ import pin from "./pin.png";
 import style from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+import locations from "./mockLocations.json" // importing mock locations for testing
+
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 // mapboxAccessToken
