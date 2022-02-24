@@ -29,7 +29,7 @@ function Landing() {
             </div>
          </section>
          <section className={style.darkSection}>
-            <div className={style.container}>
+            <div>
                <img src="" alt="Mapbook" />
                <h2>
                   A new way to store and
