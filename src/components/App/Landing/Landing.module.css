@@ -13,6 +13,10 @@
    --font-main: "Montserrat", sans-serif;
 }
 
+html {
+   scroll-behavior: smooth;
+}
+
 section {
    height: 100vh;
    width: 100vw;
@@ -72,6 +76,7 @@ NAVBAR
    text-transform: uppercase;
    margin: 2.3rem 0 0 1rem;
    color: var(--main-red);
+   transition: 0.2s;
 }
 
 .navlink:hover {
@@ -101,10 +106,10 @@ button {
    border: 2px var(--main-red) solid;
    color: var(--main-red);
    background-color: transparent;
+   transition: 0.3s ease-in;
 }
 
 .sign:hover {
-   transition: ease-in;
    color: var(--font-light);
    background-color: var(--main-red);
 }
@@ -115,6 +120,7 @@ button {
    width: 200px;
    color: var(--font-light);
    background-color: var(--main-red);
+   transition: 0.3s ease-in;
 }
 
 .login:hover {
@@ -130,6 +136,7 @@ button {
    border: 2px var(--main-red) solid;
    color: var(--main-red);
    background-color: transparent;
+   transition: 0.3s ease-in;
 }
 
 .moreInfo:hover {
@@ -146,23 +153,24 @@ HERO
    width: 100vw;
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 }
 
 .mapPin {
    height: 500px;
-   margin: 10rem 0 0 20rem;
+   margin: 7rem 15rem 0 0;
 }
 
-.landingtext {
-   margin: 15rem 0 0 13rem;
+.landingText {
+   margin: 12rem 0 0 10rem;
 }
 
-.landingtext h1 {
-   font-size: 56px;
+.landingText h1 {
+   font-size: 48px;
    color: var(--font-dark);
 }
 
-.landingtext span {
+.landingText span {
    color: var(--main-red);
 }
 
