@@ -18,8 +18,10 @@ export default function Form({ opened }) {
       formState: { errors },
    } = useForm();
    const onSubmit = (data) => setObj(data);
-   //const [media, setMedia] = useState([]); //! not used; commented out for netlify
-   //const [error, setError] = useState(""); //! not used; commented out for netlify
+   const [media, setMedia] = useState([]); //! not used; commented out for netlify
+   const [error, setError] = useState(""); //! not used; commented out for netlify
+
+   console.log(media, error);
 
    console.log(watch("example")); // watch input value by passing the name of it
    // The POST request.
