@@ -23,13 +23,17 @@ function Landing() {
                </li>
             </ul>
             <div className={style.hero}>
-               <div className={style.landingtext}>
+               <div className={style.landingText}>
                   <h1>
                      <span>You</span> make the memory,
                      <br />
                      We'll put a pin in it
                   </h1>
-                  <button className={style.moreInfo}>find out more</button>
+                  <a href="#section2">
+                     <button href="#section2" className={style.moreInfo}>
+                        find out more
+                     </button>
+                  </a>
                </div>
                <img
                   className={style.mapPin}
@@ -38,7 +42,7 @@ function Landing() {
                />
             </div>
          </section>
-         <section className={style.darkSection}>
+         <section id="section2" className={style.darkSection}>
             <div className={style.card}>
                <img
                   className={style.redIcon}
