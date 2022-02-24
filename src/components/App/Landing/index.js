@@ -5,11 +5,17 @@ function Landing() {
       <div>
          <section className={style.whiteSection}>
             <ul className={style.navbar}>
-               <li>//image</li>
+               <li>
+                  <img
+                     className={style.logo}
+                     src={require("../../../img/pinit-logo-offwhite.png")}
+                     alt="Pinit! Logo"
+                  />
+               </li>
                <li className={style.navlinks}>
                   <p className={style.navlink}>about us</p>
                   <p className={style.navlink}>contact</p>
-                  <p className={style.navlink}>faq's</p>
+                  <p className={style.navlink}>faqs</p>
                </li>
                <li>
                   <button className={style.sign}>sign up</button>
@@ -25,47 +31,71 @@ function Landing() {
                   </h1>
                   <button className={style.moreInfo}>find out more</button>
                </div>
-               <img src="" alt="Image of a Map Pin" />
+               <img
+                  className={style.mapPin}
+                  src={require("../../../img/mapPin.png")}
+                  alt="Map Pin"
+               />
             </div>
          </section>
          <section className={style.darkSection}>
-            <div>
-               <img src="" alt="Mapbook" />
-               <h2>
-                  A new way to store and
-                  <br />
-                  <span>re-live</span> your memories
-               </h2>
-               <p>Your photos are tied to locations and dates</p>
+            <div className={style.card}>
+               <img
+                  className={style.redIcon}
+                  src={require("../../../img/map-book.png")}
+                  alt="Mapbook"
+               />
+               <div className={style.cardText}>
+                  <h2>
+                     A new way to store and
+                     <br />
+                     <span>re-live</span> your memories
+                  </h2>
+                  <p>Your photos are tied to locations and dates</p>
+               </div>
             </div>
-            <div className={style.container}>
-               <h2>
-                  A <span>private</span>, yet shared
-                  <br />
-                  experience
-               </h2>
-               <p>
-                  Keep albums just for you, or create
-                  <br />
-                  new ones with friends!
-               </p>
-               <img src="" alt="Lock" />
+            <hr className={style.lightLine} />
+            <div className={style.card}>
+               <div className={style.cardText}>
+                  <h2>
+                     A <span>private</span>, yet shared
+                     <br />
+                     experience
+                  </h2>
+                  <p>
+                     Keep albums just for you, or create
+                     <br />
+                     new ones with friends!
+                  </p>
+               </div>
+               <img
+                  className={style.redIcon}
+                  src={require("../../../img/shield.png")}
+                  alt="Lock"
+               />
             </div>
          </section>
          <section>
-            <div className={style.container}>
-               <img src="" alt="Globe" />
-               <h2>
-                  <span>Plan</span>your journeys for
-                  <br />
-                  work or pleasure
-               </h2>
-               <p>
-                  Forecast a trip you're looking forward to or
-                  <br />
-                  help organise a work trip
-               </p>
+            <div className={style.card}>
+               <img
+                  className={style.redIcon}
+                  src={require("../../../img/globe.png")}
+                  alt="Globe"
+               />
+               <div className={style.cardText}>
+                  <h2>
+                     <span>Plan</span> your journeys for
+                     <br />
+                     work or pleasure
+                  </h2>
+                  <p className={style.darkP}>
+                     Forecast a trip you're looking forward to or
+                     <br />
+                     help organise a work trip
+                  </p>
+               </div>
             </div>
+            <hr className={style.darkLine} />
             <div className={style.finalContainer}>
                <h1>
                   However you choose to PINIT
@@ -73,16 +103,25 @@ function Landing() {
                   we're here for you
                </h1>
             </div>
+            <ul>
+               <li className={style.footerContainer}>
+                  <img
+                     src={require("../../../img/instagram.png")}
+                     alt="Instagram"
+                  />
+                  <img src={require("../../../img/tiktok.png")} alt="TikTok" />
+                  <img
+                     src={require("../../../img/twitter.png")}
+                     alt="Twitter"
+                  />
+                  <img src={require("../../../img/github.png")} alt="GitHub" />
+                  <img
+                     src={require("../../../img/facebook.png")}
+                     alt="Facebook"
+                  />
+               </li>
+            </ul>
          </section>
-         <ul>
-            <li>
-               <img src="" alt="Instagram" />
-               <img src="" alt="TikTok" />
-               <img src="" alt="Twitter" />
-               <img src="" alt="GitHub" />
-               <img src="" alt="Facebook" />
-            </li>
-         </ul>
       </div>
    );
 }

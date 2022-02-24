@@ -16,10 +16,15 @@ section {
 }
 .whiteSection {
    background-color: var(--font-light);
+   height: 100vh;
+   width: 100vw;
 }
 .darkSection {
    background-color: var(--font-dark);
+   height: 100vh;
+   width: 100vw;
 }
+
 /*********
 FONTS
 *********/
@@ -27,26 +32,36 @@ h1,
 h2,
 p {
    font-family: var(--font-main);
+   font-weight: 500;
 }
-h1 span {
+h1,
+h2 span {
    color: var(--main-red);
 }
 /*********
 NAVBAR
 *********/
+.logo {
+   height: 60px;
+   margin: 1rem 0 0 0.5rem;
+}
+
 .navbar {
    display: flex;
    flex-direction: row;
    justify-content: space-between;
-   height: 20vh;
+   height: 10vh;
    width: 100vw;
 }
 .navlinks {
    display: flex;
+   margin-left: 5rem;
 }
 .navlink {
    font-family: var(--font-main);
    text-transform: uppercase;
+   margin: 2.3rem 0 0 1rem;
+   color: var(--main-red);
 }
 li {
    text-decoration: none;
@@ -59,29 +74,124 @@ button {
    text-transform: uppercase;
 }
 .sign {
-   margin: 1rem 2rem 0 0;
+   margin: 1.5rem 2rem 0 0;
    height: 40px;
    width: 200px;
+   border: 2px var(--main-red) solid;
+   color: var(--main-red);
+   background-color: transparent;
 }
 .login {
-   margin: 1rem 2rem 0 0;
+   margin: 1.5rem 3rem 0 0;
    height: 40px;
    width: 200px;
+   color: var(--font-light);
+   background-color: var(--main-red);
 }
 .moreInfo {
+   margin: 2rem 2rem 0 13rem;
+   height: 40px;
+   width: 200px;
+   border: 2px var(--main-red) solid;
+   color: var(--main-red);
+   background-color: transparent;
 }
 /*********
 HERO
 *********/
 .hero {
-   height: 80vh;
+   height: 90vh;
    width: 100vw;
    display: flex;
    flex-direction: row;
 }
+.mapPin {
+   height: 500px;
+   margin: 10rem 0 0 20rem;
+}
+
 .landingtext {
+   margin: 15rem 0 0 13rem;
 }
-.container {
+
+.landingtext h1 {
+   font-size: 56px;
 }
+
 .finalContainer {
+}
+/*********
+IMAGES
+*********/
+
+.redIcon {
+   height: 230px;
+}
+
+/*********
+CARDS
+*********/
+
+.darkSection h2,
+p {
+   color: var(--font-light);
+}
+
+.cardText h2 {
+   font-size: 48px;
+}
+
+.cardText p {
+   margin: 1rem 0 0 0;
+   font-size: 24px;
+}
+
+.card {
+   height: 45vh;
+   width: 100vw;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.lightLine {
+   height: 2px;
+   width: 500px;
+   background-color: var(--font-light);
+   margin: 0 auto 0 auto;
+}
+
+.darkLine {
+   height: 2px;
+   width: 500px;
+   background-color: var(--font-dark);
+   margin: 0 auto 0 auto;
+}
+
+.darkP {
+   color: var(--font-dark);
+}
+
+/*********
+FOOTER
+*********/
+
+.finalContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 30vh;
+   width: 100vw;
+}
+.finalContainer h1 {
+   text-align: center;
+   font-size: 48px;
+}
+
+.footerContainer {
+   margin: 10rem auto 3rem auto;
+}
+
+.footerContainer img {
+   margin-left: 1rem;
 }
