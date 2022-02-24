@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import Map from "./components/Map/index.js";
+import MarkerMap from "./components/Map/index.js";
 
 ReactDOM.render(
    <React.StrictMode>
       <div className="map-container">
-         <Map className="map" />
+         <MarkerMap className="map" />
       </div>
       <App />
    </React.StrictMode>,

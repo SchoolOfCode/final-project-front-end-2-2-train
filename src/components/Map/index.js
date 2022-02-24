@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import Map from "react-map-gl";
+import Map, { Marker } from "react-map-gl";
+import pin from "./pinit-logo.png";
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 // import style from "./Map.module.css";
 
@@ -7,7 +8,7 @@ const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 // mapboxAccessToken
 
-function MapStuff() {
+function MarkerMap() {
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken} //? not sure if this is the correct way to pass in accessToken prop
@@ -19,8 +20,11 @@ function MapStuff() {
             dragRotate: false,
          }}
          // style={{ width: 600, height: 400 }} //! leaving style prop in case we want to specify the height/width later on
-         mapStyle="mapbox://styles/mapbox/streets-v9"
-      />
+         mapStyle="mapbox://styles/mapbox/streets-v9">
+         <Marker longitude={-0.11} latitude={51.5} anchor="bottom">
+            <img src={pin} />
+         </Marker>
+      </Map>
    );
 
    // const mapContainer = useRef(null);
@@ -69,4 +73,4 @@ function MapStuff() {
    // return <div ref={mapContainer} className="map-container" />;
 }
 
-export default MapStuff;
+export default MarkerMap;
