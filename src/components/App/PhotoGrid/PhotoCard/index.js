@@ -17,6 +17,7 @@ function PhotoCard({ key, data }) {
                   {data.location} - {data.date}
                </h2>
                <h3>{data.media_descr}</h3>
+               <button>x {data.id}</button>
             </div>
          </div>
       </div>
