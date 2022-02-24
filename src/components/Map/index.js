@@ -15,6 +15,10 @@ function MarkerMap() {
       width: "auto",
    };
 
+   function markerClick() {
+      console.log("Marker Clicked");
+   }
+
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken} //? not sure if this is the correct way to pass in accessToken prop
@@ -28,7 +32,24 @@ function MarkerMap() {
          // style={{ width: 600, height: 400 }} //! leaving style prop in case we want to specify the height/width later on
          mapStyle="mapbox://styles/mapbox/streets-v9">
          <Marker longitude={-0.11} latitude={51.5} anchor="bottom">
-            <img src={pin} style={mystyle} className={style.marker} />
+            <img
+               onClick={() => {
+                  markerClick();
+               }}
+               src={pin}
+               style={mystyle}
+               className={style.marker}
+            />
+         </Marker>
+         <Marker longitude={-1.89} latitude={52.48} anchor="bottom">
+            <img
+               onClick={() => {
+                  markerClick();
+               }}
+               src={pin}
+               style={mystyle}
+               className={style.marker}
+            />
          </Marker>
       </Map>
    );
