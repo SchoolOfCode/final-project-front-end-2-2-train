@@ -7,9 +7,9 @@ import Map from "./components/Map/index.js";
 
 ReactDOM.render(
    <React.StrictMode>
-      <div className="map-container">
+      {/* <div className="map-container">
          <Map className="map" />
-      </div>
+      </div> */}
       <App />
    </React.StrictMode>,
    document.getElementById("root")
