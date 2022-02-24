@@ -1,14 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
-import pin from "./pinit-logo.png";
+import pin from "./pin.png";
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-// import style from "./Map.module.css";
+import style from "./Map.module.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 // mapboxAccessToken
 
 function MarkerMap() {
+   const mystyle = {
+      height: "7vh",
+      width: "auto",
+   };
+
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken} //? not sure if this is the correct way to pass in accessToken prop
@@ -22,7 +28,7 @@ function MarkerMap() {
          // style={{ width: 600, height: 400 }} //! leaving style prop in case we want to specify the height/width later on
          mapStyle="mapbox://styles/mapbox/streets-v9">
          <Marker longitude={-0.11} latitude={51.5} anchor="bottom">
-            <img src={pin} />
+            <img src={pin} style={mystyle} className={style.marker} />
          </Marker>
       </Map>
    );
