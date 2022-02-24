@@ -1,4 +1,4 @@
-import { ColorLensOutlined } from "@mui/icons-material";
+//import { ColorLensOutlined } from "@mui/icons-material"; //! not used; commented out for netlify
 import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
@@ -18,8 +18,8 @@ export default function Form({ opened }) {
       formState: { errors },
    } = useForm();
    const onSubmit = (data) => setObj(data);
-   const [media, setMedia] = useState([]);
-   const [error, setError] = useState("");
+   //const [media, setMedia] = useState([]); //! not used; commented out for netlify
+   //const [error, setError] = useState(""); //! not used; commented out for netlify
 
    console.log(watch("example")); // watch input value by passing the name of it
    // The POST request.

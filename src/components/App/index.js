@@ -44,9 +44,9 @@ function App() {
       getMedia();
    }, []);
 
-   const styleAdd = opened
-      ? `${style.photoGridContainer}`
-      : `${style.photoGridContainer} ${style.photoGridHidden}`;
+   // const styleAdd = opened //! not used; commented out for netlify
+   //    ? `${style.photoGridContainer}`
+   //    : `${style.photoGridContainer} ${style.photoGridHidden}`;
 
    // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
    return (
@@ -62,7 +62,7 @@ function App() {
                   className={style.logo}
                   alt="Pinit! Logo"
                />
-               </li>
+            </li>
             <Form opened={opened} />
             <li>
                <h1 className={style.title}>PINIT!</h1>
