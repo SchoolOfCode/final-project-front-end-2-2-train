@@ -11,6 +11,8 @@ function Map() {
    const [lng, setLng] = useState(-0.11);
    const [lat, setLat] = useState(51.5);
    const [zoom, setZoom] = useState(9);
+   //Pins
+   const [pin, setPin] = useState();
 
    useEffect(() => {
       if (map.current) return; // initialize map only once
@@ -32,17 +34,19 @@ function Map() {
       });
    });
 
-   // useEffect(() => {
-   //    map.current.on("style.load", function () {
-   //       map.current.on("click", function (e) {
-   //          var coordinates = e.lngLat;
-   //          new mapboxgl.Popup()
-   //             .setLngLat(coordinates)
-   //             .setHTML("you clicked here: <br/>" + coordinates)
-   //             .addTo(map.current);
-   //       });
-   //    });
-   // }, [map]);
+   useEffect(() => {
+      map.current.on("style.load", function () {
+         map.current.on("click", function (e) {
+            var coordinates = e.lngLat;
+            console.log(coordinates);
+            setPin(coordinates);
+            // new mapboxgl.Popup()
+            //    .setLngLat(coordinates)
+            //    .setHTML("you clicked here: <br/>" + coordinates)
+            //    .addTo(map.current);
+         });
+      });
+   }, [map]);
 
    return <div ref={mapContainer} className="map-container" />;
 }
