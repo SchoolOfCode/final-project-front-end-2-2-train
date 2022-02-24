@@ -7,6 +7,7 @@ mapboxgl.accessToken =
 function Map() {
    const mapContainer = useRef(null);
    const map = useRef(null);
+   //Location on load
    const [lng, setLng] = useState(-0.11);
    const [lat, setLat] = useState(51.5);
    const [zoom, setZoom] = useState(9);
@@ -30,6 +31,19 @@ function Map() {
          setZoom(map.current.getZoom().toFixed(2));
       });
    });
+
+   useEffect(() => {
+      map.current.on("style.load", function () {
+         map.current.on("click", function (e) {
+            var coordinates = e.lngLat;
+            new mapboxgl.Popup()
+               .setLngLat(coordinates)
+               .setHTML("you clicked here: <br/>" + coordinates)
+               .addTo(map.current);
+         });
+      });
+   }, [map]);
+
    return <div ref={mapContainer} className="map-container" />;
 }
 
