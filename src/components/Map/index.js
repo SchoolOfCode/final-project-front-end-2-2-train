@@ -32,17 +32,17 @@ function Map() {
       });
    });
 
-   useEffect(() => {
-      map.current.on("style.load", function () {
-         map.current.on("click", function (e) {
-            var coordinates = e.lngLat;
-            new mapboxgl.Popup()
-               .setLngLat(coordinates)
-               .setHTML("you clicked here: <br/>" + coordinates)
-               .addTo(map.current);
-         });
-      });
-   }, [map]);
+   // useEffect(() => {
+   //    map.current.on("style.load", function () {
+   //       map.current.on("click", function (e) {
+   //          var coordinates = e.lngLat;
+   //          new mapboxgl.Popup()
+   //             .setLngLat(coordinates)
+   //             .setHTML("you clicked here: <br/>" + coordinates)
+   //             .addTo(map.current);
+   //       });
+   //    });
+   // }, [map]);
 
    return <div ref={mapContainer} className="map-container" />;
 }
