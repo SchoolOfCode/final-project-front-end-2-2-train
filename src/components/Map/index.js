@@ -10,13 +10,15 @@ const mapboxAccessToken =
 function MapStuff() {
    return (
       <Map
-         mapboxAccessToken={mapboxAccessToken}
+         mapboxAccessToken={mapboxAccessToken} //? not sure if this is the correct way to pass in accessToken prop
          initialViewState={{
-            longitude: -122.4,
-            latitude: 37.8,
-            zoom: 14,
+            longitude: -0.11,
+            latitude: 51.5,
+            zoom: 9,
+            pitchWithRotate: false,
+            dragRotate: false,
          }}
-         style={{ width: 600, height: 400 }}
+         // style={{ width: 600, height: 400 }} //! leaving style prop in case we want to specify the height/width later on
          mapStyle="mapbox://styles/mapbox/streets-v9"
       />
    );
