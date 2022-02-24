@@ -1,5 +1,5 @@
 import style from "./App.module.css";
-import Sidebar from "./Sidebar";
+//import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
 import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
@@ -55,7 +55,7 @@ function App() {
             {/* <Map className={style.map} /> */}
          </div>
          <ul className={style.navbar}>
-            <Sidebar opened={opened} />
+            {/* <Sidebar opened={opened} /> */}
             <li className={style.imgContainer}>
                <img
                   src={require("./pinit-logo.png")}
