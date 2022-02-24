@@ -5,17 +5,22 @@ import pin from "./pin.png";
 import style from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-import locations from "./mockLocations.json" // importing mock locations for testing
+import mockData from "./mockLocations.json"; // importing mock locations for testing
 
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 // mapboxAccessToken
 
 function MarkerMap() {
+   // set style to adjust marker size
    const mystyle = {
       height: "7vh",
       width: "auto",
    };
+
+   //creating state for locations data - currently using mockData
+   //TODO: will need to be adjusted to fetch all location data of user (useEffect)
+   const [locations, setlocations] = useState(mockData);
 
    function markerClick() {
       console.log("Marker Clicked");
@@ -33,7 +38,29 @@ function MarkerMap() {
          }}
          // style={{ width: 600, height: 400 }} //! leaving style prop in case we want to specify the height/width later on
          mapStyle="mapbox://styles/mapbox/streets-v9">
-         <Marker longitude={-0.11} latitude={51.5} anchor="bottom">
+         <>
+            {locations.map((location) => {
+               return (
+                  <Marker
+                     key={location.id}
+                     longitude={location.longitude}
+                     latitude={location.latitude}
+                     anchor="bottom">
+                     <img
+                        onClick={() => {
+                           markerClick();
+                        }}
+                        src={pin}
+                        alt="pin"
+                        style={mystyle}
+                        className={style.marker}
+                     />
+                  </Marker>
+               );
+            })}
+         </>
+
+         {/* <Marker longitude={-0.11} latitude={51.5} anchor="bottom">
             <img
                onClick={() => {
                   markerClick();
@@ -52,7 +79,7 @@ function MarkerMap() {
                style={mystyle}
                className={style.marker}
             />
-         </Marker>
+         </Marker> */}
       </Map>
    );
 
