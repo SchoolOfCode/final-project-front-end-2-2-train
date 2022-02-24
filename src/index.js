@@ -7,9 +7,6 @@ import Map from "./components/Map/index.js";
 
 ReactDOM.render(
    <React.StrictMode>
-      <div className="map-container">
-         <Map className="map" />
-      </div>
       <App />
    </React.StrictMode>,
    document.getElementById("root")
@@ -19,3 +16,8 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+/*<div className="map-container">
+         <Map className="map" />
+      </div>
+      */
