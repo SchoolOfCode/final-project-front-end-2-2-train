@@ -1,8 +1,9 @@
 import style from "./App.module.css";
-import Sidebar from "./Sidebar";
+//import Sidebar from "./Sidebar";
 import PhotoGrid from "./PhotoGrid";
-import MenuIcon from "./Sidebar/MenuIcon";
+import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
+import Form from "./Form";
 
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
@@ -43,20 +44,33 @@ function App() {
       getMedia();
    }, []);
 
+   const styleAdd = opened
+      ? `${style.photoGridContainer}`
+      : `${style.photoGridContainer} ${style.photoGridHidden}`;
+
    // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
    return (
       <div className={style.app}>
+         <div className={style.mapContainer}>
+            {/* <Map className={style.map} /> */}
+         </div>
          <ul className={style.navbar}>
-            <Sidebar opened={opened} />
+            {/* <Sidebar opened={opened} /> */}
             <li className={style.imgContainer}>
                <img
                   src={require("./pinit-logo.png")}
                   className={style.logo}
                   alt="Pinit! Logo"
                />
+               </li>
+            <Form opened={opened} />
+            <li>
+               <h1 className={style.title}>PINIT!</h1>
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
+         {opened === true ? <PhotoGrid media={media} /> : <div />}
+         <Form opened={opened} />
          <PhotoGrid media={media} />
       </div>
    );
