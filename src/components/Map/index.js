@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
 import Pins from "./Pins";
-import AddPinButton from "./AddPinButton";
+//import AddPinButton from "./AddPinButton";
 
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+
+//FIXME Commented out the addPinButton throghout the code.
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -23,10 +25,10 @@ function MarkerMap() {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);
-   const [buttonLocation, setButtonLocation] = useState({
-      latitude: 51.5072,
-      longitude: -0.1276,
-   });
+   // const [buttonLocation, setButtonLocation] = useState({
+   //    latitude: 51.5072,
+   //    longitude: -0.1276,
+   // });
 
    function markerClick() {
       console.log("Marker Clicked"); // use to display pictures
@@ -39,8 +41,8 @@ function MarkerMap() {
 
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      // addNewMarker(locationData);
-      setButtonLocation(e.lngLat);
+      addNewMarker(locationData);
+      //setButtonLocation(e.lngLat);
       // buttonClick(locationData);
    }
 
@@ -60,9 +62,9 @@ function MarkerMap() {
       setLocations([...locations, newLocation]);
    }
 
-   function buttonClick(locationData) {
-      console.log("Button clicked at: ", locationData);
-   }
+   // function buttonClick(locationData) {
+   //    console.log("Button clicked at: ", locationData);
+   // }
 
    return (
       <Map
@@ -71,8 +73,8 @@ function MarkerMap() {
             longitude: -0.11,
             latitude: 51.5,
             zoom: 9,
-            // pitchWithRotate: false,
-            // dragRotate: false,
+            pitchWithRotate: false,
+            dragRotate: false,
          }}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -80,7 +82,7 @@ function MarkerMap() {
             onMapClicked(e);
          }}>
          <Pins locations={locations} onClick={markerClick} />
-         <AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />
+         {/*<AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />*/}
       </Map>
    );
 }
