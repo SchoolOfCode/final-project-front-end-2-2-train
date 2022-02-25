@@ -1,5 +1,5 @@
 import React from "react";
-import Map, { Marker } from "react-map-gl";
+import { Marker } from "react-map-gl";
 import pin from "../pin.png";
 import style from "./Pins.module.css";
 

@@ -5,12 +5,14 @@ import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
 import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
+import MarkerMap from "../Map";
 
 const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
    const { user } = useAuth0();
+   console.log(user);
    // const { name, picture, email } = user;
 
    // Sets the style of the sidebar to show it
@@ -18,7 +20,7 @@ function App() {
 
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-
+   console.log(error);
    //! the GET request
    useEffect(() => {
       async function getData() {
@@ -30,7 +32,7 @@ function App() {
                setData(newData.payload);
                setError("");
             } else {
-               console.log(response, error);
+               console.log(response);
 
                setError("Fetch didn't work :(");
             }
@@ -65,6 +67,10 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
+         <div className={style.mapContainer}>
+            <MarkerMap className={style.map} />
+         </div>
+
          {opened === false ? (
             <PhotoGrid setData={setData} data={data} />
          ) : (
