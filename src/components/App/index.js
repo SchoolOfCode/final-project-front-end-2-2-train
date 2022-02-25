@@ -5,6 +5,7 @@ import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
 import Form from "./Form";
 import Landing from "./Landing";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //! function to add styling to the sidebar that reveals content
 // may have to pass styling down as props?
@@ -12,6 +13,12 @@ import Landing from "./Landing";
 const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
+   // gets the user information after authentication
+   // const { user } = useAuth0();
+   // const { name, picture, email } = user;
+
+   // console.log(name, picture, email);
+
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
    // The object that gets sent to the API using the users data
