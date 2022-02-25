@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
-import Map, { Marker } from "react-map-gl";
+import React, { useState } from "react";
+import Map from "react-map-gl";
 import Pins from "./Pins";
 //import AddPinButton from "./AddPinButton";
 
@@ -10,18 +10,13 @@ import Pins from "./Pins";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import mockData from "./mockLocations.json"; // importing mock locations for testing
-import { Pin } from "@mui/icons-material";
+
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 function MarkerMap() {
-   // set style to adjust marker size
-   const mystyle = {
-      height: "7vh",
-      width: "auto",
-   };
-
+  
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);

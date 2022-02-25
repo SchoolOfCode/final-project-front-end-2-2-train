@@ -29,3 +29,15 @@ li {
    width: 100%;
    height: auto;
 }
+
+.mapContainer {
+   position: absolute;
+   height: 100vh;
+   width: 100vw;
+}
+
+.map {
+   position: relative;
+   height: auto;
+   width: 100%;
+}
