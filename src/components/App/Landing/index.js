@@ -1,6 +1,12 @@
 import React from "react";
 import style from "./Landing.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import LogoutBtn from "../LogoutBtn";
+
 function Landing() {
+   //! Used in the login and sign up button
+   const { loginWithRedirect } = useAuth0();
+
    return (
       <div>
          <section className={style.whiteSection}>
@@ -18,8 +24,17 @@ function Landing() {
                   <p className={style.navlink}>faqs</p>
                </li>
                <li>
-                  <button className={style.sign}>sign up</button>
-                  <button className={style.login}>login</button>
+                  <LogoutBtn />
+                  <button
+                     onClick={() => loginWithRedirect()}
+                     className={style.sign}>
+                     sign up
+                  </button>
+                  <button
+                     onClick={() => loginWithRedirect()}
+                     className={style.login}>
+                     login
+                  </button>
                </li>
             </ul>
             <div className={style.hero}>

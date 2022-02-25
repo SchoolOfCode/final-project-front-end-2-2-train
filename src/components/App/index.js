@@ -4,37 +4,34 @@ import PhotoGrid from "./PhotoGrid";
 import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
 import Form from "./Form";
-import Landing from "./Landing";
-
-//! function to add styling to the sidebar that reveals content
-// may have to pass styling down as props?
+import { useAuth0 } from "@auth0/auth0-react";
 
 const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
+   // gets the user information after authentication
+   const { user } = useAuth0();
+   // const { name, picture, email } = user;
+
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
-   // The object that gets sent to the API using the users data
-   const [loading, setLoading] = useState(true);
-   const [media, setMedia] = useState([]);
-   const [error, setError] = useState("");
-   console.log(error);
 
-   // const [data, setData] = useState([]);
+   const [data, setData] = useState([]);
+   const [error, setError] = useState("");
 
    //! the GET request
    useEffect(() => {
-      async function getMedia() {
+      async function getData() {
          try {
             const response = await fetch(`${API_URL}/media`);
             const newData = await response.json();
-            // setData(newData.payload);
             if (newData.success === true) {
                console.log("Got the data!");
-               setMedia(newData.payload);
+               setData(newData.payload);
                setError("");
             } else {
-               console.log(response);
+               console.log(response, error);
+
                setError("Fetch didn't work :(");
             }
          } catch (err) {
@@ -42,15 +39,10 @@ function App() {
             setError(err.message);
          }
       }
-      getMedia();
+      getData();
    }, []);
 
-   // const styleAdd = opened //! not used; commented out for netlify
-   //    ? `${style.photoGridContainer}`
-   //    : `${style.photoGridContainer} ${style.photoGridHidden}`;
-
-   // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
-   if (loading) return <Landing />;
+   // console.log(user ? user.email : user.name);
 
    return (
       <div className={style.app}>
@@ -73,9 +65,11 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
-         {opened === true ? <PhotoGrid media={media} /> : <div />}
-         <Form opened={opened} />
-         {/* <PhotoGrid media={media} /> <--- WE DON'T NEED THIS */}
+         {opened === false ? (
+            <PhotoGrid setData={setData} data={data} />
+         ) : (
+            <div />
+         )}
       </div>
    );
 }
