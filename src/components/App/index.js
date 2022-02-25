@@ -16,18 +16,18 @@ function App() {
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
 
-   const [media, setMedia] = useState([]);
+   const [data, setData] = useState([]);
    const [error, setError] = useState("");
 
    //! the GET request
    useEffect(() => {
-      async function getMedia() {
+      async function getData() {
          try {
             const response = await fetch(`${API_URL}/media`);
             const newData = await response.json();
             if (newData.success === true) {
                console.log("Got the data!");
-               setMedia(newData.payload);
+               setData(newData.payload);
                setError("");
             } else {
                console.log(response, error);
@@ -39,7 +39,7 @@ function App() {
             setError(err.message);
          }
       }
-      getMedia();
+      getData();
    }, []);
 
    // console.log(user ? user.email : user.name);
@@ -65,9 +65,11 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
-         {opened === true ? <PhotoGrid media={media} /> : <div />}
-         <Form opened={opened} />
-         <PhotoGrid media={media} />
+         {opened === false ? (
+            <PhotoGrid setData={setData} data={data} />
+         ) : (
+            <div />
+         )}
       </div>
    );
 }
