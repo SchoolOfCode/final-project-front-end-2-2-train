@@ -15,22 +15,21 @@ function App() {
    const [opened, setOpened] = useState(false);
    // The object that gets sent to the API using the users data
 
-   const [media, setMedia] = useState([]);
+   const [data, setData] = useState([]);
    const [error, setError] = useState("");
-   console.log(error);
 
    // const [data, setData] = useState([]);
 
    //! the GET request
    useEffect(() => {
-      async function getMedia() {
+      async function getData() {
          try {
             const response = await fetch(`${API_URL}/media`);
             const newData = await response.json();
             // setData(newData.payload);
             if (newData.success === true) {
                console.log("Got the data!");
-               setMedia(newData.payload);
+               setData(newData.payload);
                setError("");
             } else {
                console.log(response);
@@ -41,7 +40,7 @@ function App() {
             setError(err.message);
          }
       }
-      getMedia();
+      getData();
    }, []);
 
    // const styleAdd = opened //! not used; commented out for netlify
@@ -49,6 +48,7 @@ function App() {
    //    : `${style.photoGridContainer} ${style.photoGridHidden}`;
 
    // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
+
    return (
       <div className={style.app}>
          <div className={style.mapContainer}>
@@ -69,9 +69,11 @@ function App() {
             </li>
             <MenuIcon setOpened={setOpened} opened={opened} />
          </ul>
-         {opened === true ? <PhotoGrid media={media} /> : <div />}
-         <Form opened={opened} />
-         <PhotoGrid media={media} />
+         {opened === false ? (
+            <PhotoGrid setData={setData} data={data} />
+         ) : (
+            <div />
+         )}
       </div>
    );
 }

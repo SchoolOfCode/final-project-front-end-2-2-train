@@ -1,16 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function deleteButton() {
+   function sayHello() {
+      alert("Hello!");
+   }
 
-    function sayHello() {
-      alert('Hello!');
-    }
-    
-    return (
-      <button onClick={sayHello}>
-        Click me!
-      </button>
-    );
-  }
+   return <button onClick={sayHello()}>Click me!</button>;
+}
 
-export default deleteButton
+export default deleteButton;
