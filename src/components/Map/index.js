@@ -2,26 +2,60 @@ import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
 import pin from "./pin.png";
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+
 import style from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+import mockData from "./mockLocations.json"; // importing mock locations for testing
+
+// FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-// mapboxAccessToken
 
 function MarkerMap() {
+   // set style to adjust marker size
    const mystyle = {
       height: "7vh",
       width: "auto",
    };
 
+   //creating state for locations data - currently using mockData
+   //TODO: will need to be adjusted to fetch all location data of user (useEffect)
+   const [locations, setlocations] = useState(mockData);
+
    function markerClick() {
-      console.log("Marker Clicked");
+      console.log("Marker Clicked"); // use to display pictures
+   }
+
+   // displays lat and long values for click event on map
+   function onMapClicked(e) {
+      console.log("map was clicked here", e.lngLat);
+      const locationData = e.lngLat;
+
+      // currently calling the addNewMarker function directly onClick
+      // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
+      addNewMarker(locationData);
+   }
+
+   // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
+   function newLocationId() {
+      const id = locations.length + 1;
+      return id;
+   }
+
+   // adds new location value to current useState; will have to be changed to post the information to the database
+   function addNewMarker(locationData) {
+      const newLocation = {
+         id: newLocationId(),
+         latitude: locationData.lat,
+         longitude: locationData.lng,
+      };
+      setlocations([...locations, newLocation]);
    }
 
    return (
       <Map
-         mapboxAccessToken={mapboxAccessToken} //? not sure if this is the correct way to pass in accessToken prop
+         mapboxAccessToken={mapboxAccessToken}
          initialViewState={{
             longitude: -0.11,
             latitude: 51.5,
@@ -29,75 +63,40 @@ function MarkerMap() {
             pitchWithRotate: false,
             dragRotate: false,
          }}
-         // style={{ width: 600, height: 400 }} //! leaving style prop in case we want to specify the height/width later on
-         mapStyle="mapbox://styles/mapbox/streets-v9">
-         <Marker longitude={-0.11} latitude={51.5} anchor="bottom">
-            <img
-               onClick={() => {
-                  markerClick();
-               }}
-               src={pin}
-               style={mystyle}
-               className={style.marker}
-            />
-         </Marker>
-         <Marker longitude={-1.89} latitude={52.48} anchor="bottom">
-            <img
-               onClick={() => {
-                  markerClick();
-               }}
-               src={pin}
-               style={mystyle}
-               className={style.marker}
-            />
-         </Marker>
+         // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
+         mapStyle="mapbox://styles/mapbox/streets-v9"
+         onClick={(e) => {
+            onMapClicked(e);
+         }}>
+         <>
+            {/* rendering a Marker for each location point */}
+            {locations.map((location) => {
+               return (
+                  <Marker
+                     key={location.id}
+                     longitude={location.longitude}
+                     latitude={location.latitude}
+                     anchor="bottom">
+                     <img
+                        onClick={() => {
+                           markerClick();
+                        }}
+                        src={pin}
+                        alt="pin"
+                        style={mystyle}
+                        className={style.marker}
+                     />
+                  </Marker>
+               );
+            })}
+         </>
       </Map>
    );
-
-   // const mapContainer = useRef(null);
-   // const map = useRef(null);
-   // //Location on load
-   // const [lng, setLng] = useState(-0.11);
-   // const [lat, setLat] = useState(51.5);
-   // const [zoom, setZoom] = useState(9);
-   // //Pins
-   // const [pin, setPin] = useState();
-
-   // useEffect(() => {
-   //    if (map.current) return; // initialize map only once
-   //    map.current = new mapboxgl.Map({
-   //       container: mapContainer.current,
-   //       style: "mapbox://styles/mapbox/streets-v11",
-   //       center: [lng, lat],
-   //       zoom: zoom,
-   //       pitchWithRotate: false,
-   //       dragRotate: false,
-   //    });
-   // });
-   // useEffect(() => {
-   //    if (!map.current) return; // wait for map to initialize
-   //    map.current.on("move", () => {
-   //       setLng(map.current.getCenter().lng.toFixed(4));
-   //       setLat(map.current.getCenter().lat.toFixed(4));
-   //       setZoom(map.current.getZoom().toFixed(2));
-   //    });
-   // });
-
-   // useEffect(() => {
-   //    map.current.on("style.load", function () {
-   //       map.current.on("click", function (e) {
-   //          var coordinates = e.lngLat;
-   //          console.log(coordinates);
-   //          setPin(coordinates);
-   //          // new mapboxgl.Popup()
-   //          //    .setLngLat(coordinates)
-   //          //    .setHTML("you clicked here: <br/>" + coordinates)
-   //          //    .addTo(map.current);
-   //       });
-   //    });
-   // }, [map]);
-
-   // return <div ref={mapContainer} className="map-container" />;
 }
 
 export default MarkerMap;
+
+//TODO: Refactor Code:
+// - consider creating a custom Hook to separate the logic
+// - remove accessToken from this file
+//? - should the map function for multiple markers be in a separate file?
