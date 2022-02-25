@@ -4,21 +4,20 @@ import PhotoGrid from "./PhotoGrid";
 import MenuIcon from "./MenuIcon";
 import { React, useState, useEffect } from "react";
 import Form from "./Form";
-
-//! function to add styling to the sidebar that reveals content
-// may have to pass styling down as props?
+import { useAuth0 } from "@auth0/auth0-react";
 
 const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
+   // gets the user information after authentication
+   const { user } = useAuth0();
+   // const { name, picture, email } = user;
+
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
-   // The object that gets sent to the API using the users data
 
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-
-   // const [data, setData] = useState([]);
 
    //! the GET request
    useEffect(() => {
@@ -26,13 +25,13 @@ function App() {
          try {
             const response = await fetch(`${API_URL}/media`);
             const newData = await response.json();
-            // setData(newData.payload);
             if (newData.success === true) {
                console.log("Got the data!");
                setData(newData.payload);
                setError("");
             } else {
-               console.log(response);
+               console.log(response, error);
+
                setError("Fetch didn't work :(");
             }
          } catch (err) {
@@ -43,14 +42,11 @@ function App() {
       getData();
    }, []);
 
-   // const styleAdd = opened //! not used; commented out for netlify
-   //    ? `${style.photoGridContainer}`
-   //    : `${style.photoGridContainer} ${style.photoGridHidden}`;
-
-   // Over here we are passing down our API fetched data into photogrid component shown by "media={media}"
+   // console.log(user ? user.email : user.name);
 
    return (
       <div className={style.app}>
+         {/* <Landing /> */}
          <div className={style.mapContainer}>
             {/* <Map className={style.map} /> */}
          </div>
@@ -58,7 +54,7 @@ function App() {
             {/* <Sidebar opened={opened} /> */}
             <li className={style.imgContainer}>
                <img
-                  src={require("./pinit-logo.png")}
+                  src={require("../../img/pinit-logo-offwhite.png")}
                   className={style.logo}
                   alt="Pinit! Logo"
                />
