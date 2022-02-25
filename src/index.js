@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
-import Map from "./components/Map/index.js";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Landing from "../src/components/App/Landing";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -17,9 +16,6 @@ ReactDOM.render(
             <Routes>
                <Route path="/" element={<Landing />}></Route>
             </Routes>
-            <div className="map-container">
-               <Map className="map" />
-            </div>
             <Routes>
                <Route path="/app" element={<App />}></Route>
             </Routes>
