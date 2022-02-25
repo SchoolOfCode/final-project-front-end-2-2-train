@@ -1,17 +1,20 @@
 import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
-import pin from "./pin.png";
+import Pins from "./Pins";
+//import AddPinButton from "./AddPinButton";
+
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-import style from "./Map.module.css";
+//FIXME Commented out the addPinButton throghout the code.
+
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import mockData from "./mockLocations.json"; // importing mock locations for testing
+import { Pin } from "@mui/icons-material";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-
 function MarkerMap() {
    // set style to adjust marker size
    const mystyle = {
@@ -21,7 +24,11 @@ function MarkerMap() {
 
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [locations, setlocations] = useState(mockData);
+   const [locations, setLocations] = useState(mockData);
+   // const [buttonLocation, setButtonLocation] = useState({
+   //    latitude: 51.5072,
+   //    longitude: -0.1276,
+   // });
 
    function markerClick() {
       console.log("Marker Clicked"); // use to display pictures
@@ -35,6 +42,8 @@ function MarkerMap() {
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
       addNewMarker(locationData);
+      //setButtonLocation(e.lngLat);
+      // buttonClick(locationData);
    }
 
    // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
@@ -50,8 +59,12 @@ function MarkerMap() {
          latitude: locationData.lat,
          longitude: locationData.lng,
       };
-      setlocations([...locations, newLocation]);
+      setLocations([...locations, newLocation]);
    }
+
+   // function buttonClick(locationData) {
+   //    console.log("Button clicked at: ", locationData);
+   // }
 
    return (
       <Map
@@ -68,28 +81,8 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <>
-            {/* rendering a Marker for each location point */}
-            {locations.map((location) => {
-               return (
-                  <Marker
-                     key={location.id}
-                     longitude={location.longitude}
-                     latitude={location.latitude}
-                     anchor="bottom">
-                     <img
-                        onClick={() => {
-                           markerClick();
-                        }}
-                        src={pin}
-                        alt="pin"
-                        style={mystyle}
-                        className={style.marker}
-                     />
-                  </Marker>
-               );
-            })}
-         </>
+         <Pins locations={locations} onClick={markerClick} />
+         {/*<AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />*/}
       </Map>
    );
 }
@@ -100,3 +93,7 @@ export default MarkerMap;
 // - consider creating a custom Hook to separate the logic
 // - remove accessToken from this file
 //? - should the map function for multiple markers be in a separate file?
+
+//Click on map
+//Button appears on the location where you clicked
+//If button is clicked run addmarker() to render pin
