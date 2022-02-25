@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
 //import data from "./data";
