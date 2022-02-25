@@ -8,7 +8,7 @@ function Button({ setOpened, opened }) {
       : `${buttonStyle.menu}`;
 
    return (
-      <div>
+      <div className={style.menuContainer}>
          <button
             onClick={() => setOpened((prevCheck) => !prevCheck)}
             className={style}
