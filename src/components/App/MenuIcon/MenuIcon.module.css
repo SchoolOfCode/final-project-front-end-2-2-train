@@ -1,11 +1,15 @@
+.menuContainer {
+   display: flex;
+   align-content: center;
+   position: absolute;
+}
+
 .menu {
    background-color: transparent;
    border: none;
    cursor: pointer;
-   display: flex;
-   padding: 0;
+   padding: none;
    margin-right: 5vw;
-   position: relative;
    z-index: 2;
 }
 
