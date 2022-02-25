@@ -1,17 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
-import pin from "./pin.png";
+import Pins from "./Pins";
+
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-import style from "./Map.module.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import mockData from "./mockLocations.json"; // importing mock locations for testing
+import { Pin } from "@mui/icons-material";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-
 function MarkerMap() {
    // set style to adjust marker size
    const mystyle = {
@@ -68,28 +68,7 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <>
-            {/* rendering a Marker for each location point */}
-            {locations.map((location) => {
-               return (
-                  <Marker
-                     key={location.id}
-                     longitude={location.longitude}
-                     latitude={location.latitude}
-                     anchor="bottom">
-                     <img
-                        onClick={() => {
-                           markerClick();
-                        }}
-                        src={pin}
-                        alt="pin"
-                        style={mystyle}
-                        className={style.marker}
-                     />
-                  </Marker>
-               );
-            })}
-         </>
+         <Pins locations={locations} onClick={markerClick} />
       </Map>
    );
 }
