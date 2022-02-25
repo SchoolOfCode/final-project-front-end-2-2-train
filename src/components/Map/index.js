@@ -22,7 +22,11 @@ function MarkerMap() {
 
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [locations, setlocations] = useState(mockData);
+   const [locations, setLocations] = useState(mockData);
+   const [buttonLocation, setButtonLocation] = useState({
+      latitude: 51.5072,
+      longitude: -0.1276,
+   });
 
    function markerClick() {
       console.log("Marker Clicked"); // use to display pictures
@@ -32,10 +36,12 @@ function MarkerMap() {
    function onMapClicked(e) {
       console.log("map was clicked here", e.lngLat);
       const locationData = e.lngLat;
-      return <AddPinButton />;
+
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      //addNewMarker(locationData);
+      // addNewMarker(locationData);
+      setButtonLocation(e.lngLat);
+      // buttonClick(locationData);
    }
 
    // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
@@ -51,7 +57,11 @@ function MarkerMap() {
          latitude: locationData.lat,
          longitude: locationData.lng,
       };
-      setlocations([...locations, newLocation]);
+      setLocations([...locations, newLocation]);
+   }
+
+   function buttonClick(locationData) {
+      console.log("Button clicked at: ", locationData);
    }
 
    return (
@@ -61,8 +71,8 @@ function MarkerMap() {
             longitude: -0.11,
             latitude: 51.5,
             zoom: 9,
-            pitchWithRotate: false,
-            dragRotate: false,
+            // pitchWithRotate: false,
+            // dragRotate: false,
          }}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -70,7 +80,7 @@ function MarkerMap() {
             onMapClicked(e);
          }}>
          <Pins locations={locations} onClick={markerClick} />
-         <button>CLICK MEEEEEEEEEE</button>
+         <AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />
       </Map>
    );
 }
@@ -81,3 +91,7 @@ export default MarkerMap;
 // - consider creating a custom Hook to separate the logic
 // - remove accessToken from this file
 //? - should the map function for multiple markers be in a separate file?
+
+//Click on map
+//Button appears on the location where you clicked
+//If button is clicked run addmarker() to render pin
