@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Landing.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutBtn from "../LogoutBtn";
 
 function Landing() {
    //! Used in the login and sign up button
