@@ -48,25 +48,8 @@ function App() {
 
    return (
       <div className={style.app}>
-         {/* <Landing /> */}
-         <div className={style.mapContainer}>
-            {/* <Map className={style.map} /> */}
-         </div>
-         <ul className={style.navbar}>
-            {/* <Sidebar opened={opened} /> */}
-            <li className={style.imgContainer}>
-               <img
-                  src={require("../../img/pinit-logo-offwhite.png")}
-                  className={style.logo}
-                  alt="Pinit! Logo"
-               />
-            </li>
-            <Form opened={opened} />
-            <li>
-               <h1 className={style.title}>PINIT!</h1>
-            </li>
-            <MenuIcon setOpened={setOpened} opened={opened} />
-         </ul>
+         {opened ? <Form opened={opened} /> : <div />}
+         <MenuIcon setOpened={setOpened} opened={opened} />
          <div className={style.mapContainer}>
             <MarkerMap className={style.map} />
          </div>

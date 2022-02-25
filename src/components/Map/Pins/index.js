@@ -1,15 +1,9 @@
 import React from "react";
 import { Marker } from "react-map-gl";
-import pin from "../pin.png";
+import pin from "../../../img/pin.png";
 import style from "./Pins.module.css";
 
 function Pins({ locations, markerClick }) {
-   // set style to adjust marker size
-   const mystyle = {
-      height: "7vh",
-      width: "auto",
-   };
-
    return (
       <>
          {/* rendering a Marker for each location point */}
@@ -19,14 +13,13 @@ function Pins({ locations, markerClick }) {
                   key={location.id}
                   longitude={location.longitude}
                   latitude={location.latitude}
-                  anchor="bottom">
+                  anchor="bottom-left">
                   <img
                      onClick={() => {
                         markerClick();
                      }}
                      src={pin}
                      alt="pin"
-                     style={mystyle}
                      className={style.marker}
                   />
                </Marker>
