@@ -24,7 +24,6 @@ function Landing() {
                   <p className={style.navlink}>faqs</p>
                </li>
                <li>
-                  <LogoutBtn />
                   <button
                      onClick={() => loginWithRedirect()}
                      className={style.sign}>
