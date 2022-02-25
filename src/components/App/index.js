@@ -75,7 +75,7 @@ function App() {
          </ul>
          {opened === true ? <PhotoGrid media={media} /> : <div />}
          <Form opened={opened} />
-         <PhotoGrid media={media} />
+         {/* <PhotoGrid media={media} /> <--- WE DON'T NEED THIS */}
       </div>
    );
 }
