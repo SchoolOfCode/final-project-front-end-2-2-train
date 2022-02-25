@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Map, { Marker } from "react-map-gl";
 import Pins from "./Pins";
+import AddPinButton from "./AddPinButton";
 
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
@@ -31,10 +32,10 @@ function MarkerMap() {
    function onMapClicked(e) {
       console.log("map was clicked here", e.lngLat);
       const locationData = e.lngLat;
-
+      return <AddPinButton />;
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      addNewMarker(locationData);
+      //addNewMarker(locationData);
    }
 
    // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
@@ -69,6 +70,7 @@ function MarkerMap() {
             onMapClicked(e);
          }}>
          <Pins locations={locations} onClick={markerClick} />
+         <button>CLICK MEEEEEEEEEE</button>
       </Map>
    );
 }
