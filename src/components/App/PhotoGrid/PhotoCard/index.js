@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./photocard.module.css";
-import deleteButton from "./DeleteButton/index";
 
 function PhotoCard({ key, dataObj, delFunc }) {
    // css to allow only a certain amount of char for the notes
