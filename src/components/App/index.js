@@ -15,7 +15,7 @@ function App() {
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
    // The object that gets sent to the API using the users data
-   const [loading, setLoading] = useState(true);
+   const [loading, setLoading] = useState(false);
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
    console.log(error);
