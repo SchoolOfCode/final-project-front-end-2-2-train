@@ -13,20 +13,12 @@ const mapboxAccessToken =
 function MarkerMap() {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [locations, setLocations] = useState(mockData);
    const [showPopup, setShowPopup] = useState(false);
-   const [clickLocation, setClickLocation] = useState({
-      lat: 51.5072,
-      lng: -0.1276,
-   });
+   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    const [pins, addNewPin, newLocationId] = usePins(mockData);
-   // const [buttonLocation, setButtonLocation] = useState({
-   //    latitude: 51.5072,
-   //    longitude: -0.1276,
-   // });
 
    function markerClick() {
-      console.log("Marker Clicked"); // use to display pictures
+      alert("Marker Clicked"); // use to display pictures
    }
 
    // displays lat and long values for click event on map
@@ -40,14 +32,6 @@ function MarkerMap() {
       };
 
       setClickLocation(newLocation);
-      // console.log(locationData);
-
-      // currently calling the addNewMarker function directly onClick
-      // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      // addNewMarker(locationData);
-
-      //setButtonLocation(e.lngLat);
-      // buttonClick(locationData);
    }
 
    useEffect(() => {
@@ -77,7 +61,7 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={pins} onClick={markerClick} />
+         <Pins locations={pins} markerClick={markerClick} />
          {showPopup && (
             <AddPinButton
                handleShowPopup={handleShowPopup}
