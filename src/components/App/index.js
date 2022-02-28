@@ -1,11 +1,10 @@
 import style from "./App.module.css";
 import PhotoGrid from "./PhotoGrid";
-import Navbar from './Navbar'
+import Navbar from "./Navbar";
 import { React, useState, useEffect } from "react";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import MarkerMap from "../Map";
-
 
 const API_URL = "https://room-22-train.herokuapp.com";
 
@@ -48,16 +47,16 @@ function App() {
 
    return (
       <div className={style.app}>
-      <Navbar opened={opened} setOpened={setOpened} />
+         <Navbar
+            className={style.navbar}
+            opened={opened}
+            setOpened={setOpened}
+         />
          <div className={style.mapContainer}>
             <MarkerMap className={style.map} />
          </div>
 
-         {opened ? (
-            <PhotoGrid setData={setData} data={data} />
-         ) : (
-            <div />
-         )}
+         {opened ? <PhotoGrid setData={setData} data={data} /> : <div />}
       </div>
    );
 }

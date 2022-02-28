@@ -68,6 +68,7 @@
 .deleteBtn {
    color: var(--text-color);
    float: right;
+   margin: 3px;
 }
 
 .textHolder {

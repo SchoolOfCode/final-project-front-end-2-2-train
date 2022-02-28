@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import style from "./photocard.module.css";
 import PhotoModal from "./PhotoModal";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function PhotoCard({ key, dataObj, delFunc }) {
    // css to allow only a certain amount of char for the notes
    // returning data populated by the DummyData
    const [modal, setModal] = useState(false);
+
+   console.log(`This is the object KEY:`, key);
 
    return (
       <div className={style.flipcard}>
@@ -34,15 +37,19 @@ function PhotoCard({ key, dataObj, delFunc }) {
                      {dataObj.location} <br /> {dataObj.date}
                   </h2>
                </div>
-               <p
+
+               <DeleteForeverIcon
                   onClick={() => delFunc(dataObj.id)}
-                  className={style.deleteBtn}>
-                  X
-               </p>
+                  className={style.deleteBtn}
+               />
             </div>
          </div>
          {modal ? (
-            <PhotoModal photo={dataObj.aws_key} notes={dataObj.note} />
+            <PhotoModal
+               setModal={setModal}
+               photo={dataObj.aws_key}
+               notes={dataObj.note}
+            />
          ) : (
             <></>
          )}

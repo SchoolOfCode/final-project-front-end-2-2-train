@@ -1,23 +1,24 @@
-import React from 'react'
-import style from './Navbar.module.css'
+import React from "react";
+import style from "./Navbar.module.css";
 import Form from "../Form";
 import MenuIcon from "./MenuIcon";
 import LogoutButton from "./LogoutBtn";
 
-
-function Navbar({opened, setOpened}) {
-    
-  return (
+function Navbar({ opened, setOpened }) {
+   return (
       <>
-    <div className={style.navbarContainer} >
-      
-         {opened ? <Form opened={opened} /> : <></>}
-         <MenuIcon setOpened={setOpened} opened={opened} />
-         <LogoutButton />
+         <div className={style.navbarContainer}>
+            <img
+               className={style.logo}
+               src={require("../../../img/pinit-logo-offwhite.png")}
+               alt=""
+            />
+            {opened ? <Form opened={opened} /> : <></>}
+            <MenuIcon setOpened={setOpened} opened={opened} />
+            <LogoutButton />
          </div>
-        
-    </>
-  )
+      </>
+   );
 }
 
-export default Navbar
+export default Navbar;

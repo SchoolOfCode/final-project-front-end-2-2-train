@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hurricane&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,500&display=swap");
 
 :root {
-   --main-color: #F5F3F5;
-   --primary-color: #FC4647;
+   --main-color: #f5f3f5;
+   --primary-color: #fc4647;
+   --nav-color: #fc464698;
    --secondary-color: #58b19f;
-   --text-color: #3A3335;
+   --text-color: #3a3335;
    --font-size-h1: 36px;
    --font-size-h2: 30px;
    --font-size-p: 18px;
-   --regular-font: 'Roboto', sans-serif;
-   --title-font: 'Hurricane', cursive;
+   --regular-font: "Roboto", sans-serif;
+   --title-font: "Hurricane", cursive;
    --title-font-size: 1.5rem;
 }
 
@@ -24,14 +25,14 @@ h2 {
    font-size: var(--font-size-h2);
    color: var(--text-color);
    font-weight: semi-bold;
-   font-family: var(--regular-font)
+   font-family: var(--regular-font);
 }
 
 p {
    font-size: var(--font-size-p);
    color: var(--text-color);
    font-weight: regular;
-   font-family: var(--regular-font)
+   font-family: var(--regular-font);
 }
 
 body {
@@ -40,8 +41,3 @@ body {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
-
-
-
-
-
