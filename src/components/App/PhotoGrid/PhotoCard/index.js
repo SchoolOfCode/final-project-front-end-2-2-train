@@ -23,14 +23,15 @@ function PhotoCard({ key, dataObj, delFunc }) {
                </div>
             </div>
             <div className={style.flipcardBack}>
-               <button onClick={() => delFunc(dataObj.id)}>
-                  Delete photograph #{dataObj.id}
-               </button>
-               <h1>{dataObj.media_title}</h1>
-               <h2>
-                  {dataObj.location} - {dataObj.date}
+            <div className={style.textHolder} >
+               <h1 className={style.photoTitle} >{dataObj.media_title}</h1>
+               <h2 className={style.photoTitle} >
+                  {dataObj.location} <br/> {dataObj.date}
                </h2>
-               <h3>{dataObj.media_descr}</h3>
+               </div>
+               <p onClick={() => delFunc(dataObj.id)} className={style.deleteBtn} >
+                  X
+               </p>
             </div>
          </div>
       </div>

@@ -1,0 +1,6 @@
+.navbarContainer {
+    width: 18%;
+    height: 100%;
+    background-color: var(--main-color);
+    z-index: 1;
+ }

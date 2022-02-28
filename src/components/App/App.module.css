@@ -4,6 +4,8 @@
    background-position: center;
    flex-direction: column;
    height: 100vh;
+   display: flex;
+   flex-direction: row;
 }
 
 ul {
@@ -14,17 +16,6 @@ ul {
 
 li {
    list-style-type: none;
-}
-
-.imgContainer {
-   margin: 10px 0 0 10px;
-   width: 150px;
-   height: 120px;
-}
-
-.logo {
-   width: 100%;
-   height: auto;
 }
 
 .mapContainer {
@@ -38,3 +29,4 @@ li {
    height: auto;
    width: 100%;
 }
+

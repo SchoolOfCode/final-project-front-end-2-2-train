@@ -48,7 +48,28 @@
 
 .flipcardBack {
    transform: rotateY(180deg);
-   background-color: white;
-   height: 300px;
-   width: auto;
+   background-color: #f1f3f5e7;
+   height: 234px;
+   width: 240px;
+   margin-top: 35px;
+   padding-right: 10px;
+   border: solid 0.5px rgba(41, 40, 40, 0.726);
+   border-radius: 3px;
+   display: flex;
+   justify-content: center;
+   align-content: center;
+}
+
+.photoTitle {
+   font-family: var(--title-font);
+   color: var(--text-color);
+}
+
+.deleteBtn {
+   color: var(--text-color);
+   float: right;
+}
+
+.textHolder {
+   margin-top: 25px;
 }
