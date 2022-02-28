@@ -66,7 +66,7 @@ function MarkerMap() {
    }
 
    function handleShowPopup() {
-      setShowPopup(true);
+      setShowPopup(false);
    }
 
    // function buttonClick(locationData) {
