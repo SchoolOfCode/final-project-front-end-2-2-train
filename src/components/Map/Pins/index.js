@@ -11,8 +11,8 @@ function Pins({ locations, markerClick }) {
             return (
                <Marker
                   key={location.id}
-                  longitude={location.longitude}
-                  latitude={location.latitude}
+                  longitude={location.lng}
+                  latitude={location.lat}
                   anchor="bottom-left">
                   <img
                      onClick={() => {
