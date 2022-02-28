@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Map from "react-map-gl";
+import Map, { Popup } from "react-map-gl";
 import Pins from "./Pins";
-//import AddPinButton from "./AddPinButton";
+import AddPinButton from "./AddPinButton";
 
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
@@ -11,15 +11,14 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import mockData from "./mockLocations.json"; // importing mock locations for testing
 
-
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 function MarkerMap() {
-  
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);
+   const [showPopup, setShowPopup] = useState(true);
    // const [buttonLocation, setButtonLocation] = useState({
    //    latitude: 51.5072,
    //    longitude: -0.1276,
@@ -57,6 +56,10 @@ function MarkerMap() {
       setLocations([...locations, newLocation]);
    }
 
+   function handleShowPopup() {
+      setShowPopup(false);
+   }
+
    // function buttonClick(locationData) {
    //    console.log("Button clicked at: ", locationData);
    // }
@@ -76,7 +79,8 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={locations} onClick={markerClick} />
+         {/* <Pins locations={locations} onClick={markerClick} /> */}
+         <AddPinButton handleShowPopup={handleShowPopup} />
          {/*<AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />*/}
       </Map>
    );

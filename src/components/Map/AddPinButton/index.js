@@ -1,18 +1,16 @@
 import React from "react";
-import { Marker } from "react-map-gl";
+import { Popup } from "react-map-gl";
 
-export default function AddPinButton({ buttonLocation, buttonClick }) {
+export default function AddPinButton({ handleShowPopup }) {
+   // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
+
    return (
-      <Marker
-         longitude={buttonLocation.longitude}
-         latitude={buttonLocation.latitude}
-         anchor="bottom">
-         <button
-            onClick={() => {
-               buttonClick();
-            }}>
-            +
-         </button>
-      </Marker>
+      <Popup
+         longitude={-0.1276}
+         latitude={51.5072}
+         anchor="bottom"
+         onClose={() => handleShowPopup()}>
+         You are here
+      </Popup>
    );
 }
