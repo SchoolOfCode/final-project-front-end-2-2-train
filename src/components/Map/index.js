@@ -4,7 +4,8 @@ import Pins from "./Pins";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
-
+import usePins from "../../hooks/usePins";
+import { FiberPinSharp } from "@mui/icons-material";
 
 // FIXME: secure access token
 const mapboxAccessToken =
@@ -18,6 +19,7 @@ function MarkerMap() {
       lat: 51.5072,
       lng: -0.1276,
    });
+   const [pins, addNewPin] = usePins(mockData);
    // const [buttonLocation, setButtonLocation] = useState({
    //    latitude: 51.5072,
    //    longitude: -0.1276,
@@ -32,7 +34,7 @@ function MarkerMap() {
       const locationData = e.lngLat;
 
       const newLocation = {
-         id: newLocationId(),
+         // id: newLocationId(),
          lat: locationData.lat,
          lng: locationData.lng,
       };
@@ -49,21 +51,21 @@ function MarkerMap() {
    }
 
    // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
-   function newLocationId() {
-      const id = locations.length + 1;
-      return id;
-   }
+   // function newLocationId() {
+   //    const id = locations.length + 1;
+   //    return id;
+   // }
 
-   // adds new location value to current useState; will have to be changed to post the information to the database
+   // // adds new location value to current useState; will have to be changed to post the information to the database
 
-   function addNewMarker(locationData) {
-      const newLocation = {
-         id: newLocationId(),
-         lat: locationData.lat,
-         lng: locationData.lng,
-      };
-      setLocations([...locations, newLocation]);
-   }
+   // function addNewMarker(locationData) {
+   //    const newLocation = {
+   //       id: newLocationId(),
+   //       lat: locationData.lat,
+   //       lng: locationData.lng,
+   //    };
+   //    setLocations([...locations, newLocation]);
+   // }
 
    useEffect(() => {
       setShowPopup(true);
@@ -71,7 +73,7 @@ function MarkerMap() {
 
    useEffect(() => {
       setShowPopup(false);
-   }, [locations]);
+   }, [pins]);
 
    function handleShowPopup() {
       setShowPopup(false);
@@ -92,12 +94,12 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={locations} onClick={markerClick} />
+         <Pins locations={pins} onClick={markerClick} />
          {showPopup && (
             <AddPinButton
                handleShowPopup={handleShowPopup}
                clickLocation={clickLocation}
-               addNewMarker={addNewMarker}
+               addNewPin={addNewPin}
             />
          )}
       </Map>
