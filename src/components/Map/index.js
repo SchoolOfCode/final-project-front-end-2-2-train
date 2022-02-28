@@ -13,7 +13,6 @@ function MarkerMap() {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);
-   console.log("locations state", locations);
    const [showPopup, setShowPopup] = useState(false);
    const [clickLocation, setClickLocation] = useState({
       lat: 51.5072,
@@ -58,17 +57,12 @@ function MarkerMap() {
    // adds new location value to current useState; will have to be changed to post the information to the database
 
    function addNewMarker(locationData) {
-      console.log("locationData", locationData);
       const newLocation = {
          id: newLocationId(),
          lat: locationData.lat,
          lng: locationData.lng,
       };
       setLocations([...locations, newLocation]);
-      console.log(
-         "this is the newLocation in addNewMarker!!!!!!!!!!! FIND MEEEEEEEEE!!!!!!!!!!",
-         newLocation
-      );
    }
 
    useEffect(() => {
