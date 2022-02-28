@@ -19,7 +19,7 @@ function MarkerMap() {
       lat: 51.5072,
       lng: -0.1276,
    });
-   const [pins, addNewPin] = usePins(mockData);
+   const [pins, addNewPin, newLocationId] = usePins(mockData);
    // const [buttonLocation, setButtonLocation] = useState({
    //    latitude: 51.5072,
    //    longitude: -0.1276,
@@ -34,7 +34,7 @@ function MarkerMap() {
       const locationData = e.lngLat;
 
       const newLocation = {
-         // id: newLocationId(),
+         id: newLocationId,
          lat: locationData.lat,
          lng: locationData.lng,
       };
@@ -49,23 +49,6 @@ function MarkerMap() {
       //setButtonLocation(e.lngLat);
       // buttonClick(locationData);
    }
-
-   // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
-   // function newLocationId() {
-   //    const id = locations.length + 1;
-   //    return id;
-   // }
-
-   // // adds new location value to current useState; will have to be changed to post the information to the database
-
-   // function addNewMarker(locationData) {
-   //    const newLocation = {
-   //       id: newLocationId(),
-   //       lat: locationData.lat,
-   //       lng: locationData.lng,
-   //    };
-   //    setLocations([...locations, newLocation]);
-   // }
 
    useEffect(() => {
       setShowPopup(true);

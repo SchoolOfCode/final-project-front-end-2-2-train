@@ -3,12 +3,12 @@ import React, { useState } from "react";
 export default function usePins(mockData) {
    const [pins, setPins] = useState(mockData);
 
-   function addNewPin(locationData) {
-      function newLocationId() {
-         const id = pins.length + 1;
-         return id;
-      }
+   function newLocationId() {
+      const id = pins.length + 1;
+      return id;
+   }
 
+   function addNewPin(locationData) {
       const newLocation = {
          id: newLocationId(),
          lat: locationData.lat,
@@ -18,5 +18,5 @@ export default function usePins(mockData) {
       setPins([...pins, newLocation]);
    }
 
-   return [pins, addNewPin];
+   return [pins, addNewPin, newLocationId];
 }
