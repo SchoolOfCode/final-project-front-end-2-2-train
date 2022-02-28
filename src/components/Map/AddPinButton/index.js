@@ -15,9 +15,9 @@ export default function AddPinButton({
          anchor="bottom"
          onClose={() => handleShowPopup()}>
          <button
-            onClick={() => {
-               handleAddPin();
-            }}>
+            onClick={
+               handleAddPin()
+            }>
             {" "}
             PINIT{" "}
          </button>

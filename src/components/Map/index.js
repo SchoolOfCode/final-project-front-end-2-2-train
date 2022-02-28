@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
 import AddPinButton from "./AddPinButton";
-
+import "mapbox-gl/dist/mapbox-gl.css";
+import mockData from "./mockLocations.json"; // importing mock locations for testing
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-//FIXME Commented out the addPinButton throghout the code.
-
-import "mapbox-gl/dist/mapbox-gl.css";
-
-import mockData from "./mockLocations.json"; // importing mock locations for testing
 
 // FIXME: secure access token
 const mapboxAccessToken =
@@ -43,7 +39,7 @@ function MarkerMap() {
 
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      addNewMarker(locationData);
+      // addNewMarker(locationData);
 
       //setButtonLocation(e.lngLat);
       // buttonClick(locationData);
@@ -56,11 +52,11 @@ function MarkerMap() {
    }
 
    // adds new location value to current useState; will have to be changed to post the information to the database
-   function addNewMarker(locationData) {
+   function addNewMarker(currentLocation) {
       const newLocation = {
          id: newLocationId(),
-         latitude: locationData.lat,
-         longitude: locationData.lng,
+         lat: currentLocation.lat,
+         lng: currentLocation.lng,
       };
       setLocations([...locations, newLocation]);
    }
@@ -93,7 +89,7 @@ function MarkerMap() {
             <AddPinButton
                handleShowPopup={handleShowPopup}
                location={currentLocation}
-               // handleAddPin={addNewMarker}
+               handleAddPin={addNewMarker}
             />
          )}
       </Map>
