@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
-//import AddPinButton from "./AddPinButton";
+import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
@@ -14,13 +14,15 @@ function MarkerMap() {
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);
    console.log("locations state", locations);
-   // const [showPopup, setShowPopup] = useState(false);
-   const [currentLocation, setCurrentLocation] = useState();
+   const [showPopup, setShowPopup] = useState(false);
+   const [clickLocation, setClickLocation] = useState({
+      lat: 51.5072,
+      lng: -0.1276,
+   });
    // const [buttonLocation, setButtonLocation] = useState({
    //    latitude: 51.5072,
    //    longitude: -0.1276,
    // });
-   console.log("currentLocation", currentLocation);
 
    function markerClick() {
       console.log("Marker Clicked"); // use to display pictures
@@ -30,20 +32,18 @@ function MarkerMap() {
    function onMapClicked(e) {
       const locationData = e.lngLat;
 
-      //setShowPopup(true);
-
       const newLocation = {
          id: newLocationId(),
-         latitude: locationData.lat,
-         longitude: locationData.lng,
+         lat: locationData.lat,
+         lng: locationData.lng,
       };
 
-      setCurrentLocation(newLocation);
+      setClickLocation(newLocation);
       // console.log(locationData);
 
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      addNewMarker(locationData);
+      // addNewMarker(locationData);
 
       //setButtonLocation(e.lngLat);
       // buttonClick(locationData);
@@ -61,8 +61,8 @@ function MarkerMap() {
       console.log("locationData", locationData);
       const newLocation = {
          id: newLocationId(),
-         latitude: locationData.lat,
-         longitude: locationData.lng,
+         lat: locationData.lat,
+         lng: locationData.lng,
       };
       setLocations([...locations, newLocation]);
       console.log(
@@ -71,16 +71,16 @@ function MarkerMap() {
       );
    }
 
-   // function handleShowPopup() {
-   //    setShowPopup(false);
-   // }
+   useEffect(() => {
+      setShowPopup(true);
+   }, [clickLocation]);
 
-   // function buttonClick(locationData) {
-   //    console.log("Button clicked at: ", locationData);
-   // }
+   useEffect(() => {
+      setShowPopup(false);
+   }, [locations]);
 
-   function testHandleClick() {
-      console.log("I WAS CLICKED AND CALLED A TEST FUNCTION");
+   function handleShowPopup() {
+      setShowPopup(false);
    }
 
    return (
@@ -99,13 +99,13 @@ function MarkerMap() {
             onMapClicked(e);
          }}>
          <Pins locations={locations} onClick={markerClick} />
-         {/* {showPopup && (
+         {showPopup && (
             <AddPinButton
                handleShowPopup={handleShowPopup}
-               currentLocation={currentLocation}
-               // addNewMarker={addNewMarker}
+               clickLocation={clickLocation}
+               addNewMarker={addNewMarker}
             />
-         )} */}
+         )}
       </Map>
    );
 }
