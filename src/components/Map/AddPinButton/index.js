@@ -3,24 +3,21 @@ import { Popup } from "react-map-gl";
 
 export default function AddPinButton({
    handleShowPopup,
-   handleAddPin,
-   location,
+   // addNewMarker,
+   currentLocation,
 }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
+   console.log("this is the lcoation in AddPinButton", currentLocation);
+
    return (
       <Popup
-         longitude={location.lng}
-         latitude={location.lat}
+         longitude={currentLocation.lng}
+         latitude={currentLocation.lat}
          anchor="bottom"
          onClose={() => handleShowPopup()}>
-         <button
-            onClick={
-               handleAddPin()
-            }>
-            {" "}
-            PINIT{" "}
-         </button>
+
+         {/* <button onClick={() => addNewMarker(currentLocation)}> PINIT </button> */}
       </Popup>
    );
 }

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
-import AddPinButton from "./AddPinButton";
+//import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
 //import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-
 
 // FIXME: secure access token
 const mapboxAccessToken =
@@ -14,15 +13,14 @@ function MarkerMap() {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);
-   const [showPopup, setShowPopup] = useState(false);
-   const [currentLocation, setCurrentLocation] = useState({
-      lat: 51.5072,
-      lng: -0.1276,
-   });
+   console.log("locations state", locations);
+   // const [showPopup, setShowPopup] = useState(false);
+   const [currentLocation, setCurrentLocation] = useState();
    // const [buttonLocation, setButtonLocation] = useState({
    //    latitude: 51.5072,
    //    longitude: -0.1276,
    // });
+   console.log("currentLocation", currentLocation);
 
    function markerClick() {
       console.log("Marker Clicked"); // use to display pictures
@@ -30,16 +28,22 @@ function MarkerMap() {
 
    // displays lat and long values for click event on map
    function onMapClicked(e) {
-      console.log("map was clicked here", e.lngLat);
       const locationData = e.lngLat;
 
-      setShowPopup(true);
-      setCurrentLocation(locationData);
-      console.log(locationData);
+      //setShowPopup(true);
+
+      const newLocation = {
+         id: newLocationId(),
+         latitude: locationData.lat,
+         longitude: locationData.lng,
+      };
+
+      setCurrentLocation(newLocation);
+      // console.log(locationData);
 
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      // addNewMarker(locationData);
+      addNewMarker(locationData);
 
       //setButtonLocation(e.lngLat);
       // buttonClick(locationData);
@@ -52,22 +56,32 @@ function MarkerMap() {
    }
 
    // adds new location value to current useState; will have to be changed to post the information to the database
-   function addNewMarker(currentLocation) {
+
+   function addNewMarker(locationData) {
+      console.log("locationData", locationData);
       const newLocation = {
          id: newLocationId(),
-         lat: currentLocation.lat,
-         lng: currentLocation.lng,
+         latitude: locationData.lat,
+         longitude: locationData.lng,
       };
       setLocations([...locations, newLocation]);
+      console.log(
+         "this is the newLocation in addNewMarker!!!!!!!!!!! FIND MEEEEEEEEE!!!!!!!!!!",
+         newLocation
+      );
    }
 
-   function handleShowPopup() {
-      setShowPopup(false);
-   }
+   // function handleShowPopup() {
+   //    setShowPopup(false);
+   // }
 
    // function buttonClick(locationData) {
    //    console.log("Button clicked at: ", locationData);
    // }
+
+   function testHandleClick() {
+      console.log("I WAS CLICKED AND CALLED A TEST FUNCTION");
+   }
 
    return (
       <Map
@@ -85,13 +99,13 @@ function MarkerMap() {
             onMapClicked(e);
          }}>
          <Pins locations={locations} onClick={markerClick} />
-         {showPopup && (
+         {/* {showPopup && (
             <AddPinButton
                handleShowPopup={handleShowPopup}
-               location={currentLocation}
-               handleAddPin={addNewMarker}
+               currentLocation={currentLocation}
+               // addNewMarker={addNewMarker}
             />
-         )}
+         )} */}
       </Map>
    );
 }
