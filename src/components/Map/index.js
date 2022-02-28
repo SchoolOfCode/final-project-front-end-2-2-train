@@ -10,7 +10,7 @@ import { FiberPinSharp } from "@mui/icons-material";
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-function MarkerMap({ setOpened }) {
+function MarkerMap({ setOpened, setPhotoGridOpened }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [showPopup, setShowPopup] = useState(false);
@@ -18,7 +18,7 @@ function MarkerMap({ setOpened }) {
    const [pins, addNewPin, newLocationId] = usePins(mockData);
 
    function markerClick() {
-      alert("Marker Clicked"); // use to display pictures
+      setPhotoGridOpened(true);
    }
 
    // displays lat and long values for click event on map
