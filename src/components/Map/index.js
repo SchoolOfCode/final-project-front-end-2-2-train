@@ -10,7 +10,7 @@ import { FiberPinSharp } from "@mui/icons-material";
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-function MarkerMap() {
+function MarkerMap({ setOpened }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [showPopup, setShowPopup] = useState(false);
@@ -67,6 +67,7 @@ function MarkerMap() {
                handleShowPopup={handleShowPopup}
                clickLocation={clickLocation}
                addNewPin={addNewPin}
+               setOpened={setOpened}
             />
          )}
       </Map>

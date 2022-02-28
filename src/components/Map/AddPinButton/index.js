@@ -5,6 +5,7 @@ export default function AddPinButton({
    handleShowPopup,
    addNewPin,
    clickLocation,
+   setOpened,
 }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
@@ -14,7 +15,14 @@ export default function AddPinButton({
          latitude={clickLocation.lat}
          anchor="bottom"
          onClose={() => handleShowPopup()}>
-         <button onClick={() => addNewPin(clickLocation)}> PINIT </button>
+         <button
+            onClick={() => {
+               addNewPin(clickLocation);
+               setOpened(true);
+            }}>
+            {" "}
+            PINIT{" "}
+         </button>
       </Popup>
    );
 }

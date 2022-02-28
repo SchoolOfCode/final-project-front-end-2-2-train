@@ -53,7 +53,7 @@ function App() {
             setOpened={setOpened}
          />
          <div className={style.mapContainer}>
-            <MarkerMap className={style.map} />
+            <MarkerMap setOpened={setOpened} className={style.map} />
          </div>
 
          {opened ? <PhotoGrid setData={setData} data={data} /> : <div />}
