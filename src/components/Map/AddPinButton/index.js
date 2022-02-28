@@ -1,7 +1,7 @@
 import React from "react";
 import { Popup } from "react-map-gl";
 
-export default function AddPinButton({ handleShowPopup }) {
+export default function AddPinButton({ handleShowPopup, handleAddPin }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
    return (
@@ -10,7 +10,13 @@ export default function AddPinButton({ handleShowPopup }) {
          latitude={51.5072}
          anchor="bottom"
          onClose={() => handleShowPopup()}>
-         You are here
+         <button
+            onClick={() => {
+               handleAddPin();
+            }}>
+            {" "}
+            PINIT{" "}
+         </button>
       </Popup>
    );
 }
