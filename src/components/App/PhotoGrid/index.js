@@ -18,7 +18,7 @@ function PhotoGrid({ setData, data }) {
    return (
       <div className={style.photoGridContainer}>
          {data.map((item, index) => (
-            <PhotoCard key={item} dataObj={data[index]} delFunc={delFunc} />
+            <PhotoCard key={item.id} dataObj={data[index]} delFunc={delFunc} />
          ))}
       </div>
    );

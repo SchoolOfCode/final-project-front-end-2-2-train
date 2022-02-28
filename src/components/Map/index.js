@@ -4,7 +4,7 @@ import Pins from "./Pins";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
-//import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+
 
 // FIXME: secure access token
 const mapboxAccessToken =
@@ -88,7 +88,7 @@ function MarkerMap() {
             dragRotate: false,
          }}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
-         mapStyle="mapbox://styles/mapbox/streets-v9"
+         mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
             onMapClicked(e);
          }}>

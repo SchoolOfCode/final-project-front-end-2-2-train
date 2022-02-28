@@ -1,0 +1,13 @@
+.navbarContainer {
+   width: 18%;
+   height: 100%;
+   background-color: var(--nav-color);
+   z-index: 1;
+   display: flex;
+}
+
+.logo {
+   margin: 20px 0 0 30px;
+   height: 50px;
+   width: auto;
+}
