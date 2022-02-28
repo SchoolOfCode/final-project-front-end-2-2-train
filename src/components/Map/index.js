@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Map, { Popup } from "react-map-gl";
+import Map from "react-map-gl";
 import Pins from "./Pins";
 import AddPinButton from "./AddPinButton";
 
@@ -18,7 +18,11 @@ function MarkerMap() {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [locations, setLocations] = useState(mockData);
-   const [showPopup, setShowPopup] = useState(true);
+   const [showPopup, setShowPopup] = useState(false);
+   const [currentLocation, setCurrentLocation] = useState({
+      lat: 51.5072,
+      lng: -0.1276,
+   });
    // const [buttonLocation, setButtonLocation] = useState({
    //    latitude: 51.5072,
    //    longitude: -0.1276,
@@ -33,9 +37,14 @@ function MarkerMap() {
       console.log("map was clicked here", e.lngLat);
       const locationData = e.lngLat;
 
+      setShowPopup(true);
+      setCurrentLocation(locationData);
+      console.log(locationData);
+
       // currently calling the addNewMarker function directly onClick
       // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
       addNewMarker(locationData);
+
       //setButtonLocation(e.lngLat);
       // buttonClick(locationData);
    }
@@ -57,7 +66,7 @@ function MarkerMap() {
    }
 
    function handleShowPopup() {
-      setShowPopup(false);
+      setShowPopup(true);
    }
 
    // function buttonClick(locationData) {
@@ -79,9 +88,14 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         {/* <Pins locations={locations} onClick={markerClick} /> */}
-         <AddPinButton handleShowPopup={handleShowPopup} />
-         {/*<AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />*/}
+         <Pins locations={locations} onClick={markerClick} />
+         {showPopup && (
+            <AddPinButton
+               handleShowPopup={handleShowPopup}
+               location={currentLocation}
+               // handleAddPin={addNewMarker}
+            />
+         )}
       </Map>
    );
 }

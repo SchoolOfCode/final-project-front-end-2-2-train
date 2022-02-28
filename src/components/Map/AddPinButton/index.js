@@ -1,13 +1,17 @@
 import React from "react";
 import { Popup } from "react-map-gl";
 
-export default function AddPinButton({ handleShowPopup, handleAddPin }) {
+export default function AddPinButton({
+   handleShowPopup,
+   handleAddPin,
+   location,
+}) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
    return (
       <Popup
-         longitude={-0.1276}
-         latitude={51.5072}
+         longitude={location.lng}
+         latitude={location.lat}
          anchor="bottom"
          onClose={() => handleShowPopup()}>
          <button
