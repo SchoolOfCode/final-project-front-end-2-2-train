@@ -1,15 +1,35 @@
-.photoContainer {
+.flipcard {
+   background-color: transparent;
+   perspective: 1000px;
+   width: 300px;
+   height: 200px;
+}
+
+.flipcardContainer {
    position: relative;
    top: 0;
    left: 0;
    height: 100%;
    width: auto;
+   transition: transform 0.8s;
+   transform-style: preserve-3d;
+}
+
+.flipcard:hover .flipcardContainer {
+   transform: rotateY(180deg);
+}
+
+.flipcardFront,
+.flipcardBack {
+   position: absolute;
+   -webkit-backface-visibility: hidden; /* Safari */
+   backface-visibility: hidden;
 }
 
 .polaroidFrame {
-position: relative;
-height: 300px;
-width: auto;
+   position: relative;
+   height: 300px;
+   width: auto;
 }
 
 .photoDiv {
@@ -24,4 +44,11 @@ width: auto;
 .photoDiv img {
    width: 100%;
    height: 100%;
+}
+
+.flipcardBack {
+   transform: rotateY(180deg);
+   background-color: white;
+   height: 300px;
+   width: auto;
 }
