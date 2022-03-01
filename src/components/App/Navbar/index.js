@@ -3,6 +3,7 @@ import style from "./Navbar.module.css";
 import Form from "../Form";
 import MenuIcon from "./MenuIcon";
 import LogoutButton from "./LogoutBtn";
+import Accordion from "./Accordion";
 
 function Navbar({ opened, setOpened }) {
    return (
@@ -16,6 +17,7 @@ function Navbar({ opened, setOpened }) {
             {opened ? <Form opened={opened} /> : <></>}
             <MenuIcon setOpened={setOpened} opened={opened} />
             <LogoutButton />
+            <Accordion />
          </div>
       </>
    );
