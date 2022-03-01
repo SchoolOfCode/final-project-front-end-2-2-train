@@ -4,6 +4,7 @@ import Form from "../Form";
 import MenuIcon from "./MenuIcon";
 import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
+import accordionData from "./accordionData.js";
 
 function Navbar({ opened, setOpened, setPhotoGridOpened }) {
    return (
@@ -15,9 +16,17 @@ function Navbar({ opened, setOpened, setPhotoGridOpened }) {
                alt=""
             />
             {opened ? <Form opened={opened} /> : <></>}
-            <MenuIcon setOpened={setOpened} opened={opened} setPhotoGridOpened={setPhotoGridOpened}/>
+            <MenuIcon
+               setOpened={setOpened}
+               opened={opened}
+               setPhotoGridOpened={setPhotoGridOpened}
+            />
             <LogoutButton />
-            <Accordion />
+            <div className={style.accordion}>
+               {accordionData.map(({ title, content }) => (
+                  <Accordion title={title} content={content} />
+               ))}
+            </div>
          </div>
       </>
    );
