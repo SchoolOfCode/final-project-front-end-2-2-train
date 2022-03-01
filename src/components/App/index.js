@@ -16,6 +16,7 @@ function App() {
 
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
+   const [photoGridOpened, setPhotoGridOpened] = useState(false);
 
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
@@ -51,12 +52,13 @@ function App() {
             className={style.navbar}
             opened={opened}
             setOpened={setOpened}
+            setPhotoGridOpened={setPhotoGridOpened}
          />
          <div className={style.mapContainer}>
-            <MarkerMap className={style.map} />
+            <MarkerMap setOpened={setOpened} setPhotoGridOpened={setPhotoGridOpened} className={style.map} />
          </div>
 
-         {opened ? <PhotoGrid setData={setData} data={data} /> : <div />}
+         {photoGridOpened ? <PhotoGrid setData={setData} data={data} /> : <div />}
       </div>
    );
 }

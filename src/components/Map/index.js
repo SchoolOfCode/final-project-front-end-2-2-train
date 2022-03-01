@@ -4,27 +4,21 @@ import Pins from "./Pins";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
-
+import usePins from "../../hooks/usePins";
+import { FiberPinSharp } from "@mui/icons-material";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-function MarkerMap() {
+function MarkerMap({ setOpened, setPhotoGridOpened }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [locations, setLocations] = useState(mockData);
    const [showPopup, setShowPopup] = useState(false);
-   const [clickLocation, setClickLocation] = useState({
-      lat: 51.5072,
-      lng: -0.1276,
-   });
-   // const [buttonLocation, setButtonLocation] = useState({
-   //    latitude: 51.5072,
-   //    longitude: -0.1276,
-   // });
+   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+   const [pins, addNewPin, newLocationId] = usePins(mockData);
 
    function markerClick() {
-      console.log("Marker Clicked"); // use to display pictures
+      setPhotoGridOpened(true);
    }
 
    // displays lat and long values for click event on map
@@ -32,37 +26,12 @@ function MarkerMap() {
       const locationData = e.lngLat;
 
       const newLocation = {
-         id: newLocationId(),
+         id: newLocationId,
          lat: locationData.lat,
          lng: locationData.lng,
       };
 
       setClickLocation(newLocation);
-      // console.log(locationData);
-
-      // currently calling the addNewMarker function directly onClick
-      // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      // addNewMarker(locationData);
-
-      //setButtonLocation(e.lngLat);
-      // buttonClick(locationData);
-   }
-
-   // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
-   function newLocationId() {
-      const id = locations.length + 1;
-      return id;
-   }
-
-   // adds new location value to current useState; will have to be changed to post the information to the database
-
-   function addNewMarker(locationData) {
-      const newLocation = {
-         id: newLocationId(),
-         lat: locationData.lat,
-         lng: locationData.lng,
-      };
-      setLocations([...locations, newLocation]);
    }
 
    useEffect(() => {
@@ -71,7 +40,7 @@ function MarkerMap() {
 
    useEffect(() => {
       setShowPopup(false);
-   }, [locations]);
+   }, [pins]);
 
    function handleShowPopup() {
       setShowPopup(false);
@@ -92,12 +61,13 @@ function MarkerMap() {
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={locations} onClick={markerClick} />
+         <Pins locations={pins} markerClick={markerClick} />
          {showPopup && (
             <AddPinButton
                handleShowPopup={handleShowPopup}
                clickLocation={clickLocation}
-               addNewMarker={addNewMarker}
+               addNewPin={addNewPin}
+               setOpened={setOpened}
             />
          )}
       </Map>

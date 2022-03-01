@@ -1,7 +1,7 @@
 import { React } from "react";
 import buttonStyle from "./MenuIcon.module.css";
 
-function Button({ setOpened, opened }) {
+function Button({ setOpened, opened, setPhotoGridOpened }) {
    const style = opened
       ? `${buttonStyle.menu} ${buttonStyle.opened}`
       : `${buttonStyle.menu}`;
@@ -9,7 +9,10 @@ function Button({ setOpened, opened }) {
    return (
       <div className={style.menuContainer}>
          <button
-            onClick={() => setOpened((prevCheck) => !prevCheck)}
+            onClick={() => {
+               setOpened((prevCheck) => !prevCheck);
+               setPhotoGridOpened((prevCheck) => !prevCheck);
+            }}
             className={style}
             aria-label="Main Menu">
             <svg width="100" height="100" viewBox="0 0 100 100">

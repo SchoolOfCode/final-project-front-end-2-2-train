@@ -4,7 +4,7 @@ import Form from "../Form";
 import MenuIcon from "./MenuIcon";
 import LogoutButton from "./LogoutBtn";
 
-function Navbar({ opened, setOpened }) {
+function Navbar({ opened, setOpened, setPhotoGridOpened }) {
    return (
       <>
          <div className={style.navbarContainer}>
@@ -14,7 +14,7 @@ function Navbar({ opened, setOpened }) {
                alt=""
             />
             {opened ? <Form opened={opened} /> : <></>}
-            <MenuIcon setOpened={setOpened} opened={opened} />
+            <MenuIcon setOpened={setOpened} opened={opened} setPhotoGridOpened={setPhotoGridOpened}/>
             <LogoutButton />
          </div>
       </>

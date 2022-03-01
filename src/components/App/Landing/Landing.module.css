@@ -93,6 +93,7 @@ BUTTONS
 *********/
 
 button {
+   border: 1px solid black;
    text-transform: uppercase;
    font-weight: 700;
    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
