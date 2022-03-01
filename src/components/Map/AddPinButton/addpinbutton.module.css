@@ -1,27 +1,20 @@
-:root {
-   --main-color: #f5f3f5;
-   --primary-color: #fc4647;
-   --nav-color: #fc464698;
-   --secondary-color: #58b19f;
-   --text-color: #3a3335;
-   --font-size-h1: 36px;
-   --font-size-h2: 30px;
-   --font-size-p: 18px;
-   --regular-font: "Roboto", sans-serif;
-   --title-font: "Hurricane", cursive;
-   --title-font-size: 1.5rem;
-}
-
-.container-close-button {
-   background-color: var(--primary-color);
-}
-
 .text {
    color: black;
    font-family: var(--regular-font);
    font-size: 15px;
    padding-top: 10px;
    padding-bottom: 5px;
+}
+
+.container button {
+   right: 0;
+   top: 0;
+   border: 0;
+   border-radius: 0 3px 0 0;
+   cursor: pointer;
+   background-color: var(--primary-color);
+   color: var(--main-color);
+   box-shadow: none;
 }
 
 .pinbutton {
@@ -32,6 +25,7 @@
    background-color: var(--primary-color);
    border-radius: 10px;
    color: var(--main-color);
+   box-shadow: none;
 }
 
 .popupcontents {
