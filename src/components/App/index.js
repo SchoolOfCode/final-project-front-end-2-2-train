@@ -1,5 +1,5 @@
 import style from "./App.module.css";
-import PhotoGrid from "./PhotoGrid";
+import PhotoGrid from "../Map/PhotoGrid";
 import Navbar from "./Navbar";
 import { React, useState, useEffect } from "react";
 
