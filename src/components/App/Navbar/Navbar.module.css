@@ -8,7 +8,13 @@
 }
 
 .logo {
-   margin: 20px 0 0 30px;
+   margin: 20px 10px 0 30px;
    height: 50px;
-   width: auto;
+   width: 100px;
+}
+
+.topNavCont {
+   display: flex;
+   align-items: center;
+   flex-direction: row;
 }

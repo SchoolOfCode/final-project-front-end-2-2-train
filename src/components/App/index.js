@@ -18,7 +18,7 @@ function App() {
    // Sets the style of the sidebar to show it
    const [opened, setOpened] = useState(false);
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
-   const [modal, setModal] = useState();
+   const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
    console.log(error);
@@ -29,7 +29,7 @@ function App() {
             const response = await fetch(`${API_URL}/media`);
             const newData = await response.json();
             if (newData.success === true) {
-               console.log("Got the data!");
+               console.log(`HERE IS THE MAIN DATA OBJECT`, data);
                setData(newData.payload);
                setError("");
             } else {
@@ -43,9 +43,7 @@ function App() {
          }
       }
       getData();
-   }, []);
-
-   // console.log(user ? user.email : user.name);
+   }, [data]);
 
    return (
       <div className={style.app}>
@@ -62,7 +60,7 @@ function App() {
                className={style.map}
             />
          </div>
-         {modal ? <PhotoModal photo={modal} /> : <></>}
+         {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
          {photoGridOpened ? (
             <PhotoGrid setData={setData} data={data} setModal={setModal} />
          ) : (
