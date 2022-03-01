@@ -1,29 +1,18 @@
 import React, { useState } from "react";
 import style from "./photocard.module.css";
-import PhotoModal from "../../../App/PhotoModal";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-function PhotoCard({ key, dataObj, delFunc }) {
+function PhotoCard({ key, dataObj, delFunc, setModal}) {
    // css to allow only a certain amount of char for the notes
    // returning data populated by the DummyData
-   const [modal, setModal] = useState(false);
 
    console.log(`This is the object KEY:`, key);
 
    return (
       <div className={style.flipcard}>
-         {modal ? (
-            <PhotoModal
-               setModal={setModal}
-               photo={dataObj.aws_key}
-               notes={dataObj.note}
-            />
-         ) : (
-            <></>
-         )}
          <div
             className={style.flipcardContainer}
-            onClick={() => setModal(true)}>
+            onClick={() => setModal(dataObj.aws_key)}>
             <div className={style.flipcardFront}>
                <img
                   className={style.polaroidFrame}
