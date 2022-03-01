@@ -1,7 +1,7 @@
 .photoGridContainer {
-   margin: 0 auto;
-   width: 70vw;
-   height: 86vh;
+   margin: 6rem auto 0 30vw;
+   width: 45vw;
+   height: 55vh;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
    grid-template-rows: 1fr 1fr;
@@ -14,4 +14,12 @@
    backdrop-filter: blur(5.5px);
    -webkit-backdrop-filter: blur(7.5px);
    border-radius: 10px;
+}
+
+.close {
+   position: absolute;
+   text-transform: uppercase;
+   color: var(--text-color);
+   margin: 1rem 2rem 0 0;
+   float: right;
 }

@@ -1,65 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
-//import AddPinButton from "./AddPinButton";
-
-//import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-
-//FIXME Commented out the addPinButton throghout the code.
-
+import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
-
 import mockData from "./mockLocations.json"; // importing mock locations for testing
-
+import usePins from "../../hooks/usePins";
+import PhotoGrid from "../Map/PhotoGrid";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-function MarkerMap() {
-  
+
+function MarkerMap({ setData, data, setModal, setForm }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [locations, setLocations] = useState(mockData);
-   // const [buttonLocation, setButtonLocation] = useState({
-   //    latitude: 51.5072,
-   //    longitude: -0.1276,
-   // });
+   const [showPopup, setShowPopup] = useState(true);
+   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+   const [pins, addNewPin, newLocationId] = usePins(mockData);
+   const [photoGridOpened, setPhotoGridOpened] = useState(false);
 
    function markerClick() {
-      console.log("Marker Clicked"); // use to display pictures
+      setPhotoGridOpened(true);
    }
 
    // displays lat and long values for click event on map
    function onMapClicked(e) {
-      console.log("map was clicked here", e.lngLat);
       const locationData = e.lngLat;
 
-      // currently calling the addNewMarker function directly onClick
-      // TODO: instead of directly displaying a new Marker, a button an "add new pin" button should pop up, giving the user control over whether they would like to create a new pin
-      addNewMarker(locationData);
-      //setButtonLocation(e.lngLat);
-      // buttonClick(locationData);
-   }
-
-   // temporary function to create a new id for the location date; can be removed once date is sent to database and id's are generated automatically via PK of database
-   function newLocationId() {
-      const id = locations.length + 1;
-      return id;
-   }
-
-   // adds new location value to current useState; will have to be changed to post the information to the database
-   function addNewMarker(locationData) {
       const newLocation = {
-         id: newLocationId(),
-         latitude: locationData.lat,
-         longitude: locationData.lng,
+         id: newLocationId,
+         lat: locationData.lat,
+         lng: locationData.lng,
       };
-      setLocations([...locations, newLocation]);
+
+      setClickLocation(newLocation);
    }
 
-   // function buttonClick(locationData) {
-   //    console.log("Button clicked at: ", locationData);
-   // }
+   useEffect(() => {
+      setShowPopup(true);
+   }, [clickLocation]);
+
+   useEffect(() => {
+      setShowPopup(false);
+   }, [pins]);
+
+   function handleShowPopup() {
+      setShowPopup(false);
+   }
 
    return (
       <Map
@@ -72,12 +59,29 @@ function MarkerMap() {
             dragRotate: false,
          }}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
-         mapStyle="mapbox://styles/mapbox/streets-v9"
+         mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={locations} onClick={markerClick} />
-         {/*<AddPinButton buttonLocation={buttonLocation} onClick={buttonClick} />*/}
+         <Pins locations={pins} markerClick={markerClick} />
+         {photoGridOpened ? (
+            <PhotoGrid
+            setPhotoGridOpened={setPhotoGridOpened}
+               setData={setData}
+               data={data}
+               setModal={setModal}
+            />
+         ) : (
+            <div />
+         )}
+         {showPopup && (
+            <AddPinButton
+               handleShowPopup={handleShowPopup}
+               clickLocation={clickLocation}
+               addNewPin={addNewPin}
+               setForm={setForm}
+            />
+         )}
       </Map>
    );
 }

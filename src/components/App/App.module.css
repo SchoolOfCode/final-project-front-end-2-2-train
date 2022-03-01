@@ -4,6 +4,8 @@
    background-position: center;
    flex-direction: column;
    height: 100vh;
+   display: flex;
+   flex-direction: row;
 }
 
 ul {
@@ -16,17 +18,6 @@ li {
    list-style-type: none;
 }
 
-.imgContainer {
-   margin: 10px 0 0 10px;
-   width: 150px;
-   height: 120px;
-}
-
-.logo {
-   width: 100%;
-   height: auto;
-}
-
 .mapContainer {
    position: absolute;
    height: 100vh;
@@ -37,4 +28,11 @@ li {
    position: relative;
    height: auto;
    width: 100%;
+}
+
+.navbar {
+   position: relative;
+   left: 0;
+   top: 0;
+   z-index: -1;
 }

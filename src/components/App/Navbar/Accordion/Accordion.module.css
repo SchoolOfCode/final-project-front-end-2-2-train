@@ -1,0 +1,39 @@
+.accordion {
+   max-width: 600px;
+   margin: 2rem 1.5rem;
+}
+
+.accordionTitle {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   cursor: pointer;
+   background-color: var(--primary-color);
+   border-radius: 15px 15px 0 0;
+}
+
+.accordionTitle:hover {
+   background-color: var(--primary-color);
+}
+
+.accordionTitle,
+.accordionContent {
+   padding: 1rem;
+}
+
+.accordionContent {
+   border-radius: 0 0 15px 15px;
+   background-color: var(--main-color);
+}
+
+.accordionHFont {
+   color: var(--main-color);
+   font-family: var(--regular-font);
+   text-transform: uppercase;
+   font-weight: bold;
+   font-size: var(--font-size-p);
+}
+.accordionPFont {
+   color: var(--font-color);
+   font-family: var(--regular-font);
+}
