@@ -20,7 +20,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
 
    function markerClick() {
-      setPhotoGridOpened(!true);
+      setPhotoGridOpened(true);
    }
 
    // displays lat and long values for click event on map
@@ -65,7 +65,12 @@ function MarkerMap({ setData, data, setModal, setForm }) {
          }}>
          <Pins locations={pins} markerClick={markerClick} />
          {photoGridOpened ? (
-            <PhotoGrid setData={setData} data={data} setModal={setModal} />
+            <PhotoGrid
+            setPhotoGridOpened={setPhotoGridOpened}
+               setData={setData}
+               data={data}
+               setModal={setModal}
+            />
          ) : (
             <div />
          )}
