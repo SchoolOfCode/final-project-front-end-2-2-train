@@ -12,7 +12,8 @@
    --title-font-size: 1.5rem;
 }
 
-.container {
+.container-close-button {
+   background-color: var(--primary-color);
 }
 
 .text {
