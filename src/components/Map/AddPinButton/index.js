@@ -6,7 +6,7 @@ export default function AddPinButton({
    handleShowPopup,
    addNewPin,
    clickLocation,
-   setOpened,
+   setForm,
 }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
@@ -26,7 +26,7 @@ export default function AddPinButton({
                className={pinbuttonstyle.pinbutton}
                onClick={() => {
                   addNewPin(clickLocation);
-                  setOpened(true);
+                  setForm(true);
                }}>
                {" "}
                PINIT{" "}

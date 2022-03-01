@@ -1,9 +1,9 @@
 import style from "./App.module.css";
-import PhotoGrid from "../Map/PhotoGrid";
+
 import Navbar from "./Navbar";
 import { React, useState, useEffect } from "react";
 import PhotoModal from "./PhotoModal/index";
-
+import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
 import MarkerMap from "../Map";
 
@@ -16,8 +16,7 @@ function App() {
    // const { name, picture, email } = user;
 
    // Sets the style of the sidebar to show it
-   const [opened, setOpened] = useState(false);
-   const [photoGridOpened, setPhotoGridOpened] = useState(false);
+   const [form, setForm] = useState(false);
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
@@ -43,29 +42,22 @@ function App() {
          }
       }
       getData();
-   }, [data]);
+   }, []);
 
    return (
       <div className={style.app}>
-         <Navbar
-            className={style.navbar}
-            opened={opened}
-            setOpened={setOpened}
-            setPhotoGridOpened={setPhotoGridOpened}
-         />
+         <Navbar className={style.navbar} />
          <div className={style.mapContainer}>
             <MarkerMap
-               setOpened={setOpened}
-               setPhotoGridOpened={setPhotoGridOpened}
+               setData={setData}
+               data={data}
+               setModal={setModal}
                className={style.map}
+               setForm={setForm}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {photoGridOpened ? (
-            <PhotoGrid setData={setData} data={data} setModal={setModal} />
-         ) : (
-            <div />
-         )}
+         {form ? <Form setForm={setForm} /> : <></>}
       </div>
    );
 }

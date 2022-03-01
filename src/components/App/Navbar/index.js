@@ -4,7 +4,7 @@ import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
 import accordionData from "./accordionData.js";
 
-function Navbar({ opened, setOpened, setPhotoGridOpened }) {
+function Navbar() {
    return (
       <>
          <div className={style.navbarContainer}>

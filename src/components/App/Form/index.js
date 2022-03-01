@@ -4,12 +4,9 @@ import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 const API_URL = "https://room-22-train.herokuapp.com";
 
-export default function Form({ opened }) {
-   //Styling for the menu icon
-   const styleAdd = opened
-      ? `${style.sidebarContainer}`
-      : `${style.sidebarContainer} ${style.sidebarHidden}`;
+export default function Form({ setForm }) {
    const [obj, setObj] = useState({});
+
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
       register,
@@ -18,8 +15,8 @@ export default function Form({ opened }) {
       formState: { errors },
    } = useForm();
    const onSubmit = (data) => setObj(data);
-   const [media, setMedia] = useState([]); //! not used; commented out for netlify
-   const [error, setError] = useState(""); //! not used; commented out for netlify
+   const [media, setMedia] = useState([]);
+   const [error, setError] = useState("");
 
    console.log(media, error);
 
@@ -54,10 +51,15 @@ export default function Form({ opened }) {
          getMedia();
       }
    }, [obj]);
+
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
+
    return (
-      <div className={styleAdd}>
+      <div className={style.sidebarContainer}>
+         <p className={style.close} onClick={() => setForm(false)}>
+            X
+         </p>
          <form
             className={style.formContainer}
             onSubmit={handleSubmit(onSubmit)}>

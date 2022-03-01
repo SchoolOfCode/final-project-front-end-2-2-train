@@ -5,21 +5,22 @@ import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
 import usePins from "../../hooks/usePins";
-import { FiberPinSharp } from "@mui/icons-material";
-import Form from "./Form/index";
+import PhotoGrid from "../Map/PhotoGrid";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-function MarkerMap({ setOpened, setPhotoGridOpened }) {
+
+function MarkerMap({ setData, data, setModal, setForm }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [showPopup, setShowPopup] = useState(false);
+   const [showPopup, setShowPopup] = useState(true);
    const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    const [pins, addNewPin, newLocationId] = usePins(mockData);
+   const [photoGridOpened, setPhotoGridOpened] = useState(false);
 
    function markerClick() {
-      setPhotoGridOpened(true);
+      setPhotoGridOpened(!true);
    }
 
    // displays lat and long values for click event on map
@@ -63,15 +64,19 @@ function MarkerMap({ setOpened, setPhotoGridOpened }) {
             onMapClicked(e);
          }}>
          <Pins locations={pins} markerClick={markerClick} />
+         {photoGridOpened ? (
+            <PhotoGrid setData={setData} data={data} setModal={setModal} />
+         ) : (
+            <div />
+         )}
          {showPopup && (
             <AddPinButton
                handleShowPopup={handleShowPopup}
                clickLocation={clickLocation}
                addNewPin={addNewPin}
-               setOpened={setOpened}
+               setForm={setForm}
             />
          )}
-         {showPopup ? ( <Form/>) : (<></>)}
       </Map>
    );
 }
