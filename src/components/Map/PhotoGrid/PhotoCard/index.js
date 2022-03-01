@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./photocard.module.css";
-import PhotoModal from "./PhotoModal";
+import PhotoModal from "../../../App/PhotoModal";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function PhotoCard({ key, dataObj, delFunc }) {
