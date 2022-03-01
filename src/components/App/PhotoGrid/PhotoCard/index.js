@@ -12,6 +12,15 @@ function PhotoCard({ key, dataObj, delFunc }) {
 
    return (
       <div className={style.flipcard}>
+         {modal ? (
+            <PhotoModal
+               setModal={setModal}
+               photo={dataObj.aws_key}
+               notes={dataObj.note}
+            />
+         ) : (
+            <></>
+         )}
          <div
             className={style.flipcardContainer}
             onClick={() => setModal(true)}>
@@ -32,7 +41,7 @@ function PhotoCard({ key, dataObj, delFunc }) {
             </div>
             <div className={style.flipcardBack}>
                <div className={style.textHolder}>
-                  <h1 className={style.photoTitle}>{dataObj.media_title}</h1>
+                  <h1 className={style.photoTitle}>{dataObj.media_title},</h1>
                   <h2 className={style.photoTitle}>
                      {dataObj.location} <br /> {dataObj.date}
                   </h2>
@@ -44,15 +53,6 @@ function PhotoCard({ key, dataObj, delFunc }) {
                />
             </div>
          </div>
-         {modal ? (
-            <PhotoModal
-               setModal={setModal}
-               photo={dataObj.aws_key}
-               notes={dataObj.note}
-            />
-         ) : (
-            <></>
-         )}
       </div>
    );
 }

@@ -1,7 +1,7 @@
 .photoGridContainer {
-   margin: 8rem auto 0 auto;
-   width: 65vw;
-   height: 76vh;
+   margin: 6rem auto 0 4rem;
+   width: 45vw;
+   height: 55vh;
    display: grid;
    grid-template-columns: 1fr 1fr 1fr;
    grid-template-rows: 1fr 1fr;
