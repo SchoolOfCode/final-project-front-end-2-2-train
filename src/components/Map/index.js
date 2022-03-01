@@ -6,6 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
 import usePins from "../../hooks/usePins";
 import { FiberPinSharp } from "@mui/icons-material";
+import Form from "./Form/index";
 
 // FIXME: secure access token
 const mapboxAccessToken =
@@ -70,6 +71,7 @@ function MarkerMap({ setOpened, setPhotoGridOpened }) {
                setOpened={setOpened}
             />
          )}
+         {showPopup ? ( <Form/>) : (<></>)}
       </Map>
    );
 }
