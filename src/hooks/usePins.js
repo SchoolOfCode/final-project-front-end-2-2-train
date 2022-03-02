@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function usePins(mockData) {
    const [pins, setPins] = useState(mockData);

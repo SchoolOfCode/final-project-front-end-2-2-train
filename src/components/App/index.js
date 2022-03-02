@@ -28,7 +28,6 @@ function App() {
             const response = await fetch(`${API_URL}/media`);
             const newData = await response.json();
             if (newData.success === true) {
-               console.log(`HERE IS THE MAIN DATA OBJECT`, data);
                setData(newData.payload);
                setError("");
             } else {
