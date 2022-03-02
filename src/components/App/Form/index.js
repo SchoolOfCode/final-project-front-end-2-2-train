@@ -71,6 +71,7 @@ export default function Form({ setForm }) {
             />
             <input
                placeholder="Title"
+               type="text"
                {...register("media_title", {
                   required: true,
                   minLength: 1,
@@ -79,6 +80,7 @@ export default function Form({ setForm }) {
             />
             <input
                placeholder="Location"
+               type="text"
                {...register("location", {
                   required: true,
                   minLength: 1,
@@ -93,6 +95,7 @@ export default function Form({ setForm }) {
             <input
                className={style.formContainerTextarea}
                placeholder="Note"
+               type="text"
                {...register("media_descr", {
                   required: true,
                   minLength: 1,
