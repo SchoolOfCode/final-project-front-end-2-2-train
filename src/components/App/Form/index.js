@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 const API_URL = "https://room-22-train.herokuapp.com";
 
-export default function Form({ setForm }) {
+export default function Form({ setForm, formLocation }) {
    const [obj, setObj] = useState({});
 
    //Using useForm hook to add validation to the form in line with HTML standards.
@@ -14,7 +14,9 @@ export default function Form({ setForm }) {
       watch,
       formState: { errors },
    } = useForm();
-   const onSubmit = (data) => setObj(data);
+   const onSubmit = (data) => {
+      setObj({...data,lat:formLocation.lat,lng:formLocation.lng});
+   };
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
 

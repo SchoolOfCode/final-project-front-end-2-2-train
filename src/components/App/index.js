@@ -20,6 +20,8 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
+   const [formLocation, setformLocation] = useState()
+
    console.log(error);
    //! the GET request
    useEffect(() => {
@@ -43,6 +45,11 @@ function App() {
       getData();
    }, []);
 
+   useEffect(() => {
+      console.log(formLocation)
+   },[formLocation])
+
+
    return (
       <div className={style.app}>
          <Navbar className={style.navbar} />
@@ -53,10 +60,11 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
+               setformLocation = {setformLocation}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} /> : <></>}
+         {form ? <Form setForm={setForm} formLocation={formLocation} /> :  <></>}
       </div>
    );
 }
