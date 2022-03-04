@@ -125,7 +125,7 @@ export default function Form({ setForm, formLocation }) {
             {errors.exampleRequired && <span>This field is required</span>}
 
             <input className={style.formContainerButton} type="submit" />
-            <button onClick={uploadImage}>SUBMIT BABBBYYY</button>
+            <button onClick={uploadImage}>SUBMIT IMAGE TEST</button>
          </form>
       </div>
    );
