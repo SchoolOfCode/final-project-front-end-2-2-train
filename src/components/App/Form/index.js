@@ -8,6 +8,7 @@ const API_URL = "https://room-22-train.herokuapp.com";
 export default function Form({ setForm, formLocation }) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
+   const [imageUrl, setImageUrl] = useState();
 
    const uploadImage = () => {
       const formData = new FormData();
@@ -18,10 +19,11 @@ export default function Form({ setForm, formLocation }) {
          "https://api.cloudinary.com/v1_1/dansutton/image/upload",
          formData
       ).then((response) => {
-         console.log(response);
+         console.log(response.data.url);
+         setImageUrl (response.data.url);
       });
    };
-
+   
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
       register,
@@ -29,7 +31,10 @@ export default function Form({ setForm, formLocation }) {
       watch,
       formState: { errors },
    } = useForm();
-   const onSubmit = (data) => {
+
+   //upload image and form data
+   const onSubmit = async (data) => {
+     const imageUrl = uploadImage();
       setObj({ ...data, lat: formLocation.lat, lng: formLocation.lng });
    };
    const [media, setMedia] = useState([]);
@@ -69,9 +74,6 @@ export default function Form({ setForm, formLocation }) {
       }
    }, [obj]);
 
-   useEffect(() => {
-      console.log(image);
-   }, [image]);
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
 
