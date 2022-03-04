@@ -22,6 +22,12 @@ function MarkerMap({ setData, data, setModal, setForm }) {
 
    function markerClick() {
       setPhotoGridOpened(true);
+      setIsMapInteractive(false);
+   }
+
+   function onPhotoGridClose() {
+      setPhotoGridOpened(false);
+      setIsMapInteractive(true);
    }
 
    // displays lat and long values for click event on map
@@ -84,6 +90,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
                setData={setData}
                data={data}
                setModal={setModal}
+               onPhotoGridClose={onPhotoGridClose}
             />
          ) : (
             <div />
