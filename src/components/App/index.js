@@ -7,13 +7,12 @@ import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
 import MarkerMap from "../Map";
 
-const API_URL = "https://room-22-train.herokuapp.com";
+// const API_URL = "https://room-22-train.herokuapp.com";
+const API_URL = "http://localhost:5500";
 
 function App() {
-   // gets the user information after authentication
+   //! AUTH0 stuff
    const { user } = useAuth0();
-   console.log(user);
-   // const { name, picture, email } = user;
 
    // Sets the style of the sidebar to show it
    const [form, setForm] = useState(false);
@@ -21,12 +20,16 @@ function App() {
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
    console.log(error);
+
    //! the GET request
    useEffect(() => {
       async function getData() {
+         const email = user.email;
+         console.log(email);
          try {
-            const response = await fetch(`${API_URL}/media`);
+            const response = await fetch(`${API_URL}/users/${email}`);
             const newData = await response.json();
+            console.log("THIS IS THE DATA IN THE MOUNTED USEEFFECT", newData);
             if (newData.success === true) {
                setData(newData.payload);
                setError("");
@@ -42,7 +45,7 @@ function App() {
       }
       getData();
    }, []);
-
+   console.log(data);
    return (
       <div className={style.app}>
          <Navbar className={style.navbar} />
