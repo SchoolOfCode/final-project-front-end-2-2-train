@@ -1,4 +1,5 @@
 //import { ColorLensOutlined } from "@mui/icons-material"; //! not used; commented out for netlify
+import Axios from "axios";
 import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
@@ -6,6 +7,20 @@ const API_URL = "https://room-22-train.herokuapp.com";
 
 export default function Form({ setForm, formLocation }) {
    const [obj, setObj] = useState({});
+   const [image, setImage] = useState();
+
+   const uploadImage = () => {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "syfwteis");
+
+      Axios.post(
+         "https://api.cloudinary.com/v1_1/dansutton/image/upload",
+         formData
+      ).then((response) => {
+         console.log(response);
+      });
+   };
 
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
@@ -15,7 +30,7 @@ export default function Form({ setForm, formLocation }) {
       formState: { errors },
    } = useForm();
    const onSubmit = (data) => {
-      setObj({...data,lat:formLocation.lat,lng:formLocation.lng});
+      setObj({ ...data, lat: formLocation.lat, lng: formLocation.lng });
    };
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
@@ -54,6 +69,9 @@ export default function Form({ setForm, formLocation }) {
       }
    }, [obj]);
 
+   useEffect(() => {
+      console.log(image);
+   }, [image]);
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
 
@@ -69,7 +87,9 @@ export default function Form({ setForm, formLocation }) {
                className={style.fileInput}
                type="file"
                placeholder="Image"
-               {...register("aws_key", { required: true })}
+               onChange={(e) => {
+                  setImage(e.target.files[0]);
+               }}
             />
             <input
                placeholder="Title"
@@ -105,6 +125,7 @@ export default function Form({ setForm, formLocation }) {
             {errors.exampleRequired && <span>This field is required</span>}
 
             <input className={style.formContainerButton} type="submit" />
+            <button onClick={uploadImage}>SUBMIT BABBBYYY</button>
          </form>
       </div>
    );
