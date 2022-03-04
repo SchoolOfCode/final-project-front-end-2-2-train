@@ -53,9 +53,9 @@ function MarkerMap({ setData, data, setModal, setForm }) {
       setShowPopup(false);
    }, [pins]);
 
-   useEffect(() => {
-      setIsMapInteractive(false);
-   }, [photoGridOpened]);
+   // useEffect(() => {
+   //    setIsMapInteractive(false);
+   // }, [photoGridOpened]);
 
    function handleShowPopup() {
       setShowPopup(false);
@@ -88,7 +88,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
          ) : (
             <div />
          )}
-         {showPopup && (
+         {showPopup && isMapInteractive && (
             <AddPinButton
                // TODO: change name of AddPinButton component → it is a pop-up
                handleShowPopup={handleShowPopup}
