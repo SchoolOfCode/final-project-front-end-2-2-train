@@ -18,6 +18,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
    const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    const [pins, addNewPin, newLocationId] = usePins(mockData);
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
+   const [isMapInteractive, setIsMapInteractive] = useState(true);
 
    function markerClick() {
       setPhotoGridOpened(true);
@@ -44,6 +45,10 @@ function MarkerMap({ setData, data, setModal, setForm }) {
       setShowPopup(false);
    }, [pins]);
 
+   useEffect(() => {
+      setIsMapInteractive(false);
+   }, [photoGridOpened]);
+
    function handleShowPopup() {
       setShowPopup(false);
    }
@@ -58,6 +63,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
             pitchWithRotate: false,
             dragRotate: false,
          }}
+         interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
@@ -80,6 +86,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
                clickLocation={clickLocation}
                addNewPin={addNewPin}
                setForm={setForm}
+               isMapInteractive={isMapInteractive}
             />
          )}
       </Map>

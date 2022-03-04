@@ -7,11 +7,14 @@ export default function AddPinButton({
    addNewPin,
    clickLocation,
    setForm,
+   isMapInteractive,
 }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
+
    return (
-      <Popup
+      {isMapInteractive && (
+         <Popup
          maxWidth="150px"
          className={pinbuttonstyle.container}
          longitude={clickLocation.lng}
@@ -25,7 +28,7 @@ export default function AddPinButton({
             <button
                className={pinbuttonstyle.pinbutton}
                onClick={() => {
-                  addNewPin(clickLocation);
+                  addNewPin(clickLocation, isMapInteractive); // FIXME: we probably don't need this in the function (double-check before removing the code)
                   setForm(true);
                }}>
                {" "}
@@ -33,5 +36,7 @@ export default function AddPinButton({
             </button>
          </div>
       </Popup>
+      )}
+      
    );
 }
