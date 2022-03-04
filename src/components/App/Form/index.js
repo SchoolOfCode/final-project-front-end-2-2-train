@@ -20,10 +20,11 @@ export default function Form({ setForm, formLocation }) {
          formData
       ).then((response) => {
          console.log(response.data.url);
-         setImageUrl (response.data.url);
+         setImageUrl(response.data.url);
+         return response.data.url;
       });
    };
-   
+
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
       register,
@@ -33,10 +34,22 @@ export default function Form({ setForm, formLocation }) {
    } = useForm();
 
    //upload image and form data
-   const onSubmit = async (data) => {
-     const imageUrl = uploadImage();
-      setObj({ ...data, lat: formLocation.lat, lng: formLocation.lng });
+   const onSubmit = () => {
+      uploadImage();
    };
+
+   useEffect(
+      (data) => {
+         setObj({
+            ...data,
+            image: imageUrl,
+            lat: formLocation.lat,
+            lng: formLocation.lng,
+         });
+      },
+      [imageUrl]
+   );
+
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
 
