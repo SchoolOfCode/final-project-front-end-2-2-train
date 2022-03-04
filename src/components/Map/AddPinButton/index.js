@@ -7,6 +7,7 @@ export default function AddPinButton({
    addNewPin,
    clickLocation,
    setForm,
+   isMapInteractive,
 }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 

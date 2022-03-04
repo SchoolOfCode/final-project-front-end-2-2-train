@@ -14,8 +14,8 @@ export default function usePins(mockData) {
          lat: locationData.lat,
          lng: locationData.lng,
       };
-
       setPins([...pins, newLocation]);
+      return newLocation;
    }
 
    return [pins, addNewPin, newLocationId];

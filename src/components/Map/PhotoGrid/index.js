@@ -3,7 +3,13 @@ import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
 //import data from "./data";
 
-function PhotoGrid({ setData, data, setModal, setPhotoGridOpened }) {
+function PhotoGrid({
+   setData,
+   data,
+   setModal,
+   setPhotoGridOpened,
+   onPhotoGridClose,
+}) {
    //! DELETE FUNCTION FOR GRID
    function delFunc(id) {
       const objInd = id - 1;
@@ -17,7 +23,7 @@ function PhotoGrid({ setData, data, setModal, setPhotoGridOpened }) {
 
    return (
       <div className={style.photoGridContainer}>
-         <p className={style.close} onClick={() => setPhotoGridOpened(false)}>
+         <p className={style.close} onClick={() => onPhotoGridClose()}>
             X
          </p>
          {data.map((item, index) => (

@@ -14,13 +14,21 @@ const mapboxAccessToken =
 function MarkerMap({ setData, data, setModal, setForm }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [showPopup, setShowPopup] = useState(true);
+   const [showPopup, setShowPopup] = useState(false);
    const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    const [pins, addNewPin, newLocationId] = usePins(mockData);
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
+   const [isMapInteractive, setIsMapInteractive] = useState(true);
 
    function markerClick() {
       setPhotoGridOpened(true);
+      setIsMapInteractive(false);
+   }
+
+   function onPhotoGridClose() {
+      setPhotoGridOpened(false);
+      setIsMapInteractive(true);
+      setShowPopup(false);
    }
 
    // displays lat and long values for click event on map
@@ -36,6 +44,14 @@ function MarkerMap({ setData, data, setModal, setForm }) {
       setClickLocation(newLocation);
    }
 
+   // rendering pop-up if showPop State is true
+   // also don't want to render pop-up if isMapInteractive is false
+
+   // either create a secondary condition
+   // or when isMapInteractive is false; showPop up should also be false
+   // do we need separate states?  → YES
+   // if yes, can we setShowPopup to false, when isMapInteractive is set to false as well
+
    useEffect(() => {
       setShowPopup(true);
    }, [clickLocation]);
@@ -43,6 +59,10 @@ function MarkerMap({ setData, data, setModal, setForm }) {
    useEffect(() => {
       setShowPopup(false);
    }, [pins]);
+
+   // useEffect(() => {
+   //    setIsMapInteractive(false);
+   // }, [photoGridOpened]);
 
    function handleShowPopup() {
       setShowPopup(false);
@@ -58,6 +78,7 @@ function MarkerMap({ setData, data, setModal, setForm }) {
             pitchWithRotate: false,
             dragRotate: false,
          }}
+         interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
@@ -66,20 +87,23 @@ function MarkerMap({ setData, data, setModal, setForm }) {
          <Pins locations={pins} markerClick={markerClick} />
          {photoGridOpened ? (
             <PhotoGrid
-            setPhotoGridOpened={setPhotoGridOpened}
+               setPhotoGridOpened={setPhotoGridOpened}
                setData={setData}
                data={data}
                setModal={setModal}
+               onPhotoGridClose={onPhotoGridClose}
             />
          ) : (
             <div />
          )}
-         {showPopup && (
+         {showPopup && isMapInteractive && (
             <AddPinButton
+               // TODO: change name of AddPinButton component → it is a pop-up
                handleShowPopup={handleShowPopup}
                clickLocation={clickLocation}
                addNewPin={addNewPin}
                setForm={setForm}
+               isMapInteractive={isMapInteractive}
             />
          )}
       </Map>
