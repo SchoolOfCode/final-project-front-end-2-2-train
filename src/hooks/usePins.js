@@ -8,18 +8,14 @@ export default function usePins(mockData) {
       return id;
    }
 
-   function addNewPin(locationData, isMapInteractive) {
-      if (!isMapInteractive) {
-         return } else {
+   function addNewPin(locationData) {
       const newLocation = {
          id: newLocationId(),
          lat: locationData.lat,
          lng: locationData.lng,
-      }
-      setPins([...pins, newLocation]);
-      return newLocation
       };
-
+      setPins([...pins, newLocation]);
+      return newLocation;
    }
 
    return [pins, addNewPin, newLocationId];
