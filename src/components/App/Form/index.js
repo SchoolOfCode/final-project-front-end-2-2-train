@@ -9,6 +9,7 @@ export default function Form({ setForm, formLocation }) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState();
+   const [data, setData] = useState();
 
    const uploadImage = () => {
       const formData = new FormData();
@@ -33,22 +34,20 @@ export default function Form({ setForm, formLocation }) {
       formState: { errors },
    } = useForm();
 
-   //upload image and form data
-   const onSubmit = () => {
+   const onSubmit = async (data) => {
+      console.log("This is the data", data);
+      setData(data);
       uploadImage();
    };
 
-   useEffect(
-      (data) => {
-         setObj({
-            ...data,
-            image: imageUrl,
-            lat: formLocation.lat,
-            lng: formLocation.lng,
-         });
-      },
-      [imageUrl]
-   );
+   useEffect(() => {
+      setObj({
+         ...data,
+         image: imageUrl,
+         lat: formLocation.lat,
+         lng: formLocation.lng,
+      });
+   }, [imageUrl]);
 
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
