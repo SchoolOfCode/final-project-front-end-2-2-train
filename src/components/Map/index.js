@@ -11,7 +11,7 @@ import PhotoGrid from "../Map/PhotoGrid";
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
-function MarkerMap({ setData, data, setModal, setForm, setformLocation }) {
+function MarkerMap({ setData, data, setModal, setForm, setFormLocation }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [showPopup, setShowPopup] = useState(false);
@@ -42,7 +42,7 @@ function MarkerMap({ setData, data, setModal, setForm, setformLocation }) {
       };
 
       setClickLocation(newLocation);
-      setformLocation(newLocation);
+      setFormLocation(newLocation);
    }
 
    // rendering pop-up if showPop State is true

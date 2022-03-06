@@ -7,33 +7,33 @@ import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
 import MarkerMap from "../Map";
 
-const API_URL = "https://room-22-train.herokuapp.com";
+const API_URL = "http://localhost:5500";
+// const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
-   const { user } = useAuth0();
-   console.log(user);
-   // const { name, picture, email } = user;
+   const { user, isLoading, isAuthenticated } = useAuth0();
+
+   if (isLoading) <p>Loading...</p>;
 
    // Sets the style of the sidebar to show it
    const [form, setForm] = useState(false);
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-   const [formLocation, setformLocation] = useState()
+   const [formLocation, setFormLocation] = useState();
 
-   console.log(error);
    //! the GET request
    useEffect(() => {
       async function getData() {
          try {
-            const response = await fetch(`${API_URL}/media`);
+            const response = await fetch(`${API_URL}/users/${user.email}`);
             const newData = await response.json();
             if (newData.success === true) {
                setData(newData.payload);
                setError("");
             } else {
-               console.log(response);
+               console.log(response, error);
 
                setError("Fetch didn't work :(");
             }
@@ -42,13 +42,14 @@ function App() {
             setError(err.message);
          }
       }
-      getData();
+      if (isAuthenticated) {
+         getData();
+      }
    }, []);
 
    useEffect(() => {
-      console.log(formLocation)
-   },[formLocation])
-
+      console.log(formLocation);
+   }, [formLocation]);
 
    return (
       <div className={style.app}>
@@ -60,11 +61,11 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
-               setformLocation = {setformLocation}
+               setFormLocation={setFormLocation}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} formLocation={formLocation} /> :  <></>}
+         {form ? <Form setForm={setForm} formLocation={formLocation} /> : <></>}
       </div>
    );
 }
