@@ -12,7 +12,7 @@ const API_URL = "http://localhost:5500";
 
 function App() {
    // gets the user information after authentication
-   const { user, isLoading, isAuthenticated } = useAuth0();
+   const { user, isLoading } = useAuth0();
 
    if (isLoading) <p>Loading...</p>;
 
@@ -42,10 +42,10 @@ function App() {
             setError(err.message);
          }
       }
-      if (isAuthenticated) {
+      if (!isLoading) {
          getData();
       }
-   }, []);
+   }, [user]);
 
    useEffect(() => {
       console.log(formLocation);
