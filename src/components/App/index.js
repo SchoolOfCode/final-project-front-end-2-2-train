@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import MarkerMap from "../Map";
 
 const API_URL = "http://localhost:5500";
-// const API_URL = "https://git.heroku.com/gray2-2.git";
+// const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication

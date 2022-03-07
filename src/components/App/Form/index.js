@@ -43,7 +43,7 @@ export default function Form({ setForm, formLocation }) {
    useEffect(() => {
       setObj({
          ...data,
-         image: imageUrl,
+         img_url: imageUrl,
          lat: formLocation.lat,
          lng: formLocation.lng,
       });
@@ -86,6 +86,7 @@ export default function Form({ setForm, formLocation }) {
       }
    }, [obj]);
 
+   console.log(obj);
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
 
@@ -108,7 +109,7 @@ export default function Form({ setForm, formLocation }) {
             <input
                placeholder="Title"
                type="text"
-               {...register("media_title", {
+               {...register("title", {
                   required: true,
                   minLength: 1,
                   maxLength: 40,
@@ -117,22 +118,17 @@ export default function Form({ setForm, formLocation }) {
             <input
                placeholder="Location"
                type="text"
-               {...register("location", {
+               {...register("place", {
                   required: true,
                   minLength: 1,
                   maxLength: 40,
                })}
             />
             <input
-               placeholder="Date"
-               type="date"
-               {...register("date", { required: true })}
-            />
-            <input
                className={style.formContainerTextarea}
                placeholder="Note"
                type="text"
-               {...register("media_descr", {
+               {...register("notes", {
                   required: true,
                   minLength: 1,
                   maxLength: 80,
