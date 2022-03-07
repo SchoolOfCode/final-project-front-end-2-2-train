@@ -19,7 +19,9 @@ export default function AddPinButton({
          longitude={clickLocation.lng}
          latitude={clickLocation.lat}
          anchor="bottom-left"
-         onClose={() => handleShowPopup()}>
+         onClose={() => {
+            handleShowPopup();
+         }}>
          <div className={pinbuttonstyle.popupcontents}>
             <p className={pinbuttonstyle.text}>
                Would you like to add a memory?

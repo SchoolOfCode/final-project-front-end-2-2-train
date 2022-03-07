@@ -58,6 +58,7 @@ function MarkerMap({
 
       setClickLocation(newLocation);
       setFormLocation(newLocation);
+      setTemporaryPin(false);
    }
 
    // rendering pop-up if showPop State is true
@@ -83,6 +84,7 @@ function MarkerMap({
    function handleShowPopup() {
       setShowPopup(false);
    }
+
    console.log(`Here's the data from map, passed to Photogrid`, data);
    return (
       <Map
