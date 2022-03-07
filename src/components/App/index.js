@@ -11,8 +11,8 @@ import MarkerMap from "../Map";
 import usePins from "../../hooks/usePins";
 import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
-const API_URL = "http://localhost:5500";
-// const API_URL = "https://gray2-2.herokuapp.com";
+// const API_URL = "http://localhost:5500";
+const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
@@ -30,7 +30,6 @@ function App() {
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
    const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
-
 
    //! the GET request
    useEffect(() => {
@@ -73,7 +72,6 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
-
                setFormPlace={setFormPlace}
                temporaryPin={temporaryPin}
                setTemporaryPin={setTemporaryPin}
@@ -97,14 +95,14 @@ function App() {
             <></>
          )}
 
-  {/* // TODO: change to place
+         {/* // TODO: change to place
   //             setFormPlace={setFormPlace}
   //          />
   //       </div>
   //       {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
   //       {form ? <Form setForm={setForm} formPlace={formPlace} /> : <></>}
 */}
-</div> 
+      </div>
    );
 }
 
