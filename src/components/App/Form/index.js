@@ -1,11 +1,30 @@
 //import { ColorLensOutlined } from "@mui/icons-material"; //! not used; commented out for netlify
+import Axios from "axios";
 import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 const API_URL = "https://room-22-train.herokuapp.com";
 
-export default function Form({ setForm }) {
+export default function Form({ setForm, formLocation }) {
    const [obj, setObj] = useState({});
+   const [image, setImage] = useState();
+   const [imageUrl, setImageUrl] = useState();
+   const [data, setData] = useState();
+
+   const uploadImage = () => {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "syfwteis");
+
+      Axios.post(
+         "https://api.cloudinary.com/v1_1/dansutton/image/upload",
+         formData
+      ).then((response) => {
+         console.log(response.data.url);
+         setImageUrl(response.data.url);
+         return response.data.url;
+      });
+   };
 
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
@@ -14,7 +33,22 @@ export default function Form({ setForm }) {
       watch,
       formState: { errors },
    } = useForm();
-   const onSubmit = (data) => setObj(data);
+
+   const onSubmit = async (data) => {
+      console.log("This is the data", data);
+      setData(data);
+      uploadImage();
+   };
+
+   useEffect(() => {
+      setObj({
+         ...data,
+         image: imageUrl,
+         lat: formLocation.lat,
+         lng: formLocation.lng,
+      });
+   }, [imageUrl]);
+
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
 
@@ -67,7 +101,9 @@ export default function Form({ setForm }) {
                className={style.fileInput}
                type="file"
                placeholder="Image"
-               {...register("aws_key", { required: true })}
+               onChange={(e) => {
+                  setImage(e.target.files[0]);
+               }}
             />
             <input
                placeholder="Title"

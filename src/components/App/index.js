@@ -19,6 +19,8 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
+   const [formLocation, setformLocation] = useState()
+
    console.log(error);
 
    //! the GET request
@@ -45,8 +47,9 @@ function App() {
       }
       getData();
    }, []);
+
    console.log(data);
-   return (
+
       <div className={style.app}>
          <Navbar className={style.navbar} />
          <div className={style.mapContainer}>
@@ -56,10 +59,11 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
+               setformLocation = {setformLocation}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} /> : <></>}
+         {form ? <Form setForm={setForm} formLocation={formLocation} /> :  <></>}
       </div>
    );
 }
