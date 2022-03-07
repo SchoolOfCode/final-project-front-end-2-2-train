@@ -5,7 +5,11 @@ import { React, useState, useEffect } from "react";
 import PhotoModal from "./PhotoModal/index";
 import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
+
 import MarkerMap from "../Map";
+
+import usePins from "../../hooks/usePins";
+import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
@@ -21,7 +25,15 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-   const [formPlace, setFormPlace] = useState();
+
+   const [formLocation, setFormLocation] = useState();
+   const [temporaryPin, setTemporaryPin] = useState(false);
+   const [pins, addNewPin, newLocationId] = usePins(mockData);
+   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+
+  // TODO: change back to places
+  // const [formPlace, setFormPlace] = useState();
+
 
    //! the GET request
    useEffect(() => {
@@ -64,12 +76,38 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
-               setFormPlace={setFormPlace}
+
+               setFormLocation={setFormLocation}
+               temporaryPin={temporaryPin}
+               setTemporaryPin={setTemporaryPin}
+               pins={pins}
+               addNewPin={addNewPin}
+               newLocationId={newLocationId}
+               clickLocation={clickLocation}
+               setClickLocation={setClickLocation}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} formPlace={formPlace} /> : <></>}
-      </div>
+         {form ? (
+            <Form
+               setForm={setForm}
+               formLocation={formLocation}
+               setTemporaryPin={setTemporaryPin}
+               addNewPin={addNewPin}
+               clickLocation={clickLocation}
+            />
+         ) : (
+            <></>
+         )}
+
+  // TODO: change to place
+  //             setFormPlace={setFormPlace}
+  //          />
+  //       </div>
+  //       {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
+  //       {form ? <Form setForm={setForm} formPlace={formPlace} /> : <></>}
+
+  //    </div>
    );
 }
 

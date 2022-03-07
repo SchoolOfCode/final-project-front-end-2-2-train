@@ -5,9 +5,10 @@ import pinbuttonstyle from "./addpinbutton.module.css";
 export default function AddPinButton({
    handleShowPopup,
    addNewPin,
-   clickPlace,
+   //clickPlace,
    setForm,
    isMapInteractive,
+   setTemporaryPin,
 }) {
    // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
 
@@ -18,7 +19,9 @@ export default function AddPinButton({
          longitude={clickPlace.lng}
          latitude={clickPlace.lat}
          anchor="bottom-left"
-         onClose={() => handleShowPopup()}>
+         onClose={() => {
+            handleShowPopup();
+         }}>
          <div className={pinbuttonstyle.popupcontents}>
             <p className={pinbuttonstyle.text}>
                Would you like to add a memory?
@@ -26,8 +29,14 @@ export default function AddPinButton({
             <button
                className={pinbuttonstyle.pinbutton}
                onClick={() => {
-                  addNewPin(clickPlace);
+
+                  // addNewPin(clickLocation);
+
+                  // addNewPin(clickPlace);
+
                   setForm(true);
+                  setTemporaryPin(true);
+                  handleShowPopup();
                }}>
                {" "}
                PINIT{" "}

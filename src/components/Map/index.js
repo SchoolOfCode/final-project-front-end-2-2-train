@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
+import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
@@ -11,14 +12,38 @@ import PhotoGrid from "../Map/PhotoGrid";
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
-function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+
+function MarkerMap({
+   setData,
+   data,
+   setModal,
+   setForm,
+   setFormLocation,
+   setTemporaryPin,
+   temporaryPin,
+   pins,
+   addNewPin,
+   newLocationId,
+   setClickLocation,
+   clickLocation,
+}) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [showPopup, setShowPopup] = useState(false);
-   const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
-   const [pins, addNewPin, newPlaceId] = usePins(mockData);
+   //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+   //const [pins, addNewPin, newLocationId] = usePins(mockData);
+
+  // TODO: change to place
+//function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+   //creating state for locations data - currently using mockData
+   //TODO: will need to be adjusted to fetch all location data of user (useEffect)
+ //  const [showPopup, setShowPopup] = useState(false);
+ //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+ //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
+
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
+   //const [temporaryPin, setTemporaryPin] = useState(false);
 
    function markerClick() {
       setPhotoGridOpened(true);
@@ -41,8 +66,14 @@ function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
          lng: placeData.lng,
       };
 
-      setClickPlace(newPlace);
-      setFormPlace(newPlace);
+
+      setClickLocation(newLocation);
+      setFormLocation(newLocation);
+      setTemporaryPin(false);
+
+  // TODO: change to place
+  //    setClickPlace(newPlace);
+  //    setFormPlace(newPlace);
    }
 
    // rendering pop-up if showPop State is true
@@ -68,6 +99,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
    function handleShowPopup() {
       setShowPopup(false);
    }
+
    console.log(`Here's the data from map, passed to Photogrid`, data);
    return (
       <Map
@@ -97,6 +129,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
          ) : (
             <div />
          )}
+         {temporaryPin && <TemporaryPin clickLocation={clickLocation} />}
          {showPopup && isMapInteractive && (
             <AddPinButton
                // TODO: change name of AddPinButton component → it is a pop-up
@@ -105,6 +138,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
                addNewPin={addNewPin}
                setForm={setForm}
                isMapInteractive={isMapInteractive}
+               setTemporaryPin={setTemporaryPin}
             />
          )}
       </Map>
