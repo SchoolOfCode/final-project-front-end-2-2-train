@@ -68,7 +68,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormLocation }) {
    function handleShowPopup() {
       setShowPopup(false);
    }
-
+   console.log(`Here's the data from map, passed to Photogrid`, data);
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken}
