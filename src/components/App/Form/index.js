@@ -60,6 +60,7 @@ export default function Form({
 
          ...data,
       });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [imageUrl]);
 
    const [media, setMedia] = useState([]);
