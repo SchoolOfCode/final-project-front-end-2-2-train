@@ -122,7 +122,7 @@ export default function Form({ setForm, formLocation }) {
                   maxLength: 40,
                })}
             />
-            {/* <input
+            <input
                placeholder="Location"
                type="text"
                {...register("place", {
@@ -130,7 +130,7 @@ export default function Form({ setForm, formLocation }) {
                   minLength: 1,
                   maxLength: 40,
                })}
-            /> */}
+            />
             <input
                className={style.formContainerTextarea}
                placeholder="Note"
