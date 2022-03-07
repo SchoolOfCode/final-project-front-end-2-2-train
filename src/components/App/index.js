@@ -25,6 +25,7 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
+   const [locationsData, setLocationsData] = useState({});
 
    const [formPlace, setFormPlace] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
@@ -58,6 +59,58 @@ function App() {
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [user]);
+
+   useEffect(() => {
+      async function getData() {
+         const email = user.email;
+         console.log(email);
+         try {
+            const response = await fetch(`${API_URL}/users/${user.email}`);
+            const newData = await response.json();
+            console.log("THIS IS THE DATA IN THE MOUNTED USEEFFECT", newData);
+            if (newData.success === true) {
+               setData(newData.payload);
+               setError("");
+            } else {
+               console.log(response, error);
+
+               setError("Fetch didn't work :(");
+            }
+         } catch (err) {
+            console.log(err);
+            setError(err.message);
+         }
+      }
+      if (!isLoading) {
+         getData();
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [user]);
+
+   useEffect(() => {
+      async function getLocations() {
+         try {
+            const response = await fetch(`${API_URL}/location`);
+            const newData = await response.json();
+            console.log("THIS IS THE LOCATIONS IN A USEEFFECT", newData);
+            if (newData.success === true) {
+               setLocationsData(newData.payload);
+               setError("");
+            } else {
+               console.log(response, error);
+
+               setError("Fetch didn't work :(");
+            }
+         } catch (err) {
+            console.log(err);
+            setError(err.message);
+         }
+      }
+      if (!isLoading) {
+         getLocations();
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [data]);
 
    // useEffect(() => {
    //    console.log(formPlace);
