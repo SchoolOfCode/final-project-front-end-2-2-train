@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
+import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mockData from "./mockLocations.json"; // importing mock locations for testing
@@ -11,7 +12,15 @@ import PhotoGrid from "../Map/PhotoGrid";
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
-function MarkerMap({ setData, data, setModal, setForm, setFormLocation }) {
+function MarkerMap({
+   setData,
+   data,
+   setModal,
+   setForm,
+   setFormLocation,
+   setTemporaryPin,
+   temporaryPin,
+}) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [showPopup, setShowPopup] = useState(false);
@@ -19,6 +28,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormLocation }) {
    const [pins, addNewPin, newLocationId] = usePins(mockData);
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
+   //const [temporaryPin, setTemporaryPin] = useState(false);
 
    function markerClick() {
       setPhotoGridOpened(true);
@@ -97,6 +107,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormLocation }) {
          ) : (
             <div />
          )}
+         {temporaryPin && <TemporaryPin clickLocation={clickLocation} />}
          {showPopup && isMapInteractive && (
             <AddPinButton
                // TODO: change name of AddPinButton component → it is a pop-up
@@ -105,6 +116,7 @@ function MarkerMap({ setData, data, setModal, setForm, setFormLocation }) {
                addNewPin={addNewPin}
                setForm={setForm}
                isMapInteractive={isMapInteractive}
+               setTemporaryPin={setTemporaryPin}
             />
          )}
       </Map>

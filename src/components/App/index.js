@@ -22,6 +22,7 @@ function App() {
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
    const [formLocation, setFormLocation] = useState();
+   const [temporaryPin, setTemporaryPin] = useState(false);
 
    //! the GET request
    useEffect(() => {
@@ -65,10 +66,20 @@ function App() {
                className={style.map}
                setForm={setForm}
                setFormLocation={setFormLocation}
+               temporaryPin={temporaryPin}
+               setTemporaryPin={setTemporaryPin}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} formLocation={formLocation} /> : <></>}
+         {form ? (
+            <Form
+               setForm={setForm}
+               formLocation={formLocation}
+               setTemporaryPin={setTemporaryPin}
+            />
+         ) : (
+            <></>
+         )}
       </div>
    );
 }
