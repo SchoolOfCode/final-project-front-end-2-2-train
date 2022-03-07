@@ -4,8 +4,8 @@ import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 
-const API_URL = "http://localhost:5500";
-// const API_URL = "https://gray2-2.herokuapp.com";
+// const API_URL = "http://localhost:5500";
+const API_URL = "https://gray2-2.herokuapp.com";
 
 export default function Form({
    setForm,
