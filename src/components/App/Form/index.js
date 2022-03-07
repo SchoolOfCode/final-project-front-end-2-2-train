@@ -4,19 +4,15 @@ import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 
-
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
 
-
 export default function Form({
    setForm,
-   formPlace,
    setTemporaryPin,
    addNewPin,
    clickPlace,
 }) {
-
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState();
@@ -35,6 +31,8 @@ export default function Form({
       console.log("This is the data", data);
       setData(data);
       uploadImage();
+      setTemporaryPin(false);
+      addNewPin(clickPlace);
    };
 
    //Uploads image to Cloudinary and returns a URL
@@ -53,26 +51,6 @@ export default function Form({
       });
    };
 
-
-// POSSIBLE DUPLICATION FROM MERGING
-
-   // //Using useForm hook to add validation to the form in line with HTML standards.
-   // const {
-   //    register,
-   //    handleSubmit,
-   //    watch,
-   //    formState: { errors },
-   // } = useForm();
-
-   // const onSubmit = async (data) => {
-   //    console.log("This is the data", data);
-   //    setData(data);
-   //    uploadImage();
-   //    setTemporaryPin(false);
-   //    addNewPin(clickPlace);
-   // };
-
-
    //Once the image has been uploaded to Cloudinary, the data has the Iamge URL and the location data added
 
    useEffect(() => {
@@ -81,9 +59,6 @@ export default function Form({
          img_url: imageUrl,
 
          ...data,
-         // lat: formPlace.lat,
-         // lng: formPlace.lng,
-
       });
    }, [imageUrl]);
 
