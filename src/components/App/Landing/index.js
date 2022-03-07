@@ -68,7 +68,7 @@ function Landing() {
                      <br />
                      <span>re-live</span> your memories
                   </h2>
-                  <p>Your photos are tied to locations and dates</p>
+                  <p>Your photos are tied to places and dates</p>
                </div>
             </div>
             <hr className={style.lightLine} />

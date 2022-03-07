@@ -1,11 +1,22 @@
 //import { ColorLensOutlined } from "@mui/icons-material"; //! not used; commented out for netlify
+import Axios from "axios";
 import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
-const API_URL = "https://room-22-train.herokuapp.com";
 
-export default function Form({ setForm }) {
+const API_URL = "http://localhost:5500";
+// const API_URL = "https://gray2-2.herokuapp.com";
+
+export default function Form({
+   setForm,
+   setTemporaryPin,
+   addNewPin,
+   clickPlace,
+}) {
    const [obj, setObj] = useState({});
+   const [image, setImage] = useState();
+   const [imageUrl, setImageUrl] = useState();
+   const [data, setData] = useState();
 
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
@@ -14,7 +25,44 @@ export default function Form({ setForm }) {
       watch,
       formState: { errors },
    } = useForm();
-   const onSubmit = (data) => setObj(data);
+
+   //Sets Data on submit of the form
+   const onSubmit = async (data) => {
+      console.log("This is the data", data);
+      setData(data);
+      uploadImage();
+      setTemporaryPin(false);
+      addNewPin(clickPlace);
+   };
+
+   //Uploads image to Cloudinary and returns a URL
+   const uploadImage = () => {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "syfwteis");
+
+      Axios.post(
+         "https://api.cloudinary.com/v1_1/dansutton/image/upload",
+         formData
+      ).then((response) => {
+         console.log(response.data.url);
+         setImageUrl(response.data.url);
+         return response.data.url;
+      });
+   };
+
+   //Once the image has been uploaded to Cloudinary, the data has the Iamge URL and the location data added
+
+   useEffect(() => {
+      setObj({
+         loc_id: 4,
+         img_url: imageUrl,
+
+         ...data,
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [imageUrl]);
+
    const [media, setMedia] = useState([]);
    const [error, setError] = useState("");
 
@@ -23,6 +71,7 @@ export default function Form({ setForm }) {
    console.log(watch("example")); // watch input value by passing the name of it
    // The POST request.
 
+   //When the form Object is updated with Final data, the Object is posted to the database
    useEffect(() => {
       if (Object.keys(obj).length === 0) {
          return;
@@ -52,6 +101,7 @@ export default function Form({ setForm }) {
       }
    }, [obj]);
 
+   console.log(obj);
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
 
@@ -67,33 +117,33 @@ export default function Form({ setForm }) {
                className={style.fileInput}
                type="file"
                placeholder="Image"
-               {...register("aws_key", { required: true })}
+               onChange={(e) => {
+                  setImage(e.target.files[0]);
+               }}
             />
             <input
                placeholder="Title"
-               {...register("media_title", {
+               type="text"
+               {...register("title", {
                   required: true,
                   minLength: 1,
                   maxLength: 40,
                })}
             />
             <input
-               placeholder="Location"
-               {...register("location", {
+               placeholder="Place"
+               type="text"
+               {...register("place", {
                   required: true,
                   minLength: 1,
                   maxLength: 40,
                })}
-            />
-            <input
-               placeholder="Date"
-               type="date"
-               {...register("date", { required: true })}
             />
             <input
                className={style.formContainerTextarea}
                placeholder="Note"
-               {...register("media_descr", {
+               type="text"
+               {...register("notes", {
                   required: true,
                   minLength: 1,
                   maxLength: 80,

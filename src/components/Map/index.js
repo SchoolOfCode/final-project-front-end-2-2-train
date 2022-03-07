@@ -1,53 +1,100 @@
 import React, { useState, useEffect } from "react";
 import Map from "react-map-gl";
 import Pins from "./Pins";
+import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
-import mockData from "./mockLocations.json"; // importing mock locations for testing
-import usePins from "../../hooks/usePins";
 import PhotoGrid from "../Map/PhotoGrid";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
-function MarkerMap({ setData, data, setModal, setForm }) {
+
+function MarkerMap({
+   setData,
+   data,
+   setModal,
+   setForm,
+   setFormPlace,
+   setTemporaryPin,
+   temporaryPin,
+   pins,
+   addNewPin,
+   newPlaceId,
+   setClickPlace,
+   clickPlace,
+}) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
-   const [showPopup, setShowPopup] = useState(true);
-   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
-   const [pins, addNewPin, newLocationId] = usePins(mockData);
+   const [showPopup, setShowPopup] = useState(false);
+   //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+   //const [pins, addNewPin, newLocationId] = usePins(mockData);
+
+  // TODO: change to place
+//function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+   //creating state for locations data - currently using mockData
+   //TODO: will need to be adjusted to fetch all location data of user (useEffect)
+ //  const [showPopup, setShowPopup] = useState(false);
+ //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+ //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
+
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
+   const [isMapInteractive, setIsMapInteractive] = useState(true);
+   //const [temporaryPin, setTemporaryPin] = useState(false);
 
    function markerClick() {
       setPhotoGridOpened(true);
+      setIsMapInteractive(false);
+   }
+
+   function onPhotoGridClose() {
+      setPhotoGridOpened(false);
+      setIsMapInteractive(true);
+      setShowPopup(false);
    }
 
    // displays lat and long values for click event on map
    function onMapClicked(e) {
-      const locationData = e.lngLat;
+      const placeData = e.lngLat;
 
-      const newLocation = {
-         id: newLocationId,
-         lat: locationData.lat,
-         lng: locationData.lng,
+      const newPlace = {
+         id: newPlaceId,
+         lat: placeData.lat,
+         lng: placeData.lng,
       };
 
-      setClickLocation(newLocation);
+
+      setClickPlace(newPlace);
+      setFormPlace(newPlace);
+      setTemporaryPin(false);
    }
+
+   // rendering pop-up if showPop State is true
+   // also don't want to render pop-up if isMapInteractive is false
+
+   // either create a secondary condition
+   // or when isMapInteractive is false; showPop up should also be false
+   // do we need separate states?  → YES
+   // if yes, can we setShowPopup to false, when isMapInteractive is set to false as well
 
    useEffect(() => {
       setShowPopup(true);
-   }, [clickLocation]);
+   }, [clickPlace]);
 
    useEffect(() => {
       setShowPopup(false);
    }, [pins]);
 
+   // useEffect(() => {
+   //    setIsMapInteractive(false);
+   // }, [photoGridOpened]);
+
    function handleShowPopup() {
       setShowPopup(false);
    }
 
+   console.log(`Here's the data from map, passed to Photogrid`, data);
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken}
@@ -58,28 +105,34 @@ function MarkerMap({ setData, data, setModal, setForm }) {
             pitchWithRotate: false,
             dragRotate: false,
          }}
+         interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={pins} markerClick={markerClick} />
+         <Pins places={pins} markerClick={markerClick} />
          {photoGridOpened ? (
             <PhotoGrid
-            setPhotoGridOpened={setPhotoGridOpened}
+               setPhotoGridOpened={setPhotoGridOpened}
                setData={setData}
                data={data}
                setModal={setModal}
+               onPhotoGridClose={onPhotoGridClose}
             />
          ) : (
             <div />
          )}
-         {showPopup && (
+         {temporaryPin && <TemporaryPin clickPlace={clickPlace} />}
+         {showPopup && isMapInteractive && (
             <AddPinButton
+               // TODO: change name of AddPinButton component → it is a pop-up
                handleShowPopup={handleShowPopup}
-               clickLocation={clickLocation}
+               clickPlace={clickPlace}
                addNewPin={addNewPin}
                setForm={setForm}
+               isMapInteractive={isMapInteractive}
+               setTemporaryPin={setTemporaryPin}
             />
          )}
       </Map>
