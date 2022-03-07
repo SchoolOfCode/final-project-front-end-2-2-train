@@ -7,7 +7,7 @@ import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import MarkerMap from "../Map";
-
+// small change to make another build on netlify
 import usePins from "../../hooks/usePins";
 import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
