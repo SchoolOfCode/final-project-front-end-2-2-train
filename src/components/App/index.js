@@ -21,7 +21,7 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-   const [formLocation, setFormLocation] = useState();
+   const [formPlace, setFormPlace] = useState();
 
    //! the GET request
    useEffect(() => {
@@ -51,8 +51,8 @@ function App() {
    }, [user]);
 
    useEffect(() => {
-      console.log(formLocation);
-   }, [formLocation]);
+      console.log(formPlace);
+   }, [formPlace]);
 
    return (
       <div className={style.app}>
@@ -64,11 +64,11 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
-               setFormLocation={setFormLocation}
+               setFormPlace={setFormPlace}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} formLocation={formLocation} /> : <></>}
+         {form ? <Form setForm={setForm} formPlace={formPlace} /> : <></>}
       </div>
    );
 }
