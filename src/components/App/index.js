@@ -59,9 +59,9 @@ function App() {
       }
    }, [user]);
 
-   useEffect(() => {
-      console.log(formPlace);
-   }, [formPlace]);
+   // useEffect(() => {
+   //    console.log(formPlace);
+   // }, [formPlace]);
 
    return (
       <div className={style.app}>

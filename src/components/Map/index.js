@@ -4,8 +4,6 @@ import Pins from "./Pins";
 import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
-import mockData from "./mockLocations.json"; // importing mock locations for testing
-import usePins from "../../hooks/usePins";
 import PhotoGrid from "../Map/PhotoGrid";
 
 // FIXME: secure access token
