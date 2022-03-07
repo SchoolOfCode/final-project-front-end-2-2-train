@@ -3,7 +3,9 @@ import Axios from "axios";
 import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
-const API_URL = "https://room-22-train.herokuapp.com";
+
+const API_URL = "http://localhost:5500";
+// const API_URL = "https://gray2-2.herokuapp.com";
 
 export default function Form({ setForm, formPlace }) {
    const [obj, setObj] = useState({});
@@ -11,6 +13,22 @@ export default function Form({ setForm, formPlace }) {
    const [imageUrl, setImageUrl] = useState();
    const [data, setData] = useState();
 
+   //Using useForm hook to add validation to the form in line with HTML standards.
+   const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+   } = useForm();
+
+   //Sets Data on submit of the form
+   const onSubmit = async (data) => {
+      console.log("This is the data", data);
+      setData(data);
+      uploadImage();
+   };
+
+   //Uploads image to Cloudinary and returns a URL
    const uploadImage = () => {
       const formData = new FormData();
       formData.append("file", image);
@@ -26,26 +44,16 @@ export default function Form({ setForm, formPlace }) {
       });
    };
 
-   //Using useForm hook to add validation to the form in line with HTML standards.
-   const {
-      register,
-      handleSubmit,
-      watch,
-      formState: { errors },
-   } = useForm();
-
-   const onSubmit = async (data) => {
-      console.log("This is the data", data);
-      setData(data);
-      uploadImage();
-   };
-
+   //Once the image has been uploaded to Cloudinary, the data has the Iamge URL and the location data added
    useEffect(() => {
       setObj({
-         ...data,
+         loc_id: 4,
          img_url: imageUrl,
-         lat: formPlace.lat,
-         lng: formPlace.lng,
+
+         ...data,
+         // lat: formLocation.lat,
+         // lng: formLocation.lng,
+
       });
    }, [imageUrl]);
 
@@ -57,6 +65,7 @@ export default function Form({ setForm, formPlace }) {
    console.log(watch("example")); // watch input value by passing the name of it
    // The POST request.
 
+   //When the form Object is updated with Final data, the Object is posted to the database
    useEffect(() => {
       if (Object.keys(obj).length === 0) {
          return;
