@@ -11,10 +11,10 @@ const API_URL = "http://localhost:5500";
 
 export default function Form({
    setForm,
-   formLocation,
+   formPlace,
    setTemporaryPin,
    addNewPin,
-   clickLocation,
+   clickPlace,
 }) {
 
    const [obj, setObj] = useState({});
@@ -54,21 +54,23 @@ export default function Form({
    };
 
 
-   //Using useForm hook to add validation to the form in line with HTML standards.
-   const {
-      register,
-      handleSubmit,
-      watch,
-      formState: { errors },
-   } = useForm();
+// POSSIBLE DUPLICATION FROM MERGING
 
-   const onSubmit = async (data) => {
-      console.log("This is the data", data);
-      setData(data);
-      uploadImage();
-      setTemporaryPin(false);
-      addNewPin(clickLocation);
-   };
+   // //Using useForm hook to add validation to the form in line with HTML standards.
+   // const {
+   //    register,
+   //    handleSubmit,
+   //    watch,
+   //    formState: { errors },
+   // } = useForm();
+
+   // const onSubmit = async (data) => {
+   //    console.log("This is the data", data);
+   //    setData(data);
+   //    uploadImage();
+   //    setTemporaryPin(false);
+   //    addNewPin(clickPlace);
+   // };
 
 
    //Once the image has been uploaded to Cloudinary, the data has the Iamge URL and the location data added
@@ -79,8 +81,8 @@ export default function Form({
          img_url: imageUrl,
 
          ...data,
-         // lat: formLocation.lat,
-         // lng: formLocation.lng,
+         // lat: formPlace.lat,
+         // lng: formPlace.lng,
 
       });
    }, [imageUrl]);

@@ -26,13 +26,10 @@ function App() {
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
 
-   const [formLocation, setFormLocation] = useState();
+   const [formPlace, setFormPlace] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
-   const [pins, addNewPin, newLocationId] = usePins(mockData);
-   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
-
-  // TODO: change back to places
-  // const [formPlace, setFormPlace] = useState();
+   const [pins, addNewPin, newPlaceId] = usePins(mockData);
+   const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
 
 
    //! the GET request
@@ -77,37 +74,37 @@ function App() {
                className={style.map}
                setForm={setForm}
 
-               setFormLocation={setFormLocation}
+               setFormPlace={setFormPlace}
                temporaryPin={temporaryPin}
                setTemporaryPin={setTemporaryPin}
                pins={pins}
                addNewPin={addNewPin}
-               newLocationId={newLocationId}
-               clickLocation={clickLocation}
-               setClickLocation={setClickLocation}
+               newPlaceId={newPlaceId}
+               clickPlace={clickPlace}
+               setClickPlace={setClickPlace}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
          {form ? (
             <Form
                setForm={setForm}
-               formLocation={formLocation}
+               formPlace={formPlace}
                setTemporaryPin={setTemporaryPin}
                addNewPin={addNewPin}
-               clickLocation={clickLocation}
+               clickPlace={clickPlace}
             />
          ) : (
             <></>
          )}
 
-  // TODO: change to place
+  {/* // TODO: change to place
   //             setFormPlace={setFormPlace}
   //          />
   //       </div>
   //       {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
   //       {form ? <Form setForm={setForm} formPlace={formPlace} /> : <></>}
-
-  //    </div>
+*/}
+</div> 
    );
 }
 

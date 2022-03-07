@@ -5,7 +5,7 @@ import pinbuttonstyle from "./addpinbutton.module.css";
 export default function AddPinButton({
    handleShowPopup,
    addNewPin,
-   //clickPlace,
+   clickPlace,
    setForm,
    isMapInteractive,
    setTemporaryPin,
@@ -29,11 +29,7 @@ export default function AddPinButton({
             <button
                className={pinbuttonstyle.pinbutton}
                onClick={() => {
-
-                  // addNewPin(clickLocation);
-
-                  // addNewPin(clickPlace);
-
+                  addNewPin(clickPlace)
                   setForm(true);
                   setTemporaryPin(true);
                   handleShowPopup();

@@ -18,14 +18,14 @@ function MarkerMap({
    data,
    setModal,
    setForm,
-   setFormLocation,
+   setFormPlace,
    setTemporaryPin,
    temporaryPin,
    pins,
    addNewPin,
-   newLocationId,
-   setClickLocation,
-   clickLocation,
+   newPlaceId,
+   setClickPlace,
+   clickPlace,
 }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
@@ -67,13 +67,9 @@ function MarkerMap({
       };
 
 
-      setClickLocation(newLocation);
-      setFormLocation(newLocation);
+      setClickPlace(newPlace);
+      setFormPlace(newPlace);
       setTemporaryPin(false);
-
-  // TODO: change to place
-  //    setClickPlace(newPlace);
-  //    setFormPlace(newPlace);
    }
 
    // rendering pop-up if showPop State is true
@@ -129,7 +125,7 @@ function MarkerMap({
          ) : (
             <div />
          )}
-         {temporaryPin && <TemporaryPin clickLocation={clickLocation} />}
+         {temporaryPin && <TemporaryPin clickPlace={clickPlace} />}
          {showPopup && isMapInteractive && (
             <AddPinButton
                // TODO: change name of AddPinButton component → it is a pop-up

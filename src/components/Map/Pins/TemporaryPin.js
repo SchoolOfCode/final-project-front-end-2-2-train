@@ -11,11 +11,11 @@ import { Marker } from "react-map-gl";
 import pin from "../../../img/blue-pin.png";
 import style from "./Pins.module.css";
 
-function TemporaryPin({ clickLocation }) {
+function TemporaryPin({ clickPlace }) {
    return (
       <Marker
-         longitude={clickLocation.lng}
-         latitude={clickLocation.lat}
+         longitude={clickPlace.lng}
+         latitude={clickPlace.lat}
          anchor="bottom-left">
          <img
             // onClick={() => {
