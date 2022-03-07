@@ -12,6 +12,7 @@ import PhotoGrid from "../Map/PhotoGrid";
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
+
 function MarkerMap({
    setData,
    data,
@@ -31,6 +32,15 @@ function MarkerMap({
    const [showPopup, setShowPopup] = useState(false);
    //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    //const [pins, addNewPin, newLocationId] = usePins(mockData);
+
+  // TODO: change to place
+//function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+   //creating state for locations data - currently using mockData
+   //TODO: will need to be adjusted to fetch all location data of user (useEffect)
+ //  const [showPopup, setShowPopup] = useState(false);
+ //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+ //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
+
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
    //const [temporaryPin, setTemporaryPin] = useState(false);
@@ -48,17 +58,22 @@ function MarkerMap({
 
    // displays lat and long values for click event on map
    function onMapClicked(e) {
-      const locationData = e.lngLat;
+      const placeData = e.lngLat;
 
-      const newLocation = {
-         id: newLocationId,
-         lat: locationData.lat,
-         lng: locationData.lng,
+      const newPlace = {
+         id: newPlaceId,
+         lat: placeData.lat,
+         lng: placeData.lng,
       };
+
 
       setClickLocation(newLocation);
       setFormLocation(newLocation);
       setTemporaryPin(false);
+
+  // TODO: change to place
+  //    setClickPlace(newPlace);
+  //    setFormPlace(newPlace);
    }
 
    // rendering pop-up if showPop State is true
@@ -71,7 +86,7 @@ function MarkerMap({
 
    useEffect(() => {
       setShowPopup(true);
-   }, [clickLocation]);
+   }, [clickPlace]);
 
    useEffect(() => {
       setShowPopup(false);
@@ -102,7 +117,7 @@ function MarkerMap({
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins locations={pins} markerClick={markerClick} />
+         <Pins places={pins} markerClick={markerClick} />
          {photoGridOpened ? (
             <PhotoGrid
                setPhotoGridOpened={setPhotoGridOpened}
@@ -119,7 +134,7 @@ function MarkerMap({
             <AddPinButton
                // TODO: change name of AddPinButton component → it is a pop-up
                handleShowPopup={handleShowPopup}
-               clickLocation={clickLocation}
+               clickPlace={clickPlace}
                addNewPin={addNewPin}
                setForm={setForm}
                isMapInteractive={isMapInteractive}

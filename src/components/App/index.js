@@ -25,10 +25,15 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
+
    const [formLocation, setFormLocation] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newLocationId] = usePins(mockData);
    const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+
+  // TODO: change back to places
+  // const [formPlace, setFormPlace] = useState();
+
 
    //! the GET request
    useEffect(() => {
@@ -58,8 +63,8 @@ function App() {
    }, [user]);
 
    useEffect(() => {
-      console.log(formLocation);
-   }, [formLocation]);
+      console.log(formPlace);
+   }, [formPlace]);
 
    return (
       <div className={style.app}>
@@ -71,6 +76,7 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
+
                setFormLocation={setFormLocation}
                temporaryPin={temporaryPin}
                setTemporaryPin={setTemporaryPin}
@@ -93,7 +99,15 @@ function App() {
          ) : (
             <></>
          )}
-      </div>
+
+  // TODO: change to place
+  //             setFormPlace={setFormPlace}
+  //          />
+  //       </div>
+  //       {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
+  //       {form ? <Form setForm={setForm} formPlace={formPlace} /> : <></>}
+
+  //    </div>
    );
 }
 
