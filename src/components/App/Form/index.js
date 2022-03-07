@@ -7,7 +7,7 @@ import style from "./Form.module.css";
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
 
-export default function Form({ setForm, formLocation }) {
+export default function Form({ setForm, formPlace }) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState();
@@ -49,9 +49,11 @@ export default function Form({ setForm, formLocation }) {
       setObj({
          loc_id: 4,
          img_url: imageUrl,
+
          ...data,
          // lat: formLocation.lat,
          // lng: formLocation.lng,
+
       });
    }, [imageUrl]);
 
@@ -123,7 +125,7 @@ export default function Form({ setForm, formLocation }) {
                })}
             />
             <input
-               placeholder="Location"
+               placeholder="Place"
                type="text"
                {...register("place", {
                   required: true,
