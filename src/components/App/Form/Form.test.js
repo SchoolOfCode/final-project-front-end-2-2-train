@@ -9,7 +9,7 @@ describe("FormDisplay", () => {
 
       expect(screen.getByPlaceholderText(/image/i)).toBeInTheDocument();
       expect(screen.getByPlaceholderText(/title/i)).toBeInTheDocument();
-      expect(screen.getByPlaceholderText(/location/i)).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(/place/i)).toBeInTheDocument();
       expect(screen.getByPlaceholderText(/date/i)).toBeInTheDocument();
       expect(screen.getByPlaceholderText(/note/i)).toBeInTheDocument();
       expect(

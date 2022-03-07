@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 const API_URL = "https://room-22-train.herokuapp.com";
 
-export default function Form({ setForm, formLocation }) {
+export default function Form({ setForm, formPlace }) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState();
@@ -44,8 +44,8 @@ export default function Form({ setForm, formLocation }) {
       setObj({
          ...data,
          img_url: imageUrl,
-         lat: formLocation.lat,
-         lng: formLocation.lng,
+         lat: formPlace.lat,
+         lng: formPlace.lng,
       });
    }, [imageUrl]);
 
@@ -116,7 +116,7 @@ export default function Form({ setForm, formLocation }) {
                })}
             />
             <input
-               placeholder="Location"
+               placeholder="Place"
                type="text"
                {...register("place", {
                   required: true,

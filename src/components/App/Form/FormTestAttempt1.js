@@ -32,7 +32,7 @@ describe("Form", () => {
       user.type(getImage(), "Image");
       user.type(getTitle(), "Holiday");
 
-      user.type(getLocation(), "London");
+      user.type(getPlace(), "London");
 
       user.type(getDate(), "1201202");
 
@@ -44,7 +44,7 @@ describe("Form", () => {
          expect(onSubmit).toHaveBeenCalledWith({
             image: "Image",
             title: "Holiday",
-            location: "London",
+            place: "London",
             date: "1201202",
             note: "lovely hot holiday",
          });
@@ -62,8 +62,8 @@ function getTitle() {
    return screen.getByPlaceholderText(/title/i);
 }
 
-function getLocation() {
-   return screen.getByPlaceholderText(/location/i);
+function getPlace() {
+   return screen.getByPlaceholderText(/place/i);
 }
 
 function getDate() {
