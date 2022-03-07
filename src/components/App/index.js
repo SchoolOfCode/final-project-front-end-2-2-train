@@ -65,7 +65,7 @@ function App() {
 
    return (
       <div className={style.app}>
-         <Navbar className={style.navbar} />
+         <Navbar className={style.navbar} data={data} />
          <div className={style.mapContainer}>
             <MarkerMap
                setData={setData}

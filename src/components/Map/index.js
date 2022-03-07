@@ -10,7 +10,6 @@ import PhotoGrid from "../Map/PhotoGrid";
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
-
 function MarkerMap({
    setData,
    data,
@@ -31,13 +30,13 @@ function MarkerMap({
    //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    //const [pins, addNewPin, newLocationId] = usePins(mockData);
 
-  // TODO: change to place
-//function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+   // TODO: change to place
+   //function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
- //  const [showPopup, setShowPopup] = useState(false);
- //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
- //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
+   //  const [showPopup, setShowPopup] = useState(false);
+   //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+   //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
 
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
@@ -63,7 +62,6 @@ function MarkerMap({
          lat: placeData.lat,
          lng: placeData.lng,
       };
-
 
       setClickPlace(newPlace);
       setFormPlace(newPlace);
@@ -111,7 +109,7 @@ function MarkerMap({
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins places={pins} markerClick={markerClick} />
+         <Pins places={pins} markerClick={markerClick} data={data} />
          {photoGridOpened ? (
             <PhotoGrid
                setPhotoGridOpened={setPhotoGridOpened}

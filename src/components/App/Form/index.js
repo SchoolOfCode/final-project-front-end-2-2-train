@@ -57,7 +57,6 @@ export default function Form({
       setObj({
          loc_id: 4,
          img_url: imageUrl,
-
          ...data,
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
