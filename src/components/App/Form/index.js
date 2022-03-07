@@ -5,7 +5,13 @@ import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 const API_URL = "https://room-22-train.herokuapp.com";
 
-export default function Form({ setForm, formLocation, setTemporaryPin }) {
+export default function Form({
+   setForm,
+   formLocation,
+   setTemporaryPin,
+   addNewPin,
+   clickLocation,
+}) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState();
@@ -39,6 +45,7 @@ export default function Form({ setForm, formLocation, setTemporaryPin }) {
       setData(data);
       uploadImage();
       setTemporaryPin(false);
+      addNewPin(clickLocation);
    };
 
    useEffect(() => {

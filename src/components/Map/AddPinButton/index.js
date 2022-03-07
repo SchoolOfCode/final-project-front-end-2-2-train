@@ -27,9 +27,10 @@ export default function AddPinButton({
             <button
                className={pinbuttonstyle.pinbutton}
                onClick={() => {
-                  addNewPin(clickLocation);
+                  // addNewPin(clickLocation);
                   setForm(true);
                   setTemporaryPin(true);
+                  handleShowPopup();
                }}>
                {" "}
                PINIT{" "}

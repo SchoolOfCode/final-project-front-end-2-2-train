@@ -5,7 +5,11 @@ import { React, useState, useEffect } from "react";
 import PhotoModal from "./PhotoModal/index";
 import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
+
 import MarkerMap from "../Map";
+
+import usePins from "../../hooks/usePins";
+import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
@@ -23,6 +27,8 @@ function App() {
    const [error, setError] = useState("");
    const [formLocation, setFormLocation] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
+   const [pins, addNewPin, newLocationId] = usePins(mockData);
+   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
 
    //! the GET request
    useEffect(() => {
@@ -68,6 +74,11 @@ function App() {
                setFormLocation={setFormLocation}
                temporaryPin={temporaryPin}
                setTemporaryPin={setTemporaryPin}
+               pins={pins}
+               addNewPin={addNewPin}
+               newLocationId={newLocationId}
+               clickLocation={clickLocation}
+               setClickLocation={setClickLocation}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
@@ -76,6 +87,8 @@ function App() {
                setForm={setForm}
                formLocation={formLocation}
                setTemporaryPin={setTemporaryPin}
+               addNewPin={addNewPin}
+               clickLocation={clickLocation}
             />
          ) : (
             <></>

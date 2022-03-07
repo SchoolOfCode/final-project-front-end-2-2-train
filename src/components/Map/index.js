@@ -20,12 +20,17 @@ function MarkerMap({
    setFormLocation,
    setTemporaryPin,
    temporaryPin,
+   pins,
+   addNewPin,
+   newLocationId,
+   setClickLocation,
+   clickLocation,
 }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
    const [showPopup, setShowPopup] = useState(false);
-   const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
-   const [pins, addNewPin, newLocationId] = usePins(mockData);
+   //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
+   //const [pins, addNewPin, newLocationId] = usePins(mockData);
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
    //const [temporaryPin, setTemporaryPin] = useState(false);
