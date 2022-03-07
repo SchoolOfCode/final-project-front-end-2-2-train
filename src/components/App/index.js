@@ -7,21 +7,23 @@ import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
 import MarkerMap from "../Map";
 
-// const API_URL = "https://room-22-train.herokuapp.com";
+
 const API_URL = "http://localhost:5500";
+// const API_URL = "https://room-22-train.herokuapp.com";
 
 function App() {
-   //! AUTH0 stuff
-   const { user } = useAuth0();
+   // gets the user information after authentication
+   const { user, isLoading } = useAuth0();
+
+   if (isLoading) <p>Loading...</p>;
+
 
    // Sets the style of the sidebar to show it
    const [form, setForm] = useState(false);
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-   const [formLocation, setformLocation] = useState()
-
-   console.log(error);
+   const [formLocation, setFormLocation] = useState();
 
    //! the GET request
    useEffect(() => {
@@ -29,14 +31,15 @@ function App() {
          const email = user.email;
          console.log(email);
          try {
-            const response = await fetch(`${API_URL}/users/${email}`);
+
+            const response = await fetch(`${API_URL}/users/${user.email}`);
             const newData = await response.json();
             console.log("THIS IS THE DATA IN THE MOUNTED USEEFFECT", newData);
             if (newData.success === true) {
                setData(newData.payload);
                setError("");
             } else {
-               console.log(response);
+               console.log(response, error);
 
                setError("Fetch didn't work :(");
             }
@@ -45,10 +48,15 @@ function App() {
             setError(err.message);
          }
       }
-      getData();
-   }, []);
+      if (!isLoading) {
+         getData();
+      }
+   }, [user]);
 
-   console.log(data);
+   useEffect(() => {
+      console.log(formLocation);
+   }, [formLocation]);
+
 
       <div className={style.app}>
          <Navbar className={style.navbar} />
@@ -59,11 +67,11 @@ function App() {
                setModal={setModal}
                className={style.map}
                setForm={setForm}
-               setformLocation = {setformLocation}
+               setFormLocation={setFormLocation}
             />
          </div>
          {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
-         {form ? <Form setForm={setForm} formLocation={formLocation} /> :  <></>}
+         {form ? <Form setForm={setForm} formLocation={formLocation} /> : <></>}
       </div>
    );
 }

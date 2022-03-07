@@ -6,13 +6,11 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
    // css to allow only a certain amount of char for the notes
    // returning data populated by the DummyData
 
-   console.log(`This is the object KEY:`, key);
-
    return (
       <div className={style.flipcard}>
          <div
             className={style.flipcardContainer}
-            onClick={() => setModal(dataObj.aws_key)}>
+            onClick={() => setModal(dataObj.img_url)}>
             <div className={style.flipcardFront}>
                <img
                   className={style.polaroidFrame}
@@ -23,16 +21,16 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
                   {" "}
                   <img
                      className={style.photo}
-                     src={dataObj.aws_key}
+                     src={dataObj.img_url}
                      alt={key}
                   />{" "}
                </div>
             </div>
             <div className={style.flipcardBack}>
                <div className={style.textHolder}>
-                  <h1 className={style.photoTitle}>{dataObj.media_title},</h1>
+                  <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
-                     {dataObj.location} <br /> {dataObj.date}
+                     {dataObj.place} <br />
                   </h2>
                </div>
 
