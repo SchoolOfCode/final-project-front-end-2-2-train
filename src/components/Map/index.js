@@ -6,10 +6,11 @@ import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
 
+import OutsideClickHandler from "react-outside-click-handler";
+
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
-
 
 function MarkerMap({
    setData,
@@ -31,13 +32,13 @@ function MarkerMap({
    //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    //const [pins, addNewPin, newLocationId] = usePins(mockData);
 
-  // TODO: change to place
-//function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+   // TODO: change to place
+   //function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
- //  const [showPopup, setShowPopup] = useState(false);
- //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
- //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
+   //  const [showPopup, setShowPopup] = useState(false);
+   //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+   //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
 
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
@@ -63,7 +64,6 @@ function MarkerMap({
          lat: placeData.lat,
          lng: placeData.lng,
       };
-
 
       setClickPlace(newPlace);
       setFormPlace(newPlace);
@@ -113,13 +113,16 @@ function MarkerMap({
          }}>
          <Pins places={pins} markerClick={markerClick} />
          {photoGridOpened ? (
-            <PhotoGrid
-               setPhotoGridOpened={setPhotoGridOpened}
-               setData={setData}
-               data={data}
-               setModal={setModal}
-               onPhotoGridClose={onPhotoGridClose}
-            />
+            <OutsideClickHandler
+               onOutsideClick={() => setPhotoGridOpened(false)}>
+               <PhotoGrid
+                  setPhotoGridOpened={setPhotoGridOpened}
+                  setData={setData}
+                  data={data}
+                  setModal={setModal}
+                  onPhotoGridClose={onPhotoGridClose}
+               />
+            </OutsideClickHandler>
          ) : (
             <div />
          )}
