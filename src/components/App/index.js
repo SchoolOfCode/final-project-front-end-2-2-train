@@ -92,9 +92,7 @@ function App() {
    console.log(user);
    return (
       <div className={style.app}>
-
          <Navbar className={style.navbar} isAuthenticated={isAuthenticated} />
-
 
          <div className={style.mapContainer}>
             <MarkerMap
@@ -122,13 +120,15 @@ function App() {
             <></>
          )}
          {form ? (
-            <Form
-               setForm={setForm}
-               formPlace={formPlace}
-               setTemporaryPin={setTemporaryPin}
-               addNewPin={addNewPin}
-               clickPlace={clickPlace}
-            />
+            <OutsideClickHandler onOutsideClick={() => setForm(false)}>
+               <Form
+                  setForm={setForm}
+                  formPlace={formPlace}
+                  setTemporaryPin={setTemporaryPin}
+                  addNewPin={addNewPin}
+                  clickPlace={clickPlace}
+               />
+            </OutsideClickHandler>
          ) : (
             <></>
          )}
