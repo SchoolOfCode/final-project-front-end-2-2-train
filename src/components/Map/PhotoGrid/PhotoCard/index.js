@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./photocard.module.css";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function PhotoCard({ key, dataObj, delFunc, setModal }) {
    // css to allow only a certain amount of char for the notes
@@ -34,10 +33,14 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
                   </h2>
                </div>
 
-               <DeleteForeverIcon
-                  onClick={() => delFunc(dataObj.id)}
-                  className={style.deleteBtn}
-               />
+               <div className={style.funcP}>
+                  <p>EDIT</p>
+                  <p
+                     onClick={() => delFunc(dataObj.id)}
+                     className={style.deleteBtn}>
+                     DELETE
+                  </p>
+               </div>
             </div>
          </div>
       </div>
