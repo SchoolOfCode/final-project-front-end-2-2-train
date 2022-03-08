@@ -17,7 +17,7 @@ function Pins({ places, markerClick, setForm, locationsData }) {
                   anchor="bottom-left">
                   <img
                      onClick={() => {
-                        markerClick();
+                        markerClick(location.loc_id, location.user_id);
                      }}
                      src={pin}
                      alt="pin"

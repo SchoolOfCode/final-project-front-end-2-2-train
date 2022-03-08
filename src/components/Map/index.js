@@ -43,11 +43,13 @@ function MarkerMap({
 
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
+   const [locImages, setLocImages] = useState(false)
    //const [temporaryPin, setTemporaryPin] = useState(false);
 
-   function markerClick() {
+   function markerClick(loc_id, user_id) {
       setPhotoGridOpened(true);
       setIsMapInteractive(false);
+      setLocImages({loc_id:loc_id, user_id:user_id})
    }
 
    function onPhotoGridClose() {
@@ -131,6 +133,7 @@ function MarkerMap({
                   data={data}
                   setModal={setModal}
                   onPhotoGridClose={onPhotoGridClose}
+                  locImages={locImages}
                />
             </OutsideClickHandler>
          ) : (

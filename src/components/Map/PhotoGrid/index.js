@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
+import { get } from "react-hook-form";
 //import data from "./data";
 
 function PhotoGrid({
@@ -9,6 +10,7 @@ function PhotoGrid({
    setModal,
    setPhotoGridOpened,
    onPhotoGridClose,
+   locImages,
 }) {
    //! DELETE FUNCTION FOR GRID
    function delFunc(id) {
@@ -20,6 +22,14 @@ function PhotoGrid({
    // needs props passed down to map over the data
    //function to pass down to Photocard
    // console.log(data);
+   useEffect(() => {
+      async function getImages() {
+         fetch(`http://localhost:5500/location/${locImages.user_id}/${locImages.loc_id}`)
+            .then((response) => response.json())
+            .then((data) => console.log("This is our data:", data));
+      }
+      getImages()
+   }, [locImages]);
 
    return (
       <div className={style.photoGridContainer}>
