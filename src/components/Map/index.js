@@ -23,6 +23,7 @@ function MarkerMap({
    newPlaceId,
    setClickPlace,
    clickPlace,
+   locationsData,
 }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
@@ -109,7 +110,16 @@ function MarkerMap({
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins places={pins} markerClick={markerClick} data={data} />
+         {locationsData ? (
+            <Pins
+               places={pins}
+               markerClick={markerClick}
+               locationsData={locationsData}
+            />
+         ) : (
+            <></>
+         )}
+
          {photoGridOpened ? (
             <PhotoGrid
                setPhotoGridOpened={setPhotoGridOpened}
