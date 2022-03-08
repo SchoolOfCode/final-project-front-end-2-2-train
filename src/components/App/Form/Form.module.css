@@ -1,63 +1,67 @@
 .sidebarContainer {
    transition: transform 0.8;
-   position: absolute;
    display: block;
-   right: 0;
-   height: 100vh;
+   margin: 20vh auto 0 auto;
+   height: 50vh;
    width: 20vw;
    z-index: 3;
-   background: rgba(229, 229, 229, 0.2);
-   box-shadow: 0 0 32px 0 rgba(87, 80, 88, 0.4);
+   background: rgba(229, 229, 229, 0.3);
+   box-shadow: 0 0 32px 0 rgba(61, 55, 61, 0.8);
    backdrop-filter: blur(5.5px);
    -webkit-backdrop-filter: blur(7.5px);
-   border-radius: 10px;
-}
-
-.sidebarHidden {
-   z-index: -1;
+   border-radius: 25px;
 }
 
 .formContainer {
    display: flex;
    flex-direction: column;
-   margin-top: 10rem;
+   margin: 1rem auto 0 10px;
    height: 100vh;
 }
 
 .formContainer input {
-   margin: 1rem auto 0 3rem;
+   margin: 1rem auto 0 auto;
    width: 60%;
    padding: 10px 16px;
    border-radius: 10px;
    border: none;
 }
 .formContainerTextarea {
-   margin: 1rem auto 0 3rem;
+   margin: 1rem auto 0 auto;
    width: 70%;
    height: 12vh;
    border-radius: 10px;
 }
 
+/*********
+BUTTONS
+*********/
+
 .formContainerButton {
    margin: 2rem auto 0 auto;
-
-   border: none;
-   color: white;
+   border: solid 1px var(--main-red);
+   color: var(--main-red);
+   background-color: var(--font-light);
    padding: 12px 28px;
    font-size: 16px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
-   background-color: #008cba;
    width: 10rem;
-   transition-duration: 0.4s;
+   transition-duration: 0.2s;
    border-radius: 10px;
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.formContainerButton button:hover {
-   background-color: transparent;
-   color: black;
-   border: 1px solid black;
+.formContainerButton:hover {
+   color: var(--font-light);
+   background-color: var(--main-red);
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.formContainerButton:active {
+   transform: translateY(-2px);
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .fileInput {

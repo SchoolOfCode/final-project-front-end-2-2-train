@@ -14,7 +14,6 @@ function Navbar({ data }) {
                   src={require("../../../img/pinit-logo-offwhite.png")}
                   alt=""
                />
-               <LogoutButton />
             </div>
             <div className={style.accordion}>
                {/* {newAccordionPlaces.map(({ title, content }) => (
@@ -33,6 +32,7 @@ function Navbar({ data }) {
                   })}
                />
             </div>
+            <LogoutButton />
          </div>
       </>
    );

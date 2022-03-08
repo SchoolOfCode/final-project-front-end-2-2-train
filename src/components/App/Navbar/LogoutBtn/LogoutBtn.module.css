@@ -1,10 +1,18 @@
+.container {
+   position: absolute;
+   bottom: 15px;
+   display: flex;
+   align-items: center;
+   justify-items: center;
+}
+
 .button {
    text-transform: uppercase;
    font-weight: 700;
    box-shadow: rgb(0 0 0 / 30%) 0px 3px 4px, rgb(0 0 0 / 22%) -2px 5px 4px;
-   margin: 2.3vh 1vw 0 3vw;
+   margin: 0 auto 0 2rem;
    height: 40px;
-   width: 16vw;
+   width: 10vw;
    border: 2px var(--main-red) solid;
    color: var(--main-red);
    background-color: var(--main-color);
@@ -16,4 +24,10 @@
    color: var(--main-color);
    background-color: var(--main-red);
    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.settings {
+   height: 26px;
+   width: 26px;
+   margin-left: 2rem;
 }
