@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./photocard.module.css";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function PhotoCard({ key, dataObj, delFunc, setModal }) {
    // css to allow only a certain amount of char for the notes
