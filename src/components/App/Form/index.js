@@ -33,6 +33,7 @@ export default function Form({
       uploadImage();
       setTemporaryPin(false);
       addNewPin(clickPlace);
+      setForm(false);
    };
 
    //Uploads image to Cloudinary and returns a URL
