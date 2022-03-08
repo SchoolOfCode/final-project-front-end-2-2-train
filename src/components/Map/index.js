@@ -6,6 +6,8 @@ import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
 
+import OutsideClickHandler from "react-outside-click-handler";
+
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
@@ -121,13 +123,16 @@ function MarkerMap({
          )}
 
          {photoGridOpened ? (
-            <PhotoGrid
-               setPhotoGridOpened={setPhotoGridOpened}
-               setData={setData}
-               data={data}
-               setModal={setModal}
-               onPhotoGridClose={onPhotoGridClose}
-            />
+            <OutsideClickHandler
+               onOutsideClick={() => setPhotoGridOpened(false)}>
+               <PhotoGrid
+                  setPhotoGridOpened={setPhotoGridOpened}
+                  setData={setData}
+                  data={data}
+                  setModal={setModal}
+                  onPhotoGridClose={onPhotoGridClose}
+               />
+            </OutsideClickHandler>
          ) : (
             <div />
          )}

@@ -11,8 +11,13 @@ import MarkerMap from "../Map";
 import usePins from "../../hooks/usePins";
 import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
-const API_URL = "http://localhost:5500";
-// const API_URL = "https://gray2-2.herokuapp.com";
+
+
+import OutsideClickHandler from "react-outside-click-handler";
+
+// const API_URL = "http://localhost:5500";
+const API_URL = "https://gray2-2.herokuapp.com";
+
 
 function App() {
    // gets the user information after authentication
@@ -22,7 +27,7 @@ function App() {
 
    // Sets the style of the sidebar to show it
    const [form, setForm] = useState(false);
-   const [modal, setModal] = useState("");
+   const [modal, setModal] = useState(false);
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
    const [locationsData, setLocationsData] = useState(false);
@@ -111,7 +116,13 @@ function App() {
                setClickPlace={setClickPlace}
             />
          </div>
-         {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
+         {modal ? (
+            <OutsideClickHandler onOutsideClick={() => setModal(false)}>
+               <PhotoModal photo={modal} setModal={setModal} />
+            </OutsideClickHandler>
+         ) : (
+            <></>
+         )}
          {form ? (
             <Form
                setForm={setForm}
