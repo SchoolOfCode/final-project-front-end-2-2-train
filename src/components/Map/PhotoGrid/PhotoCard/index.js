@@ -33,11 +33,14 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
                      {dataObj.place} <br />
                   </h2>
                </div>
-
-               <DeleteForeverIcon
-                  onClick={() => delFunc(dataObj.id)}
-                  className={style.deleteBtn}
-               />
+               <div className={style.funcP}>
+                  <p>EDIT</p>
+                  <p
+                     onClick={() => delFunc(dataObj.id)}
+                     className={style.deleteBtn}>
+                     DELETE
+                  </p>
+               </div>
             </div>
          </div>
       </div>

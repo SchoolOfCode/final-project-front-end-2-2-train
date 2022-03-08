@@ -76,3 +76,12 @@
 .textHolder {
    margin-top: 10px;
 }
+
+.funcP {
+   display: flex;
+   flex-direction: row;
+}
+
+.funcP :first-child {
+   border-right: 0.5 solid black;
+}
