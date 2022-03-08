@@ -30,7 +30,16 @@ function PhotoGrid({
             `http://localhost:5500/location/${locImages.user_id}/${locImages.loc_id}`
          );
          const data = await response.json();
-         setImages(data.payload);
+         const payload = await data.payload;
+
+         let result = await payload.reduce((unique, o) => {
+            if (!unique.some((obj) => obj.media_id === o.media_id)) {
+               unique.push(o);
+            }
+            return unique;
+         }, []);
+
+         setImages(result);
       }
       getImages();
    }, [locImages]);
@@ -41,14 +50,16 @@ function PhotoGrid({
             X
          </p> */}
          {images ? (
-            images.map((item, index) => (
-               <PhotoCard
-                  key={item.id}
-                  dataObj={images[index]}
-                  delFunc={delFunc}
-                  setModal={setModal}
-               />
-            ))
+            images.map((item, index) => {
+               return (
+                  <PhotoCard
+                     key={item.id}
+                     dataObj={images[index]}
+                     delFunc={delFunc}
+                     setModal={setModal}
+                  />
+               );
+            })
          ) : (
             <></>
          )}
