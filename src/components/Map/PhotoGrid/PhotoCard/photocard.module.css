@@ -56,6 +56,7 @@
    border: solid 0.5px rgba(41, 40, 40, 0.726);
    border-radius: 3px;
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-content: center;
 }
@@ -74,5 +75,23 @@
 }
 
 .textHolder {
+   position: absolute;
+   top: 0;
    margin-top: 10px;
+}
+
+.funcP {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+
+   margin: 0 auto 5px auto;
+}
+
+.funcP p {
+   font-size: 8px;
+}
+
+.funcP :first-child {
+   margin: 0 10px 0 0;
 }
