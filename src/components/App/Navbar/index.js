@@ -14,13 +14,13 @@ function Navbar() {
                   src={require("../../../img/pinit-logo-offwhite.png")}
                   alt=""
                />
-               <LogoutButton />
             </div>
             <div className={style.accordion}>
                {accordionData.map(({ title, content }) => (
                   <Accordion title={title} content={content} />
                ))}
             </div>
+            <LogoutButton />
          </div>
       </>
    );

@@ -8,13 +8,20 @@
 }
 
 .logo {
-   margin: 20px 10px 0 30px;
+   margin: 20px 50px 0 30px;
    height: 50px;
    width: 100px;
 }
 
 .topNavCont {
    display: flex;
-   align-items: center;
+   align-content: center;
    flex-direction: row;
+}
+
+.profile {
+   height: 50px;
+   width: 50px;
+   border-radius: 50px;
+   margin: 20px 0 0 0;
 }

@@ -107,9 +107,6 @@ export default function Form({
 
    return (
       <div className={style.sidebarContainer}>
-         <p className={style.close} onClick={() => setForm(false)}>
-            X
-         </p>
          <form
             className={style.formContainer}
             onSubmit={handleSubmit(onSubmit)}>

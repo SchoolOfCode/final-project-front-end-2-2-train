@@ -7,9 +7,7 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
 
    return (
       <div className={style.flipcard}>
-         <div
-            className={style.flipcardContainer}
-            onClick={() => setModal(dataObj.img_url)}>
+         <div className={style.flipcardContainer}>
             <div className={style.flipcardFront}>
                <img
                   className={style.polaroidFrame}
@@ -25,7 +23,9 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
                   />{" "}
                </div>
             </div>
-            <div className={style.flipcardBack}>
+            <div
+               onClick={() => setModal(dataObj.img_url)}
+               className={style.flipcardBack}>
                <div className={style.textHolder}>
                   <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
@@ -35,6 +35,7 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
 
                <div className={style.funcP}>
                   <p>EDIT</p>
+                  <div className={style.vl} />
                   <p
                      onClick={() => delFunc(dataObj.id)}
                      className={style.deleteBtn}>

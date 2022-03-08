@@ -83,15 +83,30 @@
 .funcP {
    position: absolute;
    bottom: 0;
-   left: 0;
+   left: 43px;
 
+   display: flex;
+   flex-direction: row;
    margin: 0 auto 5px auto;
 }
 
 .funcP p {
    font-size: 8px;
+   font-weight: 200;
+   color: #474747;
 }
 
 .funcP :first-child {
    margin: 0 10px 0 0;
+   cursor: pointer;
+}
+
+.funcP :last-child {
+   margin: 0 0 0 10px;
+   cursor: pointer;
+}
+
+.vl {
+   border-left: 0.5px solid #474747;
+   height: 18px;
 }

@@ -1,13 +1,10 @@
 import style from "./App.module.css";
-
 import Navbar from "./Navbar";
 import { React, useState, useEffect } from "react";
 import PhotoModal from "./PhotoModal/index";
 import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import MarkerMap from "../Map";
-
 import usePins from "../../hooks/usePins";
 import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
@@ -16,7 +13,7 @@ const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
-   const { user, isLoading } = useAuth0();
+   const { user, isLoading, isAuthenticated } = useAuth0();
 
    if (isLoading) <p>Loading...</p>;
 
@@ -25,7 +22,6 @@ function App() {
    const [modal, setModal] = useState("");
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-
    const [formPlace, setFormPlace] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
@@ -62,10 +58,10 @@ function App() {
    // useEffect(() => {
    //    console.log(formPlace);
    // }, [formPlace]);
-
+   console.log(user);
    return (
       <div className={style.app}>
-         <Navbar className={style.navbar} />
+         <Navbar className={style.navbar} isAuthenticated={isAuthenticated} />
          <div className={style.mapContainer}>
             <MarkerMap
                setData={setData}
