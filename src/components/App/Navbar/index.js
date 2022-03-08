@@ -21,13 +21,13 @@ function Navbar({ data }) {
                ))} */}
                <Accordion
                   title="Titles"
-                  content={data.map((item) => {
+                  content={accordionData.map((item) => {
                      return `${item.title},     `;
                   })}
                />
                <Accordion
                   title="Places"
-                  content={data.map((item) => {
+                  content={accordionData.map((item) => {
                      return `${item.place},     `;
                   })}
                />
