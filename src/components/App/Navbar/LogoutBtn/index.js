@@ -8,7 +8,9 @@ const LogoutButton = () => {
    return (
       <button
          className={style.button}
-         onClick={() => logout({ returnTo: window.place.origin })}>
+         onClick={() =>
+            logout({ returnTo: "https://pinit-pinit.netlify.app/" })
+         }>
          Log Out
       </button>
    );
