@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
 import { get } from "react-hook-form";
@@ -12,6 +12,8 @@ function PhotoGrid({
    onPhotoGridClose,
    locImages,
 }) {
+   const [images, setImages] = useState(false);
+
    //! DELETE FUNCTION FOR GRID
    function delFunc(id) {
       const objInd = id - 1;
@@ -24,11 +26,13 @@ function PhotoGrid({
    // console.log(data);
    useEffect(() => {
       async function getImages() {
-         fetch(`http://localhost:5500/location/${locImages.user_id}/${locImages.loc_id}`)
-            .then((response) => response.json())
-            .then((data) => console.log("This is our data:", data));
+         const response = await fetch(
+            `http://localhost:5500/location/${locImages.user_id}/${locImages.loc_id}`
+         );
+         const data = await response.json();
+         setImages(data.payload);
       }
-      getImages()
+      getImages();
    }, [locImages]);
 
    return (
@@ -36,14 +40,18 @@ function PhotoGrid({
          {/* <p className={style.close} onClick={() => onPhotoGridClose()}>
             X
          </p> */}
-         {data.map((item, index) => (
-            <PhotoCard
-               key={item.id}
-               dataObj={data[index]}
-               delFunc={delFunc}
-               setModal={setModal}
-            />
-         ))}
+         {images ? (
+            images.map((item, index) => (
+               <PhotoCard
+                  key={item.id}
+                  dataObj={images[index]}
+                  delFunc={delFunc}
+                  setModal={setModal}
+               />
+            ))
+         ) : (
+            <></>
+         )}
       </div>
    );
 }
