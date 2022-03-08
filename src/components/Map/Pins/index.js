@@ -3,16 +3,17 @@ import { Marker } from "react-map-gl";
 import pin from "../../../img/pin.png";
 import style from "./Pins.module.css";
 
-function Pins({ places, markerClick, setForm }) {
+function Pins({ places, markerClick, setForm, locationsData }) {
    return (
       <>
+       
          {/* rendering a Marker for each location point */}
-         {places.map((place) => {
+         {locationsData.map((location) => {
             return (
                <Marker
-                  key={place.id}
-                  longitude={place.lng}
-                  latitude={place.lat}
+                  key={location.loc_id}
+                  longitude={location.lng}
+                  latitude={location.lat}
                   anchor="bottom-left">
                   <img
                      onClick={() => {

@@ -4,8 +4,8 @@ import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 
-const API_URL = "http://localhost:5500";
-// const API_URL = "https://gray2-2.herokuapp.com";
+//const API_URL = "http://localhost:5500";
+const API_URL = "https://gray2-2.herokuapp.com";
 
 export default function Form({
    setForm,
@@ -57,7 +57,6 @@ export default function Form({
       setObj({
          loc_id: 4,
          img_url: imageUrl,
-
          ...data,
       });
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,7 +100,18 @@ export default function Form({
       }
    }, [obj]);
 
+   //useEffect to close the Form after the response that has a value in image url is received
+
+   useEffect(() => {
+      if (obj.title !== undefined) {
+         setForm(false);
+      } else {
+         return;
+      }
+   }, [obj.title]);
+
    console.log(obj);
+   console.log(obj.title);
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
 
