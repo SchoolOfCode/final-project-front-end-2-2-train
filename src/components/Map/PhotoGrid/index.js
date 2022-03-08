@@ -23,9 +23,9 @@ function PhotoGrid({
 
    return (
       <div className={style.photoGridContainer}>
-         <p className={style.close} onClick={() => onPhotoGridClose()}>
+         {/* <p className={style.close} onClick={() => onPhotoGridClose()}>
             X
-         </p>
+         </p> */}
          {data.map((item, index) => (
             <PhotoCard
                key={item.id}

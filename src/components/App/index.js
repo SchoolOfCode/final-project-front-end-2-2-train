@@ -8,8 +8,10 @@ import MarkerMap from "../Map";
 import usePins from "../../hooks/usePins";
 import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
 
-// const API_URL = "http://localhost:5500";
-const API_URL = "https://gray2-2.herokuapp.com";
+import OutsideClickHandler from "react-outside-click-handler";
+
+const API_URL = "http://localhost:5500";
+// const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
@@ -19,9 +21,13 @@ function App() {
 
    // Sets the style of the sidebar to show it
    const [form, setForm] = useState(false);
-   const [modal, setModal] = useState("");
+   const [modal, setModal] = useState(false);
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
+
+   const [locationsData, setLocationsData] = useState(false);
+   const [userId, setUserId] = useState(0);
+
    const [formPlace, setFormPlace] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
@@ -38,6 +44,7 @@ function App() {
             console.log("THIS IS THE DATA IN THE MOUNTED USEEFFECT", newData);
             if (newData.success === true) {
                setData(newData.payload);
+               setUserId(newData.payload[0].user_id);
                setError("");
             } else {
                console.log(response, error);
@@ -55,17 +62,45 @@ function App() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [user]);
 
+   useEffect(() => {
+      console.log("User Id:", userId);
+      async function getLocationData() {
+         try {
+            const response = await fetch(`${API_URL}/location/${userId}`);
+            const newData = await response.json();
+            console.log("THIS IS THE LOCATION DATA IN THE USEEFFECT", newData);
+            if (newData.success === true) {
+               setLocationsData(newData.payload);
+               setError("");
+            } else {
+               console.log(response, error);
+
+               setError("Fetch didn't work :(");
+            }
+         } catch (err) {
+            console.log(err);
+            setError(err.message);
+         }
+      }
+
+      getLocationData();
+   }, [userId]);
+
    // useEffect(() => {
    //    console.log(formPlace);
    // }, [formPlace]);
    console.log(user);
    return (
       <div className={style.app}>
+
          <Navbar className={style.navbar} isAuthenticated={isAuthenticated} />
+
+
          <div className={style.mapContainer}>
             <MarkerMap
                setData={setData}
                data={data}
+               locationsData={locationsData}
                setModal={setModal}
                className={style.map}
                setForm={setForm}
@@ -79,7 +114,13 @@ function App() {
                setClickPlace={setClickPlace}
             />
          </div>
-         {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
+         {modal ? (
+            <OutsideClickHandler onOutsideClick={() => setModal(false)}>
+               <PhotoModal photo={modal} setModal={setModal} />
+            </OutsideClickHandler>
+         ) : (
+            <></>
+         )}
          {form ? (
             <Form
                setForm={setForm}

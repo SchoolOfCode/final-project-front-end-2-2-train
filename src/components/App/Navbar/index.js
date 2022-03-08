@@ -4,7 +4,7 @@ import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
 import accordionData from "./accordionData.js";
 
-function Navbar() {
+function Navbar({ data }) {
    return (
       <>
          <div className={style.navbarContainer}>
@@ -16,9 +16,21 @@ function Navbar() {
                />
             </div>
             <div className={style.accordion}>
-               {accordionData.map(({ title, content }) => (
+               {/* {newAccordionPlaces.map(({ title, content }) => (
                   <Accordion title={title} content={content} />
-               ))}
+               ))} */}
+               <Accordion
+                  title="Titles"
+                  content={data.map((item) => {
+                     return `${item.title},     `;
+                  })}
+               />
+               <Accordion
+                  title="Places"
+                  content={data.map((item) => {
+                     return `${item.place},     `;
+                  })}
+               />
             </div>
             <LogoutButton />
          </div>
