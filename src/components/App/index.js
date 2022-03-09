@@ -127,6 +127,7 @@ function App() {
                   setTemporaryPin={setTemporaryPin}
                   addNewPin={addNewPin}
                   clickPlace={clickPlace}
+                  userId={userId}
                />
             </OutsideClickHandler>
          ) : (
