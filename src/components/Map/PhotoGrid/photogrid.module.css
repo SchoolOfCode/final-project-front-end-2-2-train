@@ -1,14 +1,7 @@
 .photoGridContainer {
-   margin: 10rem auto 0 35vw;
-   width: 45vw;
-   height: 55vh;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr 1fr;
-   gap: 0px 0px;
-   grid-template-areas:
-      ". . ."
-      ". . .";
+   margin: 8rem auto 0 33vw;
+   width: 46.5vw;
+   height: 65vh;
    background: rgba(229, 229, 229, 0.3);
    box-shadow: 0 8px 32px 0 rgba(94, 93, 93, 0.25);
    backdrop-filter: blur(1.5px);
@@ -16,10 +9,36 @@
    border-radius: 10px;
 }
 
+.imageDiv {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: row;
+}
+
+.textDiv {
+   display: flex;
+   flex-direction: row;
+}
+
+.title {
+   color: var(--text-color);
+   margin: 20px 0 0 10px;
+   width: 10vw;
+}
+
 .close {
-   position: absolute;
-   text-transform: uppercase;
+   text-transform: lowercase;
    color: var(--text-color);
    margin: 1rem 1rem 0 52rem;
-   float: right;
+   cursor: pointer;
+   position: absolute;
+   top: 0px;
+   right: 10px;
+}
+
+.close:hover,
+.close:focus {
+   color: #bbb;
+   text-decoration: none;
+   cursor: pointer;
 }

@@ -40,13 +40,13 @@
 }
 
 .close {
+   text-transform: lowercase;
+   color: var(--main-color);
+   margin: 1rem 1rem 0 52rem;
+   cursor: pointer;
    position: absolute;
-   top: 15px;
-   right: 35px;
-   color: #f1f1f1;
-   font-size: 40px;
-   font-weight: bold;
-   transition: 0.3s;
+   top: 0px;
+   right: 10px;
 }
 
 .close:hover,
