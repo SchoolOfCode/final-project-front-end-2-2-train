@@ -12,11 +12,15 @@ export default function Form({
    setTemporaryPin,
    addNewPin,
    clickPlace,
+   userId
+
 }) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState();
-   const [data, setData] = useState();
+   const [data, setData] = useState()
+   const [latlng, setLatLng] = useState(clickPlace)
+   const [locid, setLocid] = useState(0)
 
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
@@ -31,10 +35,35 @@ export default function Form({
       console.log("This is the data", data);
       setData(data);
       uploadImage();
+      formSubmit(userId, latlng, API_URL)
       setTemporaryPin(false);
       addNewPin(clickPlace);
       setForm(false);
+   
    };
+
+   //creates new location and returns with loc_id
+   async function formSubmit(user_id, latlng, API_URL) {
+      const lat = latlng.lat 
+      const lng = latlng.lng
+     const obj = {user_id:user_id, lat:lat, lng:lng}
+     try {
+        const response = await fetch(`${API_URL}/location`, {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(obj),
+        });
+        const result = await response.json();
+        if (result.success === true) {
+           console.log("it's ya boiiiii", result.loc_id);
+           setLocid(result.loc_id)  
+        } else {
+           console.log(response);
+        }
+     } catch (err) {
+        console.log(err);
+     }
+  }
 
    //Uploads image to Cloudinary and returns a URL
    const uploadImage = () => {
@@ -56,7 +85,7 @@ export default function Form({
 
    useEffect(() => {
       setObj({
-         loc_id: 4,
+         loc_id: locid,
          img_url: imageUrl,
          ...data,
       });
