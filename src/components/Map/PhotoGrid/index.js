@@ -28,7 +28,7 @@ function PhotoGrid({
          });
          const result = await response.json();
          if (result.success === true) {
-            setError("");
+            setError(`${id}`);
          } else {
             console.log(response, error);
             setError("Fetch didn't work :(");
@@ -57,7 +57,7 @@ function PhotoGrid({
          setImages(result);
       }
       getImages();
-   }, [locImages]);
+   }, [locImages, error]);
 
    return (
       <div className={style.photoGridContainer}>
@@ -65,7 +65,7 @@ function PhotoGrid({
             images.map((item, index) => {
                return (
                   <PhotoCard
-                     key={item.id}
+                     key={item.media_id}
                      dataObj={images[index]}
                      setModal={setModal}
                      deleteMedia={deleteMedia}
