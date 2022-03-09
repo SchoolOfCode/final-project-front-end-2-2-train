@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
-//import data from "./data";
+
+const API_URL = "http://localhost:5500";
+// const API_URL = "https://gray2-2.herokuapp.com";
 
 function PhotoGrid({
    setData,
@@ -10,28 +12,44 @@ function PhotoGrid({
    setPhotoGridOpened,
    onPhotoGridClose,
 }) {
-   //! DELETE FUNCTION FOR GRID
-   function delFunc(id) {
-      const objInd = id - 1;
-      const newArray = [...data.slice(0, objInd), ...data.slice(objInd + 1)];
-      setData(newArray);
-   }
+   const [error, setError] = useState("");
+   const [deleteItem, setDeleteItem] = useState({});
 
-   // needs props passed down to map over the data
-   //function to pass down to Photocard
-   // console.log(data);
+   //! DELETE REQUEST
+   useEffect(() => {
+      async function deleteMedia(deleteItem) {
+         console.log(`DEEEELLLEEETE ITEM!`, deleteItem);
+         const id = deleteItem;
+         console.log(`this ${id} media has been deleted 😅`);
+         try {
+            const response = await fetch(`${API_URL}/media/${id}`, {
+               method: "DELETE",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify(id),
+            });
+            const result = await response.json();
+            if (result.success === true) {
+               setError("");
+            } else {
+               console.log(response, error);
+               setError("Fetch didn't work :(");
+            }
+         } catch (err) {
+            console.log(err);
+            setError(err.message);
+         }
+      }
+      deleteMedia(deleteItem);
+   }, [deleteItem]);
 
    return (
       <div className={style.photoGridContainer}>
-         {/* <p className={style.close} onClick={() => onPhotoGridClose()}>
-            X
-         </p> */}
          {data.map((item, index) => (
             <PhotoCard
                key={item.id}
                dataObj={data[index]}
-               delFunc={delFunc}
                setModal={setModal}
+               setDeleteItem={setDeleteItem}
             />
          ))}
       </div>

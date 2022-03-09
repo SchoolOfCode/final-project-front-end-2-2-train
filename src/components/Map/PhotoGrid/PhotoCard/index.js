@@ -1,10 +1,7 @@
 import React from "react";
 import style from "./photocard.module.css";
 
-function PhotoCard({ key, dataObj, delFunc, setModal }) {
-   // css to allow only a certain amount of char for the notes
-   // returning data populated by the DummyData
-
+function PhotoCard({ key, dataObj, setModal, setDeleteItem }) {
    return (
       <div className={style.flipcard}>
          <div className={style.flipcardContainer}>
@@ -37,7 +34,7 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
                   <p>EDIT</p>
                   <div className={style.vl} />
                   <p
-                     onClick={() => delFunc(dataObj.id)}
+                     onClick={() => setDeleteItem(dataObj.media_id)}
                      className={style.deleteBtn}>
                      DELETE
                   </p>
