@@ -65,7 +65,7 @@ function PhotoGrid({
             images.map((item, index) => {
                return (
                   <PhotoCard
-                     key={item.id}
+                     key={item.media_id}
                      dataObj={images[index]}
                      setModal={setModal}
                      deleteMedia={deleteMedia}
