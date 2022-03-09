@@ -50,18 +50,18 @@ BUTTONS
    width: 10rem;
    transition-duration: 0.2s;
    border-radius: 10px;
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+   box-shadow: var(--btn-shadow);
 }
 
 .formContainerButton:hover {
    color: var(--font-light);
    background-color: var(--main-red);
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+   box-shadow: var(--btn-hover);
 }
 
 .formContainerButton:active {
    transform: translateY(-2px);
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-active);
 }
 
 .fileInput {
