@@ -20,10 +20,10 @@ function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
                   />{" "}
                </div>
             </div>
-            <div
-               className={style.flipcardBack}
-               onClick={() => setModal(dataObj.img_url)}>
-               <div className={style.textHolder}>
+            <div className={style.flipcardBack}>
+               <div
+                  onClick={() => setModal(dataObj.img_url)}
+                  className={style.textHolder}>
                   <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
                      {dataObj.place} <br />
@@ -34,10 +34,7 @@ function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
                   <p>EDIT</p>
                   <div className={style.vl} />
                   <p
-                     onClick={() => {
-                        deleteMedia(id);
-                        setModal(false);
-                     }}
+                     onClick={() => deleteMedia(id)}
                      className={style.deleteBtn}>
                      DELETE
                   </p>
