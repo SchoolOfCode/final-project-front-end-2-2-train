@@ -4,7 +4,7 @@ import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
 import accordionData from "./accordionData.js";
 
-function Navbar({ data }) {
+function Navbar({ profilePic }) {
    return (
       <>
          <div className={style.navbarContainer}>
@@ -13,6 +13,11 @@ function Navbar({ data }) {
                   className={style.logo}
                   src={require("../../../img/pinit-logo-offwhite.png")}
                   alt=""
+               />
+               <img
+                  className={style.profile}
+                  src={profilePic}
+                  alt="Users profile"
                />
             </div>
             <div className={style.accordion}>

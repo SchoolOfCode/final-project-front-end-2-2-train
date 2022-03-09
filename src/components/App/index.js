@@ -24,14 +24,13 @@ function App() {
    const [modal, setModal] = useState(false);
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-
    const [locationsData, setLocationsData] = useState(false);
    const [userId, setUserId] = useState(0);
-
    const [formPlace, setFormPlace] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
    const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+   const [profilePic, setProfilePic] = useState();
 
    //! the GET request
    useEffect(() => {
@@ -46,6 +45,7 @@ function App() {
                setData(newData.payload);
                setUserId(newData.payload[0].user_id);
                setError("");
+               console.log(`I'm the re-render`);
             } else {
                console.log(response, error);
 
@@ -72,6 +72,7 @@ function App() {
             if (newData.success === true) {
                setLocationsData(newData.payload);
                setError("");
+               setProfilePic(user.picture);
             } else {
                console.log(response, error);
 
@@ -89,10 +90,14 @@ function App() {
    // useEffect(() => {
    //    console.log(formPlace);
    // }, [formPlace]);
-   console.log(user);
+
    return (
       <div className={style.app}>
-         <Navbar className={style.navbar} isAuthenticated={isAuthenticated} />
+         <Navbar
+            className={style.navbar}
+            isAuthenticated={isAuthenticated}
+            profilePic={profilePic}
+         />
 
          <div className={style.mapContainer}>
             <MarkerMap
