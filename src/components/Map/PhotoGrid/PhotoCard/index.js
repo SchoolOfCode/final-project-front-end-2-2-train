@@ -1,7 +1,9 @@
 import React from "react";
 import style from "./photocard.module.css";
 
-function PhotoCard({ key, dataObj, setModal, setDeleteItem }) {
+function PhotoCard({ key, dataObj, setModal, deleteMedia }) {
+   console.log(dataObj.media_id);
+
    return (
       <div className={style.flipcard}>
          <div className={style.flipcardContainer}>
@@ -34,7 +36,7 @@ function PhotoCard({ key, dataObj, setModal, setDeleteItem }) {
                   <p>EDIT</p>
                   <div className={style.vl} />
                   <p
-                     onClick={() => setDeleteItem(dataObj.media_id)}
+                     onClick={() => deleteMedia(dataObj.media_id)}
                      className={style.deleteBtn}>
                      DELETE
                   </p>
