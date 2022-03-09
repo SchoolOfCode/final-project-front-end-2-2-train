@@ -42,11 +42,12 @@ function PhotoGrid({
    useEffect(() => {
       async function getImages() {
          const response = await fetch(
-            `http://localhost:5500/location/${locImages.user_id}/${locImages.loc_id}`
+            `http://localhost:5500/media/${locImages.loc_id}`
          );
          const data = await response.json();
          const payload = await data.payload;
 
+         console.log("this is fetched images", payload);
          let result = await payload.reduce((unique, o) => {
             if (!unique.some((obj) => obj.media_id === o.media_id)) {
                unique.push(o);
