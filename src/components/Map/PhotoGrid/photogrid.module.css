@@ -9,10 +9,10 @@
    grid-template-areas:
       ". . ."
       ". . .";
-   background: rgba(229, 229, 229, 0.05);
-   box-shadow: 0 8px 32px 0 rgba(83, 40, 89, 0.2);
-   backdrop-filter: blur(5.5px);
-   -webkit-backdrop-filter: blur(7.5px);
+   background: rgba(229, 229, 229, 0.3);
+   box-shadow: 0 8px 32px 0 rgba(94, 93, 93, 0.25);
+   backdrop-filter: blur(1.5px);
+   -webkit-backdrop-filter: blur(5.5px);
    border-radius: 10px;
 }
 
