@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
+import { get } from "react-hook-form";
 //import data from "./data";
 
 function PhotoGrid({
@@ -9,7 +10,10 @@ function PhotoGrid({
    setModal,
    setPhotoGridOpened,
    onPhotoGridClose,
+   locImages,
 }) {
+   const [images, setImages] = useState(false);
+
    //! DELETE FUNCTION FOR GRID
    function delFunc(id) {
       const objInd = id - 1;
@@ -20,20 +24,45 @@ function PhotoGrid({
    // needs props passed down to map over the data
    //function to pass down to Photocard
    // console.log(data);
+   useEffect(() => {
+      async function getImages() {
+         const response = await fetch(
+            `http://localhost:5500/location/${locImages.user_id}/${locImages.loc_id}`
+         );
+         const data = await response.json();
+         const payload = await data.payload;
+
+         let result = await payload.reduce((unique, o) => {
+            if (!unique.some((obj) => obj.media_id === o.media_id)) {
+               unique.push(o);
+            }
+            return unique;
+         }, []);
+
+         setImages(result);
+      }
+      getImages();
+   }, [locImages]);
 
    return (
       <div className={style.photoGridContainer}>
          {/* <p className={style.close} onClick={() => onPhotoGridClose()}>
             X
          </p> */}
-         {data.map((item, index) => (
-            <PhotoCard
-               key={item.id}
-               dataObj={data[index]}
-               delFunc={delFunc}
-               setModal={setModal}
-            />
-         ))}
+         {images ? (
+            images.map((item, index) => {
+               return (
+                  <PhotoCard
+                     key={item.id}
+                     dataObj={images[index]}
+                     delFunc={delFunc}
+                     setModal={setModal}
+                  />
+               );
+            })
+         ) : (
+            <></>
+         )}
       </div>
    );
 }
