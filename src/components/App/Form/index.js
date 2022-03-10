@@ -4,6 +4,7 @@ import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
 import FadeIn from "react-fade-in";
+import Swal from "sweetalert2";
 
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
@@ -127,6 +128,13 @@ export default function Form({
                   console.log(result);
                   setMedia(result.payload);
                   setError("");
+                  Swal.fire({
+                     position: "top-end",
+                     icon: "success",
+                     title: "New Pin added!",
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
                } else {
                   console.log(response);
                   setError("Fetch didn't work :(");
