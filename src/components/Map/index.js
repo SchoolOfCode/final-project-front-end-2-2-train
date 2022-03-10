@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Map from "react-map-gl";
+import Map, { GeolocateControl } from "react-map-gl";
 import Pins from "./Pins";
 import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
@@ -43,13 +43,13 @@ function MarkerMap({
 
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
-   const [locImages, setLocImages] = useState(false)
+   const [locImages, setLocImages] = useState(false);
    //const [temporaryPin, setTemporaryPin] = useState(false);
 
    function markerClick(loc_id, user_id) {
       setPhotoGridOpened(true);
       setIsMapInteractive(false);
-      setLocImages({loc_id:loc_id, user_id:user_id})
+      setLocImages({ loc_id: loc_id, user_id: user_id });
    }
 
    function onPhotoGridClose() {
@@ -114,6 +114,7 @@ function MarkerMap({
          onClick={(e) => {
             onMapClicked(e);
          }}>
+         <GeolocateControl trackUserLocation="true" />
          {locationsData ? (
             <Pins
                places={pins}
@@ -125,16 +126,14 @@ function MarkerMap({
          )}
 
          {photoGridOpened ? (
-
-               <PhotoGrid
-                  setPhotoGridOpened={setPhotoGridOpened}
-                  setData={setData}
-                  data={data}
-                  setModal={setModal}
-                  onPhotoGridClose={onPhotoGridClose}
-                  locImages={locImages}
-               />
-            
+            <PhotoGrid
+               setPhotoGridOpened={setPhotoGridOpened}
+               setData={setData}
+               data={data}
+               setModal={setModal}
+               onPhotoGridClose={onPhotoGridClose}
+               locImages={locImages}
+            />
          ) : (
             <div />
          )}
