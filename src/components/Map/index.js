@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Map from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
+import Geocoder from "react-map-gl-geocoder";
 import Pins from "./Pins";
 import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
-import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
 
 import OutsideClickHandler from "react-outside-click-handler";
@@ -43,13 +45,13 @@ function MarkerMap({
 
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
-   const [locImages, setLocImages] = useState(false)
+   const [locImages, setLocImages] = useState(false);
    //const [temporaryPin, setTemporaryPin] = useState(false);
 
    function markerClick(loc_id, user_id) {
       setPhotoGridOpened(true);
       setIsMapInteractive(false);
-      setLocImages({loc_id:loc_id, user_id:user_id})
+      setLocImages({ loc_id: loc_id, user_id: user_id });
    }
 
    function onPhotoGridClose() {
@@ -97,9 +99,31 @@ function MarkerMap({
       setShowPopup(false);
    }
 
-   console.log(`Here's the data from map, passed to Photogrid`, data);
+   //! GEOCODER SETTINGS
+
+   const [viewport, setViewport] = useState({
+      latitude: 37.7577,
+      longitude: -122.4376,
+      zoom: 8,
+   });
+   const mapRef = useRef();
+   const handleViewportChange = useCallback(
+      (newViewport) => setViewport(newViewport),
+      []
+   );
+
+   const handleGeocoderViewportChange = useCallback((newViewport) => {
+      const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+      return handleViewportChange({
+         ...newViewport,
+         ...geocoderDefaultOverrides,
+      });
+   }, []);
+
    return (
       <Map
+         ref={mapRef}
          mapboxAccessToken={mapboxAccessToken}
          initialViewState={{
             longitude: -0.11,
@@ -151,6 +175,12 @@ function MarkerMap({
                setTemporaryPin={setTemporaryPin}
             />
          )}
+         <Geocoder
+            mapRef={mapRef}
+            onViewportChange={handleGeocoderViewportChange}
+            mapboxApiAccessToken={mapboxAccessToken}
+            position="top-right"
+         />
       </Map>
    );
 }
