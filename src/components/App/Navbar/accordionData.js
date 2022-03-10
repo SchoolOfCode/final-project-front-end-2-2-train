@@ -1,4 +1,4 @@
-const accordionData = [
+export const accordionData = [
    {
       title: "Albums",
       // content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis sapiente
@@ -23,4 +23,12 @@ const accordionData = [
    },
 ];
 
-export default accordionData;
+export const guideData = [
+   {tip: "~ Click on the map where the photo was taken!"},
+   {tip: "~ Select PINIT! to create the memory!"},
+   {tip: "~ Fill out the form with all the details!"},
+   {tip: "~ Don't forget to add the photo itself!"},
+   {tip: "~ Click submit and your memory will be pinned!"}
+]
+
+// export accordionData;
