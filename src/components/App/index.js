@@ -30,6 +30,7 @@ function App() {
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
    const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+   const [rerender, setRerender] = useState(true);
    const [profilePic, setProfilePic] = useState();
 
    //! the GET request
@@ -57,35 +58,36 @@ function App() {
          }
       }
       if (!isLoading) {
-         getData();
+         getData().then(setRerender(false));
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [user]);
 
    useEffect(() => {
-      console.log("User Id:", userId);
-      async function getLocationData() {
-         try {
-            const response = await fetch(`${API_URL}/location/${userId}`);
-            const newData = await response.json();
-            console.log("THIS IS THE LOCATION DATA IN THE USEEFFECT", newData);
-            if (newData.success === true) {
-               setLocationsData(newData.payload);
-               setError("");
-               setProfilePic(user.picture);
-            } else {
-               console.log(response, error);
+      if (userId) {
+         async function getLocationData() {
+            try {
+               const response = await fetch(`${API_URL}/location/${userId}`);
+               const newData = await response.json();
+               console.log(
+                  "THIS IS THE LOCATION DATA IN THE USEEFFECT",
+                  newData
+               );
+               if (newData.success === true) {
+                  setLocationsData(newData.payload);
+                  setError("");
+               } else {
+                  console.log(response, error);
 
-               setError("Fetch didn't work :(");
+                  setError("Fetch didn't work :(");
+               }
+            } catch (err) {
+               console.log(err);
+               setError(err.message);
             }
-         } catch (err) {
-            console.log(err);
-            setError(err.message);
          }
+         getLocationData().then(setRerender(false));
       }
-
-      getLocationData();
-   }, [userId]);
+   }, [userId, rerender]);
 
    // useEffect(() => {
    //    console.log(formPlace);
@@ -133,6 +135,7 @@ function App() {
                   addNewPin={addNewPin}
                   clickPlace={clickPlace}
                   userId={userId}
+                  setRerender={setRerender}
                />
             </OutsideClickHandler>
          ) : (

@@ -46,6 +46,7 @@ function PhotoGrid({
          const data = await response.json();
          const payload = await data.payload;
 
+         console.log("this is fetched images", payload);
          let result = await payload.reduce((unique, o) => {
             if (!unique.some((obj) => obj.media_id === o.media_id)) {
                unique.push(o);
