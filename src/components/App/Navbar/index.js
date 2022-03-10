@@ -36,6 +36,7 @@ function Navbar({ profilePic }) {
                      return `${item.place},     `;
                   })}
                />
+               <Accordion title="Guide" content="Hello, ....." />
             </div>
             <LogoutButton />
          </div>
