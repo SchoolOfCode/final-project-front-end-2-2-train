@@ -3,6 +3,7 @@ import Axios from "axios";
 import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import style from "./Form.module.css";
+import FadeIn from "react-fade-in";
 
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
@@ -160,52 +161,59 @@ export default function Form({
    //"Required" adds validation to inputted data.
 
    return (
-      <div className={style.sidebarContainer}>
-         <h2 className={style.close} onClick={()=>setForm(false)}>X</h2>
-         <form
-            className={style.formContainer}
-            onSubmit={handleSubmit(onSubmit)}>
-            <input
-               className={style.fileInput}
-               type="file"
-               placeholder="Image"
-               onChange={(e) => {
-                  setImage(e.target.files[0]);
-               }}
-            />
-            <input
-               placeholder="Title"
-               type="text"
-               {...register("title", {
-                  required: true,
-                  minLength: 1,
-                  maxLength: 40,
-               })}
-            />
-            <input
-               placeholder="Place"
-               type="text"
-               {...register("place", {
-                  required: true,
-                  minLength: 1,
-                  maxLength: 40,
-               })}
-            />
-            <input
-               className={style.formContainerTextarea}
-               placeholder="Note"
-               type="text"
-               {...register("notes", {
-                  required: true,
-                  minLength: 1,
-                  maxLength: 80,
-               })}
-            />
-            {/* Errors will return when field validation fails  */}
-            {errors.exampleRequired && <span>This field is required</span>}
+      <FadeIn>
+         <div className={style.sidebarContainer}>
+            <div className={style.textDiv}>
+               <h2 className={style.title}>Pin Image</h2>
+               <h2 className={style.close} onClick={() => setForm(false)}>
+                  X
+               </h2>
+            </div>
+            <form
+               className={style.formContainer}
+               onSubmit={handleSubmit(onSubmit)}>
+               <input
+                  className={style.fileInput}
+                  type="file"
+                  placeholder="Image"
+                  onChange={(e) => {
+                     setImage(e.target.files[0]);
+                  }}
+               />
+               <input
+                  placeholder="Title"
+                  type="text"
+                  {...register("title", {
+                     required: true,
+                     minLength: 1,
+                     maxLength: 40,
+                  })}
+               />
+               <input
+                  placeholder="Place"
+                  type="text"
+                  {...register("place", {
+                     required: true,
+                     minLength: 1,
+                     maxLength: 40,
+                  })}
+               />
+               <input
+                  className={style.formContainerTextarea}
+                  placeholder="Note"
+                  type="text"
+                  {...register("notes", {
+                     required: true,
+                     minLength: 1,
+                     maxLength: 80,
+                  })}
+               />
+               {/* Errors will return when field validation fails  */}
+               {errors.exampleRequired && <span>This field is required</span>}
 
-            <input className={style.formContainerButton} type="submit" />
-         </form>
-      </div>
+               <input className={style.formContainerButton} type="submit" />
+            </form>
+         </div>
+      </FadeIn>
    );
 }

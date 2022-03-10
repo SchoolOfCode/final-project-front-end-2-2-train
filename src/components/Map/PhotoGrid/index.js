@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
 import { get } from "react-hook-form";
+import FadeIn from "react-fade-in";
 
 const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
@@ -60,31 +61,33 @@ function PhotoGrid({
    }, [locImages, error]);
 
    return (
-      <div className={style.photoGridContainer}>
-         <div className={style.textDiv}>
-            <h1 className={style.title}>Photos</h1>
-            <h2 className={style.close} onClick={() => onPhotoGridClose()}>
-               X
-            </h2>
+      <FadeIn>
+         <div className={style.photoGridContainer}>
+            <div className={style.textDiv}>
+               <h1 className={style.title}>Photos</h1>
+               <h2 className={style.close} onClick={() => onPhotoGridClose()}>
+                  X
+               </h2>
+            </div>
+            <div className={style.imageDiv}>
+               {images ? (
+                  images.map((item, index) => {
+                     return (
+                        <PhotoCard
+                           key={item.media_id}
+                           dataObj={images[index]}
+                           setModal={setModal}
+                           deleteMedia={deleteMedia}
+                           id={item.media_id}
+                        />
+                     );
+                  })
+               ) : (
+                  <></>
+               )}
+            </div>
          </div>
-         <div className={style.imageDiv}>
-            {images ? (
-               images.map((item, index) => {
-                  return (
-                     <PhotoCard
-                        key={item.media_id}
-                        dataObj={images[index]}
-                        setModal={setModal}
-                        deleteMedia={deleteMedia}
-                        id={item.media_id}
-                     />
-                  );
-               })
-            ) : (
-               <></>
-            )}
-         </div>
-      </div>
+      </FadeIn>
    );
 }
 

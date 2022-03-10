@@ -15,7 +15,7 @@
 .formContainer {
    display: flex;
    flex-direction: column;
-   margin: 1rem auto 0 10px;
+   margin: 0 auto 0 10px;
    height: 100vh;
 }
 
@@ -38,7 +38,7 @@ BUTTONS
 *********/
 
 .formContainerButton {
-   margin: 2rem auto 0 auto;
+   margin: 1rem auto 0 auto;
    border: solid 1px var(--main-red);
    color: var(--main-red);
    background-color: var(--font-light);
@@ -68,6 +68,17 @@ BUTTONS
    padding: 2rem 1.5rem;
    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
    color: var(--main-color);
+}
+
+.textDiv {
+   display: flex;
+   flex-direction: row;
+}
+
+.title {
+   color: var(--text-color);
+   margin: 10px 0 0 10px;
+   width: 15vw;
 }
 
 .close {
