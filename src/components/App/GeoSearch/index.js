@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 
-
 export default function GeoSearch({ setMapLoc }) {
    const {
       register,
@@ -18,15 +17,13 @@ export default function GeoSearch({ setMapLoc }) {
       );
       let data = await response.json();
       console.log("Returned data", data[0].lon, data[0].lat);
-      setMapLoc({ longitude: data[0].lon, latitude: data[0].lat });
+      setMapLoc({ lng: data[0].lon, lat: data[0].lat });
    }
 
    return (
-      
-         <form onSubmit={handleSubmit(onSubmit)}>
-            <input placeholder="Search" {...register("search")} />
-            <input type="submit" />
-         </form>
-      
+      <form onSubmit={handleSubmit(onSubmit)}>
+         <input placeholder="Search" {...register("search")} />
+         <input type="submit" />
+      </form>
    );
 }

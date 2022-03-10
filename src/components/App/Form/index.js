@@ -57,10 +57,10 @@ export default function Form({
                });
                const result = await response.json();
                if (result.success === true) {
-                  console.log("it's ya boiiiii", result.payload);
                   setLocid(result.payload[0].loc_id);
                } else {
                   console.log(response);
+            
                }
             } catch (err) {
                console.log(err);
