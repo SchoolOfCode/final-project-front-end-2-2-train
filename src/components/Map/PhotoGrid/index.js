@@ -60,21 +60,27 @@ function PhotoGrid({
 
    return (
       <div className={style.photoGridContainer}>
-         {images ? (
-            images.map((item, index) => {
-               return (
-                  <PhotoCard
-                     key={item.media_id}
-                     dataObj={images[index]}
-                     setModal={setModal}
-                     deleteMedia={deleteMedia}
-                     id={item.media_id}
-                  />
-               );
-            })
-         ) : (
-            <></>
-         )}
+         <div className={style.textDiv}>
+            <h1 className={style.title}>Photos</h1>
+            <h2 className={style.close}>X</h2>
+         </div>
+         <div className={style.imageDiv}>
+            {images ? (
+               images.map((item, index) => {
+                  return (
+                     <PhotoCard
+                        key={item.media_id}
+                        dataObj={images[index]}
+                        setModal={setModal}
+                        deleteMedia={deleteMedia}
+                        id={item.media_id}
+                     />
+                  );
+               })
+            ) : (
+               <></>
+            )}
+         </div>
       </div>
    );
 }

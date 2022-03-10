@@ -49,31 +49,40 @@ BUTTONS
    display: inline-block;
    width: 10rem;
    transition-duration: 0.2s;
-   border-radius: 10px;
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+   box-shadow: var(--btn-shadow);
 }
 
 .formContainerButton:hover {
    color: var(--font-light);
    background-color: var(--main-red);
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+   box-shadow: var(--btn-hover);
 }
 
 .formContainerButton:active {
    transform: translateY(-2px);
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-active);
 }
 
 .fileInput {
    margin: 0;
    padding: 2rem 1.5rem;
    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
-   color: #5a5a5a;
+   color: var(--main-color);
 }
 
 .close {
-   text-transform: uppercase;
+   text-transform: lowercase;
    color: var(--text-color);
-   margin: 1rem 2rem 0 0;
-   float: right;
+   margin: 0.5rem 0.5rem 0 52rem;
+   cursor: pointer;
+   position: absolute;
+   top: 0px;
+   right: 10px;
+}
+
+.close:hover,
+.close:focus {
+   color: #bbb;
+   text-decoration: none;
+   cursor: pointer;
 }
