@@ -30,11 +30,11 @@ function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
                   </h2>
                </div>
 
-               <div className={style.funcP}>
-                  <button>EDIT</button>
+               <div className={style.btnContainer}>
+                  <button className={style.editBtn}>EDIT</button>
                   <button
-                     onClick={() => deleteMedia(id)}
-                     className={style.deleteBtn}>
+                     className={style.delBtn}
+                     onClick={() => deleteMedia(id)}>
                      DELETE
                   </button>
                </div>

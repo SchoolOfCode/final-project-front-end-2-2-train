@@ -121,7 +121,7 @@ function App() {
          </div>
          {modal ? (
             <OutsideClickHandler onOutsideClick={() => setModal(false)}>
-               <PhotoModal photo={modal} setModal={setModal} />
+               <PhotoModal photo={modal} setModal={setModal} data={data} />
             </OutsideClickHandler>
          ) : (
             <></>

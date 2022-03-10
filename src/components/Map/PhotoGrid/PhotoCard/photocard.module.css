@@ -69,19 +69,14 @@
    letter-spacing: 1px;
 }
 
-.deleteBtn {
-   color: var(--text-color);
-   float: right;
-   margin: 3px;
-}
-
 .textHolder {
    position: absolute;
    top: 0;
    margin-top: 10px;
+   cursor: pointer;
 }
 
-.funcP {
+.btnContainer {
    position: absolute;
    bottom: 0;
    left: 10px;
@@ -90,24 +85,8 @@
    margin: 0 auto 5px auto;
 }
 
-.funcP p {
-   font-size: 6px;
-   font-weight: 200;
-   color: #474747;
-}
-
-.funcP :first-child {
-   margin: 0 10px 10px 0;
-   cursor: pointer;
-}
-
-.funcP :last-child {
-   margin: 0 0 10px 5px;
-   cursor: pointer;
-   width: 70px;
-}
-
-.funcP button {
+.editBtn,
+.delBtn {
    text-transform: uppercase;
    font-weight: 500;
    box-shadow: rgb(0 0 0 / 20%) 0px 3px 4px;
@@ -119,16 +98,36 @@
    transition: 0.3s ease-in;
 }
 
-.funcP button:hover {
+.editBtn:hover,
+.delBtn:hover {
    box-shadow: rgb(0 0 0 / 20%) 0px 3px 4px;
    border: 1px var(--main-red) solid;
    color: var(--main-color);
    background-color: var(--main-red);
 }
 
-.funcp button:active {
+.editBtn:active,
+.delBtn:active {
    box-shadow: rgb(0 0 0 / 20%) 0px 1px 10px;
    border: 1px var(--main-red) solid;
    color: var(--main-color);
    background-color: var(--main-red);
+}
+
+.btnContainer p {
+   font-size: 6px;
+   font-weight: 200;
+   color: #474747;
+}
+
+.editBtn {
+   margin: 0 10px 10px 0;
+   cursor: pointer;
+   width: 50px;
+}
+
+.delBtn {
+   margin: 0 0 10px 5px;
+   cursor: pointer;
+   width: 70px;
 }
