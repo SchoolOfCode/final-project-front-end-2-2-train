@@ -8,11 +8,12 @@ const API_URL = "http://localhost:5500";
 // const API_URL = "https://gray2-2.herokuapp.com";
 
 export default function Form({
-   // setForm,
+   setForm,
    setTemporaryPin,
    addNewPin,
    clickPlace,
    userId,
+   setRerender,
 }) {
    const [obj, setObj] = useState({});
    const [image, setImage] = useState();
@@ -38,7 +39,7 @@ export default function Form({
       // setForm(false);
    };
 
-   //creates new location and returns with loc_id
+   //When Data state is updated this func creates new location and returns with loc_id
 
    useEffect(() => {
       if (data) {
@@ -87,7 +88,7 @@ export default function Form({
       uploadImage();
    }, [locid]);
 
-   //Once the image has been uploaded to Cloudinary, the data has the Iamge URL and the location data added
+   //Once the image has been uploaded to Cloudinary, the data has the Image URL and the location data added
 
    useEffect(() => {
       if (imageUrl) {
@@ -134,7 +135,12 @@ export default function Form({
                setError(err.message);
             }
          }
-         getMedia().then(setImageUrl(false)).then(setImage(false));
+         //reset states
+         getMedia()
+            .then(setImageUrl(false))
+            .then(setImage(false))
+            .then(setForm(false))
+            .then(setRerender(true));
       }
    }, [obj]);
 
