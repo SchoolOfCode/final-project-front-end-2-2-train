@@ -106,19 +106,19 @@ BUTTONS
    transition: 0.2s ease-in;
    text-transform: uppercase;
    font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+   box-shadow: var(--btn-shadow);
    letter-spacing: 1px;
 }
 
 .sign:hover {
    color: var(--font-light);
    background-color: var(--main-red);
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 7px 15px;
+   box-shadow: var(--btn-hover);
 }
 
 .sign:active {
    transform: translateY(-1px);
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-active);
 }
 
 .login {
@@ -130,7 +130,7 @@ BUTTONS
    transition: 0.2s ease-in;
    text-transform: uppercase;
    font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+   box-shadow: var(--btn-shadow);
    letter-spacing: 1px;
 }
 
@@ -138,12 +138,12 @@ BUTTONS
    color: var(--main-red);
    background-color: transparent;
    border: 2px var(--main-red) solid;
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 7px 15px;
+   box-shadow: var(--btn-hover);
 }
 
 .login:active {
    transform: translateY(-1px);
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-active);
 }
 
 .moreInfo {
@@ -156,19 +156,19 @@ BUTTONS
    transition: 0.2s ease-in;
    text-transform: uppercase;
    font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.5) 5px 10px 20px;
+   box-shadow: var(--btn-shadow);
    letter-spacing: 1px;
 }
 
 .moreInfo:hover {
    color: var(--font-light);
    background-color: var(--main-red);
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 7px 15px;
+   box-shadow: var(--btn-hover);
 }
 
 .moreInfo:active {
    transform: translateY(-1px);
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-active);
 }
 
 /*********
