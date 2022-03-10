@@ -19,7 +19,6 @@ function PhotoGrid({
    const [images, setImages] = useState(false);
 
    //! DELETE REQUEST
-
    async function deleteMedia(id) {
       try {
          const response = await fetch(`${API_URL}/media/${id}`, {
@@ -28,10 +27,9 @@ function PhotoGrid({
          });
          const result = await response.json();
          if (result.success === true) {
-            setError("");
+            setError(`${id}`);
          } else {
-            console.log(response, error);
-            setError("Fetch didn't work :(");
+            setError("");
          }
       } catch (err) {
          console.log(err);
@@ -39,6 +37,7 @@ function PhotoGrid({
       }
    }
 
+   //! GET IMAGES REQUEST & REFRESH ON DELETE
    useEffect(() => {
       async function getImages() {
          const response = await fetch(
@@ -58,7 +57,7 @@ function PhotoGrid({
          setImages(result);
       }
       getImages();
-   }, [locImages]);
+   }, [locImages, error]);
 
    return (
       <div className={style.photoGridContainer}>
@@ -66,10 +65,11 @@ function PhotoGrid({
             images.map((item, index) => {
                return (
                   <PhotoCard
-                     key={item.id}
+                     key={item.media_id}
                      dataObj={images[index]}
                      setModal={setModal}
                      deleteMedia={deleteMedia}
+                     id={item.media_id}
                   />
                );
             })

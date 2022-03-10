@@ -40,7 +40,7 @@ function Landing() {
                   <h1>
                      <span>You</span> make the memory,
                      <br />
-                     We'll put a pin in it
+                     We put a pin in it
                   </h1>
                   <a href="#section2">
                      <button href="#section2" className={style.moreInfo}>
