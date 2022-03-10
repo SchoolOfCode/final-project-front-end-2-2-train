@@ -2,7 +2,8 @@ import React from "react";
 import style from "./Navbar.module.css";
 import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
-import accordionData from "./accordionData.js";
+import { accordionData } from "./accordionData.js";
+import { guideData } from "./accordionData.js"
 
 function Navbar({ profilePic }) {
    return (
@@ -36,6 +37,10 @@ function Navbar({ profilePic }) {
                      return `${item.place},     `;
                   })}
                />
+               <Accordion title="How To Pinit" content={guideData.map((item)=> {
+                  return `${item.tip}`
+               })}
+             />
             </div>
             <LogoutButton />
          </div>

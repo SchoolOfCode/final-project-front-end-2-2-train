@@ -47,3 +47,8 @@
    font-family: var(--regular-font);
    letter-spacing: 1px;
 }
+
+.guide p {
+   display: flex;
+   flex-direction: column;
+}
