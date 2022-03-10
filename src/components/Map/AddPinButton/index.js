@@ -1,7 +1,6 @@
 import React from "react";
 import { Popup } from "react-map-gl";
 import pinbuttonstyle from "./addpinbutton.module.css";
-import GeoSearch from "../../App/GeoSearch";
 
 export default function AddPinButton({
    handleShowPopup,
@@ -11,8 +10,6 @@ export default function AddPinButton({
    isMapInteractive,
    setTemporaryPin,
 }) {
-   // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
-
    return (
       <Popup
          maxWidth="150px"

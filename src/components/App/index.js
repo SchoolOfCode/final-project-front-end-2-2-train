@@ -36,6 +36,8 @@ function App() {
 
    //! the GET request
    useEffect(() => {
+      setProfilePic();
+
       async function getData() {
          const email = user.email;
          console.log(email);
@@ -60,7 +62,7 @@ function App() {
       }
       if (!isLoading) {
          getData().then(setRerender(false));
-      }
+      } // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [user]);
 
    useEffect(() => {
@@ -87,7 +89,7 @@ function App() {
             }
          }
          getLocationData().then(setRerender(false));
-      }
+      } // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [userId, rerender]);
 
    // useEffect(() => {

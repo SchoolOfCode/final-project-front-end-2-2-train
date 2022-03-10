@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./photogrid.module.css";
 import PhotoCard from "./PhotoCard";
-import { get } from "react-hook-form";
 import FadeIn from "react-fade-in";
 
 const API_URL = "http://localhost:5500";

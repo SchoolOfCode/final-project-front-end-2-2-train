@@ -23,7 +23,7 @@ export default function Form({
    const [data, setData] = useState(false);
    const [latlng, setLatLng] = useState(clickPlace);
    const [locid, setLocid] = useState(0);
-
+   setLatLng();
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
       register,
@@ -68,6 +68,7 @@ export default function Form({
          }
          formSubmit(userId, latlng, API_URL);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [data]);
 
    //When location Id is updated then we Upload image to Cloudinary and return a URL
@@ -88,6 +89,7 @@ export default function Form({
          });
       };
       uploadImage();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [locid]);
 
    //Once the image has been uploaded to Cloudinary, the data has the Image URL and the location data added
@@ -99,7 +101,7 @@ export default function Form({
             img_url: imageUrl,
             ...data,
          });
-      }
+      } // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [imageUrl]);
 
    const [media, setMedia] = useState([]);
@@ -150,21 +152,11 @@ export default function Form({
             .then(setImage(false))
             .then(setForm(false))
             .then(setRerender(true));
-      }
+      } // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [obj]);
 
    //useEffect to close the Form after the response that has a value in image url is received
 
-   // useEffect(() => {
-   //    if (obj.title !== undefined) {
-   //       setForm(false);
-   //    } else {
-   //       return;
-   //    }
-   // }, [obj.title]);
-
-   console.log(obj);
-   console.log(obj.title);
    //The callback function "register" passes the input into the useForm Hook.
    //"Required" adds validation to inputted data.
 
