@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Map, { GeolocateControl } from "react-map-gl";
+import Map, { GeolocateControl, useMap } from "react-map-gl";
 import Pins from "./Pins";
 import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
-
 
 import OutsideClickHandler from "react-outside-click-handler";
 
@@ -14,6 +13,7 @@ const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
 function MarkerMap({
+   mapLoc,
    setData,
    data,
    setModal,
@@ -45,6 +45,7 @@ function MarkerMap({
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
    const [locImages, setLocImages] = useState(false);
+
    //const [temporaryPin, setTemporaryPin] = useState(false);
 
    function markerClick(loc_id, user_id) {
@@ -103,13 +104,15 @@ function MarkerMap({
       <Map
          mapboxAccessToken={mapboxAccessToken}
          initialViewState={{
-            longitude: -0.11,
-            latitude: 51.5,
+            longitude: mapLoc.longitude,
+            latitude: mapLoc.latitude,
             zoom: 9,
             pitchWithRotate: false,
             dragRotate: false,
          }}
-         interactive={isMapInteractive}
+         longitude={mapLoc.longitude}
+         latitude={mapLoc.latitude}
+         // interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {

@@ -23,6 +23,8 @@ export default function Form({
    const [data, setData] = useState(false);
    const [latlng, setLatLng] = useState(clickPlace);
    const [locid, setLocid] = useState(0);
+   
+   
 
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
