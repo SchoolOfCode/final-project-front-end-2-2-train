@@ -1,5 +1,7 @@
+import { style } from "@mui/system";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import geostyle from "./geo.module.css";
 
 export default function GeoSearch({ setMapLoc }) {
    const {
@@ -28,9 +30,13 @@ export default function GeoSearch({ setMapLoc }) {
    }
 
    return (
-      <form onSubmit={handleSubmit(onSubmit)}>
-         <input placeholder="Search" {...register("search")} />
-         <input type="submit" />
+      <form onSubmit={handleSubmit(onSubmit)} className={geostyle.form}>
+         <input
+            placeholder="Search"
+            {...register("search")}
+            className={geostyle.input}
+         />
+         <input type="submit" className={geostyle.button} />
       </form>
    );
 }

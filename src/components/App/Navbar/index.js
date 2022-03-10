@@ -45,8 +45,9 @@ function Navbar({ profilePic, setMapLoc }) {
                      return `${item.tip}`;
                   })}
                />
-               <GeoSearch setMapLoc={setMapLoc} />
             </div>
+
+               <GeoSearch setMapLoc={setMapLoc} />
 
             <LogoutButton />
          </div>
