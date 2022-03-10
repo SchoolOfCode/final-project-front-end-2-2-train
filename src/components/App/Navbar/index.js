@@ -3,9 +3,10 @@ import style from "./Navbar.module.css";
 import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
 import { accordionData } from "./accordionData.js";
-import { guideData } from "./accordionData.js"
+import { guideData } from "./accordionData.js";
+import GeoSearch from "../GeoSearch";
 
-function Navbar({ profilePic }) {
+function Navbar({ profilePic, setMapLoc }) {
    return (
       <>
          <div className={style.navbarContainer}>
@@ -21,6 +22,7 @@ function Navbar({ profilePic }) {
                   alt="Users profile"
                />
             </div>
+
             <div className={style.accordion}>
                {/* {newAccordionPlaces.map(({ title, content }) => (
                   <Accordion title={title} content={content} />
@@ -37,11 +39,15 @@ function Navbar({ profilePic }) {
                      return `${item.place},     `;
                   })}
                />
-               <Accordion title="How To Pinit" content={guideData.map((item)=> {
-                  return `${item.tip}`
-               })}
-             />
+               <Accordion
+                  title="How To Pinit"
+                  content={guideData.map((item) => {
+                     return `${item.tip}`;
+                  })}
+               />
+               <GeoSearch setMapLoc={setMapLoc} />
             </div>
+
             <LogoutButton />
          </div>
       </>
