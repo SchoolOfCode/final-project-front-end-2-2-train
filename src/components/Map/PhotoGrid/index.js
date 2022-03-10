@@ -63,7 +63,9 @@ function PhotoGrid({
       <div className={style.photoGridContainer}>
          <div className={style.textDiv}>
             <h1 className={style.title}>Photos</h1>
-            <h2 className={style.close} onClick={()=>setPhotoGridOpened(false)}>X</h2>
+            <h2 className={style.close} onClick={() => onPhotoGridClose()}>
+               X
+            </h2>
          </div>
          <div className={style.imageDiv}>
             {images ? (

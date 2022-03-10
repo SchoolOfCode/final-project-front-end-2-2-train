@@ -27,9 +27,7 @@ function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
                   <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
                      {dataObj.place} <br />
-                  </h2>{" "}
-                  <br />
-                  <h2 className={style.photoTitle}>{dataObj.notes}</h2>
+                  </h2>
                </div>
 
                <div className={style.funcP}>
