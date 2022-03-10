@@ -5,7 +5,7 @@ function PhotoModal({ photo, setModal }) {
    return (
       <div>
          <div className={style.modal}>
-            <h2 className={style.close}>x</h2>
+            <h2 className={style.close} onClick={()=>setModal(false)}>X</h2>
             <div className={style.modalContent}>
                <img src={photo} alt="Modal Pic" />
             </div>
