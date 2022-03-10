@@ -1,7 +1,7 @@
 import React from "react";
 import { Popup } from "react-map-gl";
 import pinbuttonstyle from "./addpinbutton.module.css";
-import GeoSearch from "../GeoSearch";
+import GeoSearch from "../../App/GeoSearch";
 
 export default function AddPinButton({
    handleShowPopup,

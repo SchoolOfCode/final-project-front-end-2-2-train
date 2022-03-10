@@ -5,7 +5,7 @@ import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
-import GeoSearch from "./GeoSearch";
+import GeoSearch from "../App/GeoSearch";
 import OutsideClickHandler from "react-outside-click-handler";
 
 // FIXME: secure access token
@@ -13,6 +13,7 @@ const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
 function MarkerMap({
+   mapLoc,
    setData,
    data,
    setModal,
@@ -44,7 +45,6 @@ function MarkerMap({
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
    const [locImages, setLocImages] = useState(false);
-   const [mapLoc, setMapLoc] = useState({ longitude: -0.11, latitude: 51.5 });
 
    //const [temporaryPin, setTemporaryPin] = useState(false);
 
@@ -110,16 +110,14 @@ function MarkerMap({
             pitchWithRotate: false,
             dragRotate: false,
          }}
-         // longitude={mapLoc.longitude}
-         // latitude={mapLoc.latitude}
+         longitude={mapLoc.longitude}
+         latitude={mapLoc.latitude}
          // interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <GeoSearch setMapLoc={setMapLoc} />
-
          <GeolocateControl trackUserLocation="true" />
          <NavigationControl />
          {locationsData ? (

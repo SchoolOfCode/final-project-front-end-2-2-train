@@ -4,6 +4,7 @@ import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
 import { accordionData } from "./accordionData.js";
 import { guideData } from "./accordionData.js";
+import GeoSearch from "../GeoSearch";
 
 function Navbar({ profilePic, setMapLoc }) {
    return (
@@ -44,8 +45,9 @@ function Navbar({ profilePic, setMapLoc }) {
                      return `${item.tip}`;
                   })}
                />
+               <GeoSearch setMapLoc={setMapLoc} />
             </div>
-            
+
             <LogoutButton />
          </div>
       </>
