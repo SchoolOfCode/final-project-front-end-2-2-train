@@ -2,9 +2,11 @@ import React from "react";
 import style from "./Navbar.module.css";
 import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
-import accordionData from "./accordionData.js";
+import { accordionData } from "./accordionData.js";
+import { guideData } from "./accordionData.js";
+import GeoSearch from "../GeoSearch";
 
-function Navbar() {
+function Navbar({ profilePic, setMapLoc }) {
    return (
       <>
          <div className={style.navbarContainer}>
@@ -14,13 +16,39 @@ function Navbar() {
                   src={require("../../../img/pinit-logo-offwhite.png")}
                   alt=""
                />
-               <LogoutButton />
+               <img
+                  className={style.profile}
+                  src={profilePic}
+                  alt="Users profile"
+               />
             </div>
+
             <div className={style.accordion}>
-               {accordionData.map(({ title, content }) => (
+               {/* {newAccordionPlaces.map(({ title, content }) => (
                   <Accordion title={title} content={content} />
-               ))}
+               ))} */}
+               <Accordion
+                  title="Titles"
+                  content={accordionData.map((item) => {
+                     return `${item.title},     `;
+                  })}
+               />
+               <Accordion
+                  title="Places"
+                  content={accordionData.map((item) => {
+                     return `${item.place},     `;
+                  })}
+               />
+               <Accordion
+                  title="How To Pinit"
+                  content={guideData.map((item) => {
+                     return `${item.tip}`;
+                  })}
+               />
+               <GeoSearch setMapLoc={setMapLoc} />
             </div>
+
+            <LogoutButton />
          </div>
       </>
    );
