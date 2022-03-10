@@ -1,15 +1,10 @@
 import React from "react";
 import style from "./photocard.module.css";
 
-function PhotoCard({ key, dataObj, delFunc, setModal }) {
-   // css to allow only a certain amount of char for the notes
-   // returning data populated by the DummyData
-
+function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
    return (
       <div className={style.flipcard}>
-         <div
-            className={style.flipcardContainer}
-            onClick={() => setModal(dataObj.img_url)}>
+         <div className={style.flipcardContainer}>
             <div className={style.flipcardFront}>
                <img
                   className={style.polaroidFrame}
@@ -21,24 +16,27 @@ function PhotoCard({ key, dataObj, delFunc, setModal }) {
                   <img
                      className={style.photo}
                      src={dataObj.img_url}
-                     alt={key}
+                     alt={id}
                   />{" "}
                </div>
             </div>
             <div className={style.flipcardBack}>
-               <div className={style.textHolder}>
+               <div
+                  onClick={() => setModal(dataObj.img_url)}
+                  className={style.textHolder}>
                   <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
                      {dataObj.place} <br />
                   </h2>
                </div>
-               <div className={style.funcP}>
-                  <p>EDIT</p>
-                  <p
-                     onClick={() => delFunc(dataObj.id)}
-                     className={style.deleteBtn}>
+
+               <div className={style.btnContainer}>
+                  <button className={style.editBtn}>EDIT</button>
+                  <button
+                     className={style.delBtn}
+                     onClick={() => deleteMedia(id)}>
                      DELETE
-                  </p>
+                  </button>
                </div>
             </div>
          </div>

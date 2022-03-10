@@ -74,13 +74,17 @@ NAVBAR
 .navlink {
    font-family: var(--font-main);
    text-transform: uppercase;
-   margin: 2.3rem 0 0 1rem;
+   margin: 2.3rem 0 1rem 3rem;
    color: var(--main-red);
-   transition: 0.2s;
+   transition: 0.1s;
+   letter-spacing: 1px;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
 }
 
 .navlink:hover {
-   border-bottom: 2px var(--main-red) solid;
+   border-bottom: 1px var(--main-red) solid;
 }
 
 li {
@@ -92,14 +96,6 @@ li {
 BUTTONS
 *********/
 
-/* button {
-   border: 1px solid black;
-   text-transform: uppercase;
-   font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-      rgba(0, 0, 0, 0.22) 0px 15px 12px;
-} */
-
 .sign {
    margin: 1.5rem 2rem 0 0;
    height: 40px;
@@ -107,23 +103,22 @@ BUTTONS
    border: 2px var(--main-red) solid;
    color: var(--main-red);
    background-color: transparent;
-   transition: 0.3s ease-in;
-
+   transition: 0.2s ease-in;
    text-transform: uppercase;
    font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+   box-shadow: var(--btn-shadow);
+   letter-spacing: 1px;
 }
 
 .sign:hover {
    color: var(--font-light);
    background-color: var(--main-red);
-   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-hover);
 }
 
 .sign:active {
    transform: translateY(-1px);
-   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   box-shadow: var(--btn-active);
 }
 
 .login {
@@ -132,18 +127,23 @@ BUTTONS
    width: 200px;
    color: var(--font-light);
    background-color: var(--main-red);
-   transition: 0.3s ease-in;
-
+   transition: 0.2s ease-in;
    text-transform: uppercase;
    font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+   box-shadow: var(--btn-shadow);
+   letter-spacing: 1px;
 }
 
 .login:hover {
    color: var(--main-red);
    background-color: transparent;
    border: 2px var(--main-red) solid;
+   box-shadow: var(--btn-hover);
+}
+
+.login:active {
+   transform: translateY(-1px);
+   box-shadow: var(--btn-active);
 }
 
 .moreInfo {
@@ -153,17 +153,22 @@ BUTTONS
    border: 2px var(--main-red) solid;
    color: var(--main-red);
    background-color: transparent;
-   transition: 0.3s ease-in;
-
+   transition: 0.2s ease-in;
    text-transform: uppercase;
    font-weight: 700;
-   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+   box-shadow: var(--btn-shadow);
+   letter-spacing: 1px;
 }
 
 .moreInfo:hover {
    color: var(--font-light);
    background-color: var(--main-red);
+   box-shadow: var(--btn-hover);
+}
+
+.moreInfo:active {
+   transform: translateY(-1px);
+   box-shadow: var(--btn-active);
 }
 
 /*********

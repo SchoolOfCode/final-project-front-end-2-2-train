@@ -1,35 +1,38 @@
 import style from "./App.module.css";
-
 import Navbar from "./Navbar";
 import { React, useState, useEffect } from "react";
 import PhotoModal from "./PhotoModal/index";
 import Form from "./Form";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import MarkerMap from "../Map";
-// small change to make another build on netlify
 import usePins from "../../hooks/usePins";
 import mockData from "../Map/mockLocations.json"; // importing mock locations for testing
+
+import OutsideClickHandler from "react-outside-click-handler";
 
 // const API_URL = "http://localhost:5500";
 const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
-   const { user, isLoading } = useAuth0();
+   const { user, isLoading, isAuthenticated } = useAuth0();
 
    if (isLoading) <p>Loading...</p>;
 
    // Sets the style of the sidebar to show it
    const [form, setForm] = useState(false);
-   const [modal, setModal] = useState("");
+   const [modal, setModal] = useState(false);
    const [data, setData] = useState([]);
    const [error, setError] = useState("");
-
+   const [locationsData, setLocationsData] = useState(false);
+   const [userId, setUserId] = useState(0);
    const [formPlace, setFormPlace] = useState();
    const [temporaryPin, setTemporaryPin] = useState(false);
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
    const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+   const [rerender, setRerender] = useState(true);
+   const [profilePic, setProfilePic] = useState();
+   const [mapLoc, setMapLoc] = useState({ longitude: -0.11, latitude: 51.5 });
 
    //! the GET request
    useEffect(() => {
@@ -42,7 +45,9 @@ function App() {
             console.log("THIS IS THE DATA IN THE MOUNTED USEEFFECT", newData);
             if (newData.success === true) {
                setData(newData.payload);
+               setUserId(newData.payload[0].user_id);
                setError("");
+               console.log(`I'm the re-render`);
             } else {
                console.log(response, error);
 
@@ -54,10 +59,36 @@ function App() {
          }
       }
       if (!isLoading) {
-         getData();
+         getData().then(setRerender(false));
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [user]);
+
+   useEffect(() => {
+      if (userId) {
+         async function getLocationData() {
+            try {
+               const response = await fetch(`${API_URL}/location/${userId}`);
+               const newData = await response.json();
+               console.log(
+                  "THIS IS THE LOCATION DATA IN THE USEEFFECT",
+                  newData
+               );
+               if (newData.success === true) {
+                  setLocationsData(newData.payload);
+                  setError("");
+               } else {
+                  console.log(response, error);
+
+                  setError("Fetch didn't work :(");
+               }
+            } catch (err) {
+               console.log(err);
+               setError(err.message);
+            }
+         }
+         getLocationData().then(setRerender(false));
+      }
+   }, [userId, rerender]);
 
    // useEffect(() => {
    //    console.log(formPlace);
@@ -65,11 +96,19 @@ function App() {
 
    return (
       <div className={style.app}>
-         <Navbar className={style.navbar} />
+         <Navbar
+            className={style.navbar}
+            isAuthenticated={isAuthenticated}
+            profilePic={profilePic}
+            setMapLoc={setMapLoc}
+         />
+
          <div className={style.mapContainer}>
             <MarkerMap
+               mapLoc={mapLoc}
                setData={setData}
                data={data}
+               locationsData={locationsData}
                setModal={setModal}
                className={style.map}
                setForm={setForm}
@@ -83,15 +122,25 @@ function App() {
                setClickPlace={setClickPlace}
             />
          </div>
-         {modal ? <PhotoModal photo={modal} setModal={setModal} /> : <></>}
+         {modal ? (
+            <OutsideClickHandler onOutsideClick={() => setModal(false)}>
+               <PhotoModal photo={modal} setModal={setModal} data={data} />
+            </OutsideClickHandler>
+         ) : (
+            <></>
+         )}
          {form ? (
-            <Form
-               setForm={setForm}
-               formPlace={formPlace}
-               setTemporaryPin={setTemporaryPin}
-               addNewPin={addNewPin}
-               clickPlace={clickPlace}
-            />
+            <OutsideClickHandler onOutsideClick={() => setForm(false)}>
+               <Form
+                  setForm={setForm}
+                  formPlace={formPlace}
+                  setTemporaryPin={setTemporaryPin}
+                  addNewPin={addNewPin}
+                  clickPlace={clickPlace}
+                  userId={userId}
+                  setRerender={setRerender}
+               />
+            </OutsideClickHandler>
          ) : (
             <></>
          )}

@@ -3,6 +3,16 @@
    margin: 2rem 1.5rem;
 }
 
+.accordionTitleActive {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   cursor: pointer;
+   background-color: var(--primary-color);
+   border-radius: 15px;
+   transition: 0.2s;
+}
+
 .accordionTitle {
    display: flex;
    flex-direction: row;
@@ -10,14 +20,12 @@
    cursor: pointer;
    background-color: var(--primary-color);
    border-radius: 15px 15px 0 0;
-}
-
-.accordionTitle:hover {
-   background-color: var(--primary-color);
+   transition: 0.1s;
 }
 
 .accordionTitle,
-.accordionContent {
+.accordionContent,
+.accordionTitleActive {
    padding: 1rem;
 }
 
@@ -32,8 +40,15 @@
    text-transform: uppercase;
    font-weight: bold;
    font-size: var(--font-size-p);
+   letter-spacing: 1px;
 }
 .accordionPFont {
    color: var(--font-color);
    font-family: var(--regular-font);
+   letter-spacing: 1px;
+}
+
+.guide p {
+   display: flex;
+   flex-direction: column;
 }

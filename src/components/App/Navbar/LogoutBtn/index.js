@@ -6,13 +6,20 @@ const LogoutButton = () => {
    const { logout } = useAuth0();
 
    return (
-      <button
-         className={style.button}
-         onClick={() =>
-            logout({ returnTo: "https://pinit-pinit.netlify.app/" })
-         }>
-         Log Out
-      </button>
+      <>
+         <div className={style.container}>
+            <button
+               className={style.button}
+               onClick={() => logout({ returnTo: "https://pinit-pinit.netlify.app/" })}>
+               Log Out
+            </button>
+            <img
+               className={style.settings}
+               src={require("../../../../img/settings.png")}
+               alt="Settings icon"
+            />
+         </div>
+      </>
    );
 };
 

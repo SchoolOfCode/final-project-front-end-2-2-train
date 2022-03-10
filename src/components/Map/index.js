@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Map from "react-map-gl";
+import Map, { GeolocateControl, useMap, NavigationControl } from "react-map-gl";
 import Pins from "./Pins";
 import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
+import GeoSearch from "../App/GeoSearch";
+import OutsideClickHandler from "react-outside-click-handler";
 
 // FIXME: secure access token
 const mapboxAccessToken =
    "pk.eyJ1IjoiZ3JheWNhbm55IiwiYSI6ImNrenZpbGhqcTBpY2wydnJ1ZG44OTUyYjgifQ.LiRNo2hwZaa9c3zAuQimCA";
 
-
 function MarkerMap({
+   mapLoc,
    setData,
    data,
    setModal,
@@ -24,6 +26,7 @@ function MarkerMap({
    newPlaceId,
    setClickPlace,
    clickPlace,
+   locationsData,
 }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
@@ -31,21 +34,24 @@ function MarkerMap({
    //const [clickLocation, setClickLocation] = useState({ lng: 0, lat: 0 });
    //const [pins, addNewPin, newLocationId] = usePins(mockData);
 
-  // TODO: change to place
-//function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
+   // TODO: change to place
+   //function MarkerMap({ setData, data, setModal, setForm, setFormPlace }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
- //  const [showPopup, setShowPopup] = useState(false);
- //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
- //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
+   //  const [showPopup, setShowPopup] = useState(false);
+   //  const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
+   //  const [pins, addNewPin, newPlaceId] = usePins(mockData);
 
    const [photoGridOpened, setPhotoGridOpened] = useState(false);
    const [isMapInteractive, setIsMapInteractive] = useState(true);
+   const [locImages, setLocImages] = useState(false);
+
    //const [temporaryPin, setTemporaryPin] = useState(false);
 
-   function markerClick() {
+   function markerClick(loc_id, user_id) {
       setPhotoGridOpened(true);
       setIsMapInteractive(false);
+      setLocImages({ loc_id: loc_id, user_id: user_id });
    }
 
    function onPhotoGridClose() {
@@ -63,7 +69,6 @@ function MarkerMap({
          lat: placeData.lat,
          lng: placeData.lng,
       };
-
 
       setClickPlace(newPlace);
       setFormPlace(newPlace);
@@ -99,27 +104,44 @@ function MarkerMap({
       <Map
          mapboxAccessToken={mapboxAccessToken}
          initialViewState={{
-            longitude: -0.11,
-            latitude: 51.5,
+            longitude: mapLoc.longitude,
+            latitude: mapLoc.latitude,
             zoom: 9,
             pitchWithRotate: false,
             dragRotate: false,
          }}
-         interactive={isMapInteractive}
+         // longitude={mapLoc.longitude}
+         // latitude={mapLoc.latitude}
+         // interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <Pins places={pins} markerClick={markerClick} />
-         {photoGridOpened ? (
-            <PhotoGrid
-               setPhotoGridOpened={setPhotoGridOpened}
-               setData={setData}
-               data={data}
-               setModal={setModal}
-               onPhotoGridClose={onPhotoGridClose}
+         <GeolocateControl trackUserLocation="true" />
+         <NavigationControl />
+         {locationsData ? (
+            <Pins
+               places={pins}
+               markerClick={markerClick}
+               locationsData={locationsData}
             />
+         ) : (
+            <></>
+         )}
+
+         {photoGridOpened ? (
+            <OutsideClickHandler
+               onOutsideClick={() => setPhotoGridOpened(false)}>
+               <PhotoGrid
+                  setPhotoGridOpened={setPhotoGridOpened}
+                  setData={setData}
+                  data={data}
+                  setModal={setModal}
+                  onPhotoGridClose={onPhotoGridClose}
+                  locImages={locImages}
+               />
+            </OutsideClickHandler>
          ) : (
             <div />
          )}

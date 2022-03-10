@@ -11,7 +11,10 @@
    --font-size-p: 18px;
    --regular-font: "Roboto", sans-serif;
    --title-font: "Hurricane", cursive;
-   --title-font-size: 1.6rem;
+   --title-font-size: 1.5rem;
+   --btn-shadow: rgba(0, 0, 0, 0.5) 1px 3px 10px;
+   --btn-hover: rgba(0, 0, 0, 0.4) 3px 7px 10px;
+   --btn-active: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 h1 {

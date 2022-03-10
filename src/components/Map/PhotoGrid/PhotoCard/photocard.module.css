@@ -56,25 +56,80 @@
    border: solid 0.5px rgba(41, 40, 40, 0.726);
    border-radius: 3px;
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-content: center;
 }
 
 .photoTitle {
-   font-family: var(--title-font);
+   font-family: var(--regular-font);
    color: var(--text-color);
-   font-size: 1.6rem;
-   margin-left: 10px;
-}
-
-.deleteBtn {
-   color: var(--text-color);
-   float: right;
-   margin: 3px;
+   font-size: 1rem;
+   margin: 10px 0 0 10px;
+   letter-spacing: 1px;
 }
 
 .textHolder {
+   position: absolute;
+   top: 0;
    margin-top: 10px;
+   cursor: pointer;
+}
+
+.btnContainer {
+   position: absolute;
+   bottom: 0;
+   left: 10px;
+   display: flex;
+   flex-direction: row;
+   margin: 0 auto 5px auto;
+}
+
+.editBtn,
+.delBtn {
+   text-transform: uppercase;
+   font-weight: 500;
+   box-shadow: rgb(0 0 0 / 20%) 0px 3px 4px;
+   height: 30px;
+   width: 50px;
+   border: 1px var(--main-red) solid;
+   color: var(--main-red);
+   background-color: var(--main-color);
+   transition: 0.3s ease-in;
+}
+
+.editBtn:hover,
+.delBtn:hover {
+   box-shadow: rgb(0 0 0 / 20%) 0px 3px 4px;
+   border: 1px var(--main-red) solid;
+   color: var(--main-color);
+   background-color: var(--main-red);
+}
+
+.editBtn:active,
+.delBtn:active {
+   box-shadow: rgb(0 0 0 / 20%) 0px 1px 10px;
+   border: 1px var(--main-red) solid;
+   color: var(--main-color);
+   background-color: var(--main-red);
+}
+
+.btnContainer p {
+   font-size: 6px;
+   font-weight: 200;
+   color: #474747;
+}
+
+.editBtn {
+   margin: 0 10px 10px 0;
+   cursor: pointer;
+   width: 50px;
+}
+
+.delBtn {
+   margin: 0 0 10px 5px;
+   cursor: pointer;
+   width: 70px;
 }
 
 .funcP {
