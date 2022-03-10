@@ -23,8 +23,6 @@ export default function Form({
    const [data, setData] = useState(false);
    const [latlng, setLatLng] = useState(clickPlace);
    const [locid, setLocid] = useState(0);
-   
-   
 
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
@@ -175,7 +173,12 @@ export default function Form({
          <div className={style.sidebarContainer}>
             <div className={style.textDiv}>
                <h2 className={style.title}>Pin Image</h2>
-               <h2 className={style.close} onClick={() => setForm(false)}>
+               <h2
+                  className={style.close}
+                  onClick={() => {
+                     setForm(false);
+                     setTemporaryPin(false);
+                  }}>
                   X
                </h2>
             </div>

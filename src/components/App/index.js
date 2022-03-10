@@ -32,11 +32,6 @@ function App() {
    const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
    const [rerender, setRerender] = useState(true);
    const [profilePic, setProfilePic] = useState();
-   const [mapLoc, setMapLoc] = useState({ longitude: -0.11, latitude: 51.5 });
-
-   useEffect(() => {
-      console.log(mapLoc);
-   }, [mapLoc]);
 
    //! the GET request
    useEffect(() => {
@@ -104,12 +99,10 @@ function App() {
             className={style.navbar}
             isAuthenticated={isAuthenticated}
             profilePic={profilePic}
-            setMapLoc={setMapLoc}
          />
 
          <div className={style.mapContainer}>
             <MarkerMap
-               mapLoc={mapLoc}
                setData={setData}
                data={data}
                locationsData={locationsData}
