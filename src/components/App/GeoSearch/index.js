@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 export default function GeoSearch({ setMapLoc }) {
    const {
@@ -18,6 +19,12 @@ export default function GeoSearch({ setMapLoc }) {
       let data = await response.json();
       console.log("Returned data", data[0].lon, data[0].lat);
       setMapLoc({ lng: data[0].lon, lat: data[0].lat });
+      Swal.fire({
+         position: "top-end",
+         title: "Search Successful! Zoom out to find Pinit button",
+         showConfirmButton: false,
+         timer: 3000,
+      });
    }
 
    return (
