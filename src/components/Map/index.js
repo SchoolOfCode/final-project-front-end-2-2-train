@@ -110,8 +110,8 @@ function MarkerMap({
             pitchWithRotate: false,
             dragRotate: false,
          }}
-         longitude={mapLoc.longitude}
-         latitude={mapLoc.latitude}
+         // longitude={mapLoc.longitude}
+         // latitude={mapLoc.latitude}
          // interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
