@@ -126,14 +126,17 @@ function MarkerMap({
          )}
 
          {photoGridOpened ? (
-            <PhotoGrid
-               setPhotoGridOpened={setPhotoGridOpened}
-               setData={setData}
-               data={data}
-               setModal={setModal}
-               onPhotoGridClose={onPhotoGridClose}
-               locImages={locImages}
-            />
+            <OutsideClickHandler
+               onOutsideClick={() => setPhotoGridOpened(false)}>
+               <PhotoGrid
+                  setPhotoGridOpened={setPhotoGridOpened}
+                  setData={setData}
+                  data={data}
+                  setModal={setModal}
+                  onPhotoGridClose={onPhotoGridClose}
+                  locImages={locImages}
+               />
+            </OutsideClickHandler>
          ) : (
             <div />
          )}
