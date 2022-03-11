@@ -1,0 +1,19 @@
+.form {
+   text-align: center;
+}
+
+.input {
+   margin-right: 3%;
+   height: 5vh;
+   width: 80%;
+   border: 2px solid var(--primary-color);
+   border-radius: 15px;
+}
+
+.button {
+   margin-left: -27%;
+   height: 3.95vh;
+   width: 4vw;
+   border-radius: 11px;
+   background-color: var(--primary-color);
+}

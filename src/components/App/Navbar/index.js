@@ -18,7 +18,7 @@ function Navbar({ profilePic, setMapLoc }) {
                />
                <img
                   className={style.profile}
-                  src={profilePic}
+                  src={require("../../../img/profile-pic.png")}
                   alt="Users profile"
                />
             </div>
