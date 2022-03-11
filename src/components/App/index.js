@@ -35,6 +35,7 @@ function App() {
 
    //! the GET request
    useEffect(() => {
+
       async function getData() {
          const email = user.email;
          console.log(email);

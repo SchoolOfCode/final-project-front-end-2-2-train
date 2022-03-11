@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Landing.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 function Landing() {
    //! Used in the login and sign up button
@@ -18,7 +19,9 @@ function Landing() {
                   />
                </li>
                <li className={style.navlinks}>
-                  <p className={style.navlink}>about us</p>
+                  <Link to="/contact" className={style.navlink}>
+                     about us
+                  </Link>
                   <p className={style.navlink}>contact</p>
                   <p className={style.navlink}>faqs</p>
                </li>
