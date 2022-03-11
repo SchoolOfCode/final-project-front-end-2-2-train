@@ -28,7 +28,7 @@ function Navbar({ profilePic, setMapLoc }) {
                   <Accordion title={title} content={content} />
                ))} */}
                <Accordion
-                  title="Titles"
+                  title="Memories"
                   content={accordionData.map((item) => {
                      return `${item.title},     `;
                   })}
