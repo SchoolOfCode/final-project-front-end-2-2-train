@@ -10,8 +10,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 ReactDOM.render(
    <React.StrictMode>
       <Auth0Provider
-      domain="pinit.eu.auth0.com"
-         clientId="HfJrCn4gPGhRR6NW1LJx6AMHnn25Oir0"
+         domain="dev-zstf-6ko.us.auth0.com"
+         clientId="u1uyOmpEhNMThAh66lmghT1xqnKv6hgT"
          redirectUri={`https://pinit-pinit.netlify.app/app`}>
          <Router>
             <Routes>
