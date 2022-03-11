@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import geostyle from "./geo.module.css";
-
 export default function GeoSearch({ setMapLoc }) {
    const {
       register,
@@ -12,7 +11,7 @@ export default function GeoSearch({ setMapLoc }) {
    const onSubmit = async (data) => {
       getLatLng(data.search);
    };
-
+   console.log(watch, errors);
    async function getLatLng(search) {
       let response = await fetch(
          `https://us1.locationiq.com/v1/search.php?key=pk.25f2058579dc590174cea4898a871a51&q=${search}&format=json`

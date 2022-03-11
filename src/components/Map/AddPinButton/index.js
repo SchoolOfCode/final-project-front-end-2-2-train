@@ -10,8 +10,6 @@ export default function AddPinButton({
    isMapInteractive,
    setTemporaryPin,
 }) {
-   // return <button style={{ width: "100px", height: "100px" }}>PINIT</button>;
-
    return (
       <Popup
          maxWidth="150px"
