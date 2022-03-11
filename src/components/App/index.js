@@ -35,7 +35,6 @@ function App() {
 
    //! the GET request
    useEffect(() => {
-      // setProfilePic();
 
       async function getData() {
          const email = user.email;

@@ -40,9 +40,7 @@ function PhotoGrid({
    //! GET IMAGES REQUEST & REFRESH ON DELETE
    useEffect(() => {
       async function getImages() {
-         const response = await fetch(
-            `https://gray2-2.herokuapp.com/media/${locImages.loc_id}`
-         );
+         const response = await fetch(`${API_URL}/media/${locImages.loc_id}`);
          const data = await response.json();
          const payload = await data.payload;
 

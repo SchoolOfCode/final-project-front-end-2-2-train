@@ -23,7 +23,6 @@ export default function Form({
    const [data, setData] = useState(false);
    // const [latlng, setLatLng] = useState(clickPlace);
    const [locid, setLocid] = useState(0);
-   // setLatLng();
    //Using useForm hook to add validation to the form in line with HTML standards.
    const {
       register,
@@ -151,7 +150,9 @@ export default function Form({
             .then(setImage(false))
             .then(setForm(false))
             .then(setRerender(true));
+
       } // eslint-disable-next-line react-hooks/exhaustive-deps
+
    }, [obj]);
 
    //useEffect to close the Form after the response that has a value in image url is received
