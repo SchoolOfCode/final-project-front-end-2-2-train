@@ -150,9 +150,8 @@ export default function Form({
             .then(setImage(false))
             .then(setForm(false))
             .then(setRerender(true));
-
-      } // eslint-disable-next-line react-hooks/exhaustive-deps
-
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [obj]);
 
    //useEffect to close the Form after the response that has a value in image url is received
