@@ -6,8 +6,8 @@ import style from "./Form.module.css";
 import FadeIn from "react-fade-in";
 import Swal from "sweetalert2";
 
-const API_URL = "http://localhost:5500";
-// const API_URL = "https://gray2-2.herokuapp.com";
+// const API_URL = "http://localhost:5500";
+const API_URL = "https://gray2-2.herokuapp.com";
 
 export default function Form({
    setForm,
@@ -60,7 +60,6 @@ export default function Form({
                   setLocid(result.payload[0].loc_id);
                } else {
                   console.log(response);
-            
                }
             } catch (err) {
                console.log(err);

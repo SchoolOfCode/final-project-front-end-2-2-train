@@ -11,7 +11,7 @@ ReactDOM.render(
       <Auth0Provider
          domain="dev-zstf-6ko.us.auth0.com"
          clientId="u1uyOmpEhNMThAh66lmghT1xqnKv6hgT"
-         redirectUri={`http://localhost:3000/app`}>
+         redirectUri={`https://pinit-pinit.netlify.app/app`}>
          <Router>
             <Routes>
                <Route path="/" element={<Landing />}></Route>

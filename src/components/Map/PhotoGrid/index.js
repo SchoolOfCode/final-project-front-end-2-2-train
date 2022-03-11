@@ -42,7 +42,7 @@ function PhotoGrid({
    useEffect(() => {
       async function getImages() {
          const response = await fetch(
-            `http://localhost:5500/media/${locImages.loc_id}`
+            `https://gray2-2.herokuapp.com/media/${locImages.loc_id}`
          );
          const data = await response.json();
          const payload = await data.payload;
