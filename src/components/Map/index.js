@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Map, { GeolocateControl, useMap, NavigationControl } from "react-map-gl";
+import Map, { GeolocateControl, NavigationControl } from "react-map-gl";
 import Pins from "./Pins";
 import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
-import GeoSearch from "../App/GeoSearch";
 import OutsideClickHandler from "react-outside-click-handler";
 
 // FIXME: secure access token
@@ -92,6 +91,7 @@ function MarkerMap({
          setClickPlace(mapLoc);
          setShowPopup(true);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [mapLoc]);
 
    useEffect(() => {

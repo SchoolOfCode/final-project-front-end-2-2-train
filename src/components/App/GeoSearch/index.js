@@ -1,4 +1,3 @@
-import { style } from "@mui/system";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import geostyle from "./geo.module.css";
@@ -7,8 +6,8 @@ export default function GeoSearch({ setMapLoc }) {
    const {
       register,
       handleSubmit,
-      watch,
-      formState: { errors },
+      // watch,
+      // formState: { errors },
    } = useForm();
    const onSubmit = async (data) => {
       getLatLng(data.search);

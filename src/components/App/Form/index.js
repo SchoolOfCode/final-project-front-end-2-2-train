@@ -21,7 +21,7 @@ export default function Form({
    const [image, setImage] = useState();
    const [imageUrl, setImageUrl] = useState(false);
    const [data, setData] = useState(false);
-   const [latlng, setLatLng] = useState(clickPlace);
+   // const [latlng, setLatLng] = useState(clickPlace);
    const [locid, setLocid] = useState(0);
 
    //Using useForm hook to add validation to the form in line with HTML standards.
@@ -45,9 +45,9 @@ export default function Form({
 
    useEffect(() => {
       if (data) {
-         async function formSubmit(user_id, latlng, API_URL) {
-            const lat = latlng.lat;
-            const lng = latlng.lng;
+         async function formSubmit(user_id, clickPlace, API_URL) {
+            const lat = clickPlace.lat;
+            const lng = clickPlace.lng;
             const obj = { user_id: user_id, lat: lat, lng: lng };
             try {
                const response = await fetch(`${API_URL}/location`, {
@@ -65,8 +65,9 @@ export default function Form({
                console.log(err);
             }
          }
-         formSubmit(userId, latlng, API_URL);
+         formSubmit(userId, clickPlace, API_URL);
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [data]);
 
    //When location Id is updated then we Upload image to Cloudinary and return a URL
@@ -87,6 +88,7 @@ export default function Form({
          });
       };
       uploadImage();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [locid]);
 
    //Once the image has been uploaded to Cloudinary, the data has the Image URL and the location data added
@@ -99,6 +101,7 @@ export default function Form({
             ...data,
          });
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [imageUrl]);
 
    const [media, setMedia] = useState([]);
@@ -150,6 +153,7 @@ export default function Form({
             .then(setForm(false))
             .then(setRerender(true));
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [obj]);
 
    //useEffect to close the Form after the response that has a value in image url is received
