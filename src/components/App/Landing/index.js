@@ -22,8 +22,12 @@ function Landing() {
                   <Link to="/contact" className={style.navlink}>
                      about us
                   </Link>
-                  <p className={style.navlink}>contact</p>
-                  <p className={style.navlink}>faqs</p>
+                  <Link to="/contact" className={style.navlink}>
+                     contact
+                  </Link>
+                  <Link to="/contact" className={style.navlink}>
+                     faqs
+                  </Link>
                </li>
                <li>
                   <button
