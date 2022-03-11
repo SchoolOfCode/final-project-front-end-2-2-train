@@ -5,7 +5,6 @@ import TemporaryPin from "./Pins/TemporaryPin";
 import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
-// import GeoSearch from "../App/GeoSearch";
 import OutsideClickHandler from "react-outside-click-handler";
 
 // FIXME: secure access token
@@ -88,6 +87,14 @@ function MarkerMap({
    }, [clickPlace]);
 
    useEffect(() => {
+      if (mapLoc) {
+         setClickPlace(mapLoc);
+         setShowPopup(true);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [mapLoc]);
+
+   useEffect(() => {
       setShowPopup(false);
    }, [pins]);
 
@@ -104,14 +111,12 @@ function MarkerMap({
       <Map
          mapboxAccessToken={mapboxAccessToken}
          initialViewState={{
-            longitude: mapLoc.longitude,
-            latitude: mapLoc.latitude,
+            longitude: -0.11,
+            latitude: 51.5,
             zoom: 9,
             pitchWithRotate: false,
             dragRotate: false,
          }}
-         // longitude={mapLoc.longitude}
-         // latitude={mapLoc.latitude}
          // interactive={isMapInteractive}
          // style={{ width: 600, height: 400 }} //? Do we want a full size map or resize the map container?
          mapStyle="mapbox://styles/graycanny/cl06rug4o004o14ro0szy0z5p/draft"
@@ -132,7 +137,10 @@ function MarkerMap({
 
          {photoGridOpened ? (
             <OutsideClickHandler
-               onOutsideClick={() => setPhotoGridOpened(false)}>
+               onOutsideClick={() => {
+                  setPhotoGridOpened(false);
+                  setIsMapInteractive(true);
+               }}>
                <PhotoGrid
                   setPhotoGridOpened={setPhotoGridOpened}
                   setData={setData}

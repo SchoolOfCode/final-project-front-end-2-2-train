@@ -31,8 +31,7 @@ function App() {
    const [pins, addNewPin, newPlaceId] = usePins(mockData);
    const [clickPlace, setClickPlace] = useState({ lng: 0, lat: 0 });
    const [rerender, setRerender] = useState(true);
-   const [profilePic, setProfilePic] = useState();
-   const [mapLoc, setMapLoc] = useState({ longitude: -0.11, latitude: 51.5 });
+   const [mapLoc, setMapLoc] = useState(false);
 
    //! the GET request
    useEffect(() => {
@@ -89,7 +88,7 @@ function App() {
             }
          }
          getLocationData().then(setRerender(false));
-      } // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [userId, rerender]);
 
    // useEffect(() => {
@@ -101,7 +100,6 @@ function App() {
          <Navbar
             className={style.navbar}
             isAuthenticated={isAuthenticated}
-            profilePic={profilePic}
             setMapLoc={setMapLoc}
          />
 
