@@ -81,6 +81,8 @@ NAVBAR
    display: flex;
    align-items: center;
    cursor: pointer;
+   border: none;
+   text-decoration: none;
 }
 
 .navlink:hover {

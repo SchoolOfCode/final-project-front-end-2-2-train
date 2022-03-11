@@ -22,7 +22,7 @@ function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
             </div>
             <div className={style.flipcardBack}>
                <div
-                  onClick={() => setModal(dataObj.img_url)}
+                  onClick={() => setModal(dataObj)}
                   className={style.textHolder}>
                   <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
