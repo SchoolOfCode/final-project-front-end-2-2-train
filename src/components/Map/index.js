@@ -137,7 +137,10 @@ function MarkerMap({
 
          {photoGridOpened ? (
             <OutsideClickHandler
-               onOutsideClick={() => setPhotoGridOpened(false)}>
+               onOutsideClick={() => {
+                  setPhotoGridOpened(false);
+                  setIsMapInteractive(true);
+               }}>
                <PhotoGrid
                   setPhotoGridOpened={setPhotoGridOpened}
                   setData={setData}
