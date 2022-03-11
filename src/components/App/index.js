@@ -35,7 +35,7 @@ function App() {
 
    //! the GET request
    useEffect(() => {
-      setProfilePic();
+      // setProfilePic();
 
       async function getData() {
          const email = user.email;
@@ -88,6 +88,7 @@ function App() {
             }
          }
          getLocationData().then(setRerender(false));
+      }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [userId, rerender]);
 
