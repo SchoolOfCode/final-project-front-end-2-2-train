@@ -24,11 +24,11 @@ export const accordionData = [
 ];
 
 export const guideData = [
-   {tip: "~ Click on the map where the photo was taken!"},
-   {tip: "~ Select PINIT! to create the memory!"},
-   {tip: "~ Fill out the form with all the details!"},
-   {tip: "~ Don't forget to add the photo itself!"},
-   {tip: "~ Click submit and your memory will be pinned!"}
-]
+   { tip: "Click on the map where the photo was taken" },
+   { tip: "Select PINIT! to create the memory" },
+   { tip: "Fill out the form with all the details" },
+   { tip: "Don't forget to add the photo!" },
+   { tip: "Click submit and your memory will be pinned" },
+];
 
 // export accordionData;

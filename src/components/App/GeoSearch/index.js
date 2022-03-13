@@ -30,7 +30,7 @@ export default function GeoSearch({ setMapLoc }) {
    return (
       <form onSubmit={handleSubmit(onSubmit)} className={geostyle.form}>
          <input
-            placeholder="Search"
+            placeholder="Search for a location"
             {...register("search")}
             className={geostyle.input}
          />

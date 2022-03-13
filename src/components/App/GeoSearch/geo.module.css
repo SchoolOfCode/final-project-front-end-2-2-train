@@ -1,5 +1,6 @@
 .form {
    text-align: center;
+   margin: 0 10px 0 auto;
 }
 
 .input {
@@ -8,12 +9,17 @@
    width: 80%;
    border: 2px solid var(--primary-color);
    border-radius: 15px;
+   padding: 3px 0 3px 10px;
 }
 
 .button {
-   margin-left: -27%;
+   font-family: var(--regular-font);
+   margin-left: -30%;
    height: 3.95vh;
-   width: 4vw;
+   width: 5vw;
    border-radius: 11px;
    background-color: var(--primary-color);
+   color: var(--main-color);
+   padding: 3px 4px 3px 4px;
+   text-transform: uppercase;
 }
