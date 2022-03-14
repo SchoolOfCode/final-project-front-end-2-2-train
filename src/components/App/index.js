@@ -46,7 +46,7 @@ function App() {
                setData(newData.payload);
                setUserId(newData.payload[0].user_id);
                setError("");
-               console.log(`I'm the re-render`);
+               console.log(`DAAAATTTTTAAAAA`, data);
             } else {
                console.log(response, error);
 
@@ -100,6 +100,8 @@ function App() {
             className={style.navbar}
             isAuthenticated={isAuthenticated}
             setMapLoc={setMapLoc}
+            setModal={setModal}
+            data={data}
          />
 
          <div className={style.mapContainer}>

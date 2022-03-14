@@ -1,0 +1,11 @@
+.title {
+   color: var(--text-color);
+   cursor: pointer;
+   font-weight: 400;
+   margin-bottom: 8px;
+}
+
+.title:hover {
+   border-bottom: 2px solid var(--nav-color);
+   background-color: rgb(223, 223, 223);
+}

@@ -1,5 +1,5 @@
 .navbarContainer {
-   width: 18%;
+   width: 20%;
    height: 100%;
    background: rgba(229, 229, 229, 0.3);
    z-index: 1;
@@ -28,4 +28,11 @@
    border-radius: 50px;
    margin: 20px 0 0 2px;
    background-color: var(--main-color);
+}
+
+.li {
+   margin: 3px auto 6px auto;
+   padding: 3px 4px 3px 4px;
+   background-color: rgb(223, 223, 223);
+   border-radius: 10px;
 }
