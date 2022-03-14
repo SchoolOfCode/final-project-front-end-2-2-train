@@ -3,7 +3,7 @@
 }
 
 .pic {
-   height: 982px;
-   width: 1512px;
-   margin: 0 25% 0 10%;
+   height: 100vh;
+   width: auto;
+   margin: 0 0 0 80px;
 }

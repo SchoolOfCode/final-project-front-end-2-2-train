@@ -22,4 +22,5 @@
    color: var(--main-color);
    padding: 3px 4px 3px 4px;
    text-transform: uppercase;
+   cursor: pointer;
 }
