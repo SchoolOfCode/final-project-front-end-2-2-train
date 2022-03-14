@@ -41,10 +41,7 @@ function Navbar({ setMapLoc, setModal, data }) {
             </div>
 
             {reduceData ? (
-               <div className={style.accordion}>
-                  {/* {newAccordionPlaces.map(({ title, content }) => (
-                  <Accordion title={title} content={content} />
-               ))} */}
+               <div className={style.accordion}>    
                   <Accordion
                      title="Memories"
                      setModal={setModal}
@@ -87,9 +84,6 @@ function Navbar({ setMapLoc, setModal, data }) {
                </div>
             ) : (
                <div className={style.accordion}>
-                  {/* {newAccordionPlaces.map(({ title, content }) => (
-                  <Accordion title={title} content={content} />
-               ))} */}
                   <Accordion
                      title="Memories"
                      setModal={setModal}
@@ -131,7 +125,6 @@ function Navbar({ setMapLoc, setModal, data }) {
                   <GeoSearch setMapLoc={setMapLoc} />
                </div>
             )}
-
             <LogoutButton />
          </div>
       </>
