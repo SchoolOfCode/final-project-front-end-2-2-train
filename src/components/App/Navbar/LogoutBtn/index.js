@@ -10,7 +10,9 @@ const LogoutButton = () => {
          <div className={style.container}>
             <button
                className={style.button}
-               onClick={() => logout({ returnTo: "http://localhost:3000/" })}>
+               onClick={() =>
+                  logout({ returnTo: "https://pinit-pinit.netlify.app/" })
+               }>
                Log Out
             </button>
             <img

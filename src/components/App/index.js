@@ -10,8 +10,8 @@ import mockData from "../Map/mockLocations.json"; // importing mock locations fo
 
 import OutsideClickHandler from "react-outside-click-handler";
 
-const API_URL = "http://localhost:5500";
-// const API_URL = "https://gray2-2.herokuapp.com";
+// const API_URL = "http://localhost:5500";
+const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
