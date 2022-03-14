@@ -10,8 +10,8 @@ import mockData from "../Map/mockLocations.json"; // importing mock locations fo
 
 import OutsideClickHandler from "react-outside-click-handler";
 
-// const API_URL = "http://localhost:5500";
-const API_URL = "https://gray2-2.herokuapp.com";
+const API_URL = "http://localhost:5500";
+// const API_URL = "https://gray2-2.herokuapp.com";
 
 function App() {
    // gets the user information after authentication
@@ -35,7 +35,6 @@ function App() {
 
    //! the GET request
    useEffect(() => {
-
       async function getData() {
          const email = user.email;
          console.log(email);
@@ -47,7 +46,7 @@ function App() {
                setData(newData.payload);
                setUserId(newData.payload[0].user_id);
                setError("");
-               console.log(`I'm the re-render`);
+               console.log(`DAAAATTTTTAAAAA`, data);
             } else {
                console.log(response, error);
 
@@ -101,6 +100,8 @@ function App() {
             className={style.navbar}
             isAuthenticated={isAuthenticated}
             setMapLoc={setMapLoc}
+            setModal={setModal}
+            data={data}
          />
 
          <div className={style.mapContainer}>

@@ -50,6 +50,7 @@ BUTTONS
    width: 10rem;
    transition-duration: 0.2s;
    box-shadow: var(--btn-shadow);
+   cursor: pointer;
 }
 
 .formContainerButton:hover {
@@ -68,6 +69,7 @@ BUTTONS
    padding: 2rem 1.5rem;
    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
    color: var(--main-color);
+   cursor: pointer;
 }
 
 .textDiv {

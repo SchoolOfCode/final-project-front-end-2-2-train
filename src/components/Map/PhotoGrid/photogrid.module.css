@@ -42,3 +42,68 @@
    text-decoration: none;
    cursor: pointer;
 }
+
+.btnContainer {
+   position: absolute;
+   bottom: 0;
+   right: 20px;
+   display: flex;
+   flex-direction: row;
+   margin: 0 auto 5px auto;
+}
+
+.editBtn,
+.delBtn {
+   text-transform: uppercase;
+   font-weight: 500;
+   box-shadow: rgb(0 0 0 / 20%) 0px 3px 4px;
+   height: 30px;
+   width: 50px;
+   border: 1px var(--main-red) solid;
+   color: var(--main-red);
+   background-color: var(--main-color);
+   transition: 0.3s ease-in;
+}
+
+.editBtn:hover,
+.delBtn:hover {
+   box-shadow: rgb(0 0 0 / 20%) 0px 3px 4px;
+   border: 1px var(--main-red) solid;
+   color: var(--main-color);
+   background-color: var(--main-red);
+}
+
+.editBtn:active,
+.delBtn:active {
+   box-shadow: rgb(0 0 0 / 20%) 0px 1px 10px;
+   border: 1px var(--main-red) solid;
+   color: var(--main-color);
+   background-color: var(--main-red);
+}
+
+.btnContainer p {
+   font-size: 6px;
+   font-weight: 200;
+   color: #474747;
+}
+
+.editBtn {
+   margin: 0 10px 10px 0;
+   cursor: pointer;
+   width: 120px;
+}
+
+.delBtn {
+   margin: 0 0 10px 5px;
+   cursor: pointer;
+   width: 120px;
+}
+
+.funcP {
+   display: flex;
+   flex-direction: row;
+}
+
+.funcP :first-child {
+   border-right: 0.5 solid black;
+}
