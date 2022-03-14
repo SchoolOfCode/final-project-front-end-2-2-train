@@ -2,11 +2,13 @@ import React from "react";
 import style from "./Navbar.module.css";
 import LogoutButton from "./LogoutBtn";
 import Accordion from "./Accordion";
-import { accordionData } from "./accordionData.js";
 import { guideData } from "./accordionData.js";
 import GeoSearch from "../GeoSearch";
+import PicInfo from "./PicInfo";
+import PlaceInfo from "./PlaceInfo";
 
-function Navbar({ profilePic, setMapLoc }) {
+function Navbar({ setMapLoc, setModal, data }) {
+   console.log(data);
    return (
       <>
          <div className={style.navbarContainer}>
@@ -28,21 +30,41 @@ function Navbar({ profilePic, setMapLoc }) {
                   <Accordion title={title} content={content} />
                ))} */}
                <Accordion
-                  title="Titles"
-                  content={accordionData.map((item) => {
-                     return `${item.title},     `;
+                  title="Pictures"
+                  setModal={setModal}
+                  content={data.map((data) => {
+                     return (
+                        <PicInfo
+                           key={data.media_id}
+                           setModal={setModal}
+                           title={data.title}
+                           data={data}
+                        />
+                     );
                   })}
                />
                <Accordion
                   title="Places"
-                  content={accordionData.map((item) => {
-                     return `${item.place},     `;
+                  setModal={setModal}
+                  content={data.map((data) => {
+                     return (
+                        <PlaceInfo
+                           key={data.media_id}
+                           setModal={setModal}
+                           place={data.place}
+                           data={data}
+                        />
+                     );
                   })}
                />
                <Accordion
                   title="How To Pinit"
                   content={guideData.map((item) => {
-                     return `${item.tip}`;
+                     return (
+                        <ul>
+                           <li className={style.li}>{item.tip}</li>
+                        </ul>
+                     );
                   })}
                />
                <GeoSearch setMapLoc={setMapLoc} />

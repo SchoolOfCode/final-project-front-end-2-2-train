@@ -2,7 +2,7 @@ import React from "react";
 import style from "./PhotoModal.module.css";
 import FadeIn from "react-fade-in";
 
-function PhotoModal({ photo, setModal, data }) {
+function PhotoModal({ photo, setModal }) {
    return (
       <FadeIn>
          <div>
