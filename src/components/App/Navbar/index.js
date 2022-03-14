@@ -30,7 +30,7 @@ function Navbar({ setMapLoc, setModal, data }) {
                   <Accordion title={title} content={content} />
                ))} */}
                <Accordion
-                  title="Pictures"
+                  title="Memories"
                   setModal={setModal}
                   content={data.map((data) => {
                      return (
