@@ -1,0 +1,7 @@
+.controlsContainer {
+   background-color: rgb(255, 85, 85);
+   color: rgb(255, 85, 85);
+   height: 10vh;
+   width: 5vw;
+   z-index: 1;
+}

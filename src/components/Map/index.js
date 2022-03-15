@@ -6,6 +6,7 @@ import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
 import OutsideClickHandler from "react-outside-click-handler";
+import style from "./Map.module.css";
 
 // FIXME: secure access token
 const mapboxAccessToken =
@@ -106,7 +107,14 @@ function MarkerMap({
       setShowPopup(false);
    }
 
-   console.log(`Here's the data from map, passed to Photogrid`, data);
+   const controlStyle = {
+      backgroundColor: "#fc4647",
+      color: "#fc4647",
+      height: "auto",
+      width: "auto",
+      border: "solid 6px white",
+   };
+
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken}
@@ -123,8 +131,8 @@ function MarkerMap({
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <GeolocateControl trackUserLocation="true" />
-         <NavigationControl />
+         <GeolocateControl trackUserLocation="true" style={controlStyle} />
+         <NavigationControl style={controlStyle} />
          {locationsData ? (
             <Pins
                places={pins}
