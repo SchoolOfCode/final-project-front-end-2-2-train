@@ -6,7 +6,6 @@ import AddPinButton from "./AddPinButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhotoGrid from "../Map/PhotoGrid";
 import OutsideClickHandler from "react-outside-click-handler";
-import style from "./Map.module.css";
 
 // FIXME: secure access token
 const mapboxAccessToken =
