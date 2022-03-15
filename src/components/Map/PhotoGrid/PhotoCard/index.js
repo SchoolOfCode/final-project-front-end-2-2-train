@@ -21,15 +21,18 @@ function PhotoCard({ id, dataObj, setModal, deleteMedia }) {
                </div>
             </div>
             <div className={style.flipcardBack}>
-               <div
-                  onClick={() => setModal(dataObj)}
-                  className={style.textHolder}>
+               <div className={style.textHolder}>
                   <h1 className={style.photoTitle}>{dataObj.title},</h1>
                   <h2 className={style.photoTitle}>
                      {dataObj.place} <br />
                   </h2>
                </div>
 
+               <button
+                  onClick={() => setModal(dataObj)}
+                  className={style.viewBtn}>
+                  VIEW
+               </button>
                <div className={style.btnContainer}>
                   <button className={style.editBtn}>EDIT</button>
                   <button
