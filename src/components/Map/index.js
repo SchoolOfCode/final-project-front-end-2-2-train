@@ -26,6 +26,7 @@ function MarkerMap({
    setClickPlace,
    clickPlace,
    locationsData,
+   modal,
 }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
@@ -145,8 +146,10 @@ function MarkerMap({
          {photoGridOpened ? (
             <OutsideClickHandler
                onOutsideClick={() => {
-                  setPhotoGridOpened(false);
-                  setIsMapInteractive(true);
+                  if (!modal) {
+                     setPhotoGridOpened(false);
+                     setIsMapInteractive(true);
+                  }
                }}>
                <PhotoGrid
                   setPhotoGridOpened={setPhotoGridOpened}
