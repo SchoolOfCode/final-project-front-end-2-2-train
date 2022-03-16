@@ -121,6 +121,7 @@ function App() {
                newPlaceId={newPlaceId}
                clickPlace={clickPlace}
                setClickPlace={setClickPlace}
+               modal={modal}
             />
          </div>
          {modal ? (

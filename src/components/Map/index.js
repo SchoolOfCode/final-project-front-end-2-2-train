@@ -26,6 +26,7 @@ function MarkerMap({
    setClickPlace,
    clickPlace,
    locationsData,
+   modal,
 }) {
    //creating state for locations data - currently using mockData
    //TODO: will need to be adjusted to fetch all location data of user (useEffect)
@@ -106,14 +107,7 @@ function MarkerMap({
       setShowPopup(false);
    }
 
-   const controlStyle = {
-      backgroundColor: "#fc4647",
-      color: "#fc4647",
-      height: "auto",
-      width: "auto",
-      border: "solid 6px white",
-   };
-
+   console.log(`Here's the data from map, passed to Photogrid`, data);
    return (
       <Map
          mapboxAccessToken={mapboxAccessToken}
@@ -130,8 +124,8 @@ function MarkerMap({
          onClick={(e) => {
             onMapClicked(e);
          }}>
-         <GeolocateControl trackUserLocation="true" style={controlStyle} />
-         <NavigationControl style={controlStyle} />
+         <GeolocateControl trackUserLocation="true" />
+         <NavigationControl />
          {locationsData ? (
             <Pins
                places={pins}
@@ -145,8 +139,10 @@ function MarkerMap({
          {photoGridOpened ? (
             <OutsideClickHandler
                onOutsideClick={() => {
-                  setPhotoGridOpened(false);
-                  setIsMapInteractive(true);
+                  if (!modal) {
+                     setPhotoGridOpened(false);
+                     setIsMapInteractive(true);
+                  }
                }}>
                <PhotoGrid
                   setPhotoGridOpened={setPhotoGridOpened}
